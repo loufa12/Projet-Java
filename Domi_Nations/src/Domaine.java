@@ -4,6 +4,7 @@ public class Domaine {
 	protected String taille;
 	protected String type;
 
+
 	public Domaine (String id_domaine, String taille, String type) {
 		this.id_domaine = id_domaine;
 		this.taille = taille;
