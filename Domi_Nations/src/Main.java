@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		Joueur joueur = new Joueur();
 		Partie partie = new Partie();
-		partie.play();	
+		test();
 	}
 	public static void test() {
 		Scanner scanner = new Scanner(System.in);

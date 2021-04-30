@@ -1,6 +1,5 @@
 package inter;
 
-import jdk.internal.cmm.SystemResourcePressureImpl;
 import javax.swing.*;
 import java.awt.*;
 
