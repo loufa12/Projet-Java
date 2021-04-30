@@ -3,9 +3,8 @@ public class Roi {
 	protected String id_roi;
 	protected String couleur;
 	protected String ordre;
-}
 
-	public Roi (String id_roi, String couleur, String ordre) {
+	public Roi(String id_roi, String couleur, String ordre) {
 		this.id_roi = id_roi;
 		this.couleur = couleur;
 		this.ordre = ordre;
@@ -34,3 +33,4 @@ public class Roi {
 	public void setOrdre(String ordre) {
 		this.ordre = ordre;
 	}
+}
