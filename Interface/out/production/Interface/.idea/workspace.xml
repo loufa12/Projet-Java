@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="904a9832-b99e-46d0-8dcf-5af5df2b719f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Domi_Nations/bin/Domaine.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Domi_Nations/bin/Domaine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Domi_Nations/bin/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Domi_Nations/bin/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Domi_Nations/src/Domaine.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Domi_Nations/src/Domaine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Domi_Nations/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Domi_Nations/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Interface/inter/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Interface/inter/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/inter/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1rtJX48TGWhnBPQLVIAoAEqmn2s" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="904a9832-b99e-46d0-8dcf-5af5df2b719f" name="Default Changelist" comment="" />
+      <created>1619789488453</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619789488453</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
