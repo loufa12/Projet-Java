@@ -20,19 +20,29 @@ public class Main {
 
 
         //JLabel
-        JLabel label1 = new JLabel("Premier label");
+        JLabel label1 = new JLabel("Insérez le nombre de joueurs à droite ");
         panel1.add(label1);
-        label1.setPreferredSize(new Dimension(100,100));
+        label1.setPreferredSize(new Dimension(100, 100));
         //label1.setIcon(new ImageIcon(lien image à afficher));
 
 
-        //Button
-        JButton button1 = new JButton("Premier Bouton");
-        panel1.add(button1);
+        //Texte à insérer
 
-        window.setVisible(true);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationRelativeTo(null);
-        System.out.println("...Fin");
+        Button button = new Button("saisir le nombre de joueurs");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (button.getLabel().equals("saisir le nombre de joueurs")) {
+                    button.setLabel("c'est saisi !");
+                } else {
+                    button.setLabel("saisir le nombre de joueurs");
+                }
+            }
+        });
+
+        frame.add(button);
+        frame.setVisible(true);
+
     }
+
 }

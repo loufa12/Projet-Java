@@ -34,5 +34,4 @@ public class Domaine {
 	public void setType(String type) {
 		this.type = type;
 	}
-
 }
