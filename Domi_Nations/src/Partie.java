@@ -19,7 +19,7 @@ public class Partie {
 			playersTable[i] = iPlayer;
 		}
 		System.out.println(Arrays.toString(playersTable));
-		for (int j=0; j< playersTable.length; j++) {
+		for (int j=0; j < playersTable.length; j++) {
 			System.out.println("Bienvenue " + playersTable[j] + ", vous êtes le joueur n°" + (j+1) + " !");
 		}
 	}
