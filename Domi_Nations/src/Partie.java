@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Partie {
 	private Royaume[][] table;
-	private Joueur[] player;
+	private Joueur[] players;
 	private Joueur currentPlayer;
 
 	public void play() {
@@ -32,8 +32,8 @@ public class Partie {
 		String[] playersTable = new String[nbPlayers];
 		for (int i=0; i < nbPlayers; i++) {
 			System.out.println("Indiquez le nom du joueur " + (i + 1) + " :");
-			String iPlayer = scanner.nextLine();
-			playersTable[i] = iPlayer;
+			String name_player = scanner.nextLine();
+			playersTable[i] = name_player;
 
 			System.out.println("Parmi les couleurs " + colors_list + " laquelle choisissez-vous ?");
 			String chosen_color = scanner.nextLine();
@@ -43,17 +43,25 @@ public class Partie {
 				System.out.println("Vous devez choisir une couleur parmi : " + colors_list);
 				chosen_color = scanner.nextLine();
 			}
-			colors_list.remove(chosen_color);
+
+			// On crée les différents joueurs à chaque tour de boucle
+			Joueur player = new Joueur(i+1, name_player, chosen_color);
+
+			// On crée les différents rois avec leur couleur
 			Roi king = new Roi(i+1, chosen_color);
+
 			if (playersTable.length == 2) {
 				Roi kingbis = new Roi(i+2, chosen_color);
 			}
+
+			colors_list.remove(chosen_color);
 		}
 
-		// On affiche les noms des joueurs
+		// On affiche les noms des différents joueurs
 		System.out.println(Arrays.toString(playersTable));
 		for (int j=0; j < playersTable.length; j++) {
 			System.out.println("Bienvenue " + playersTable[j] + ", vous êtes le joueur n°" + (j+1) + " !");
 		}
+
 	}
 }

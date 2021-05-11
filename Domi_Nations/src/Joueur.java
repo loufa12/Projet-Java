@@ -2,7 +2,13 @@
 public class Joueur {
 	protected int id_joueur;
 	protected String name;
-	protected String couleur;
+	protected String color;
+
+	public Joueur(int id_joueur, String name, String color) {
+		this.id_joueur = id_joueur;
+		this.name = name;
+		this.color = color;
+	}
 
 	public int getId_joueur() {
 		return id_joueur;
@@ -18,10 +24,10 @@ public class Joueur {
 		this.name = name;
 	}
 
-	public String getCouleur() {
-		return couleur;
+	public String getColor() {
+		return color;
 	}
-	public void setCouleur(String couleur) {
-		this.couleur = couleur;
+	public void setColor(String color) {
+		this.color = color;
 	}
 }
