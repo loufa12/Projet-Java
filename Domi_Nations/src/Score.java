@@ -1,17 +1,17 @@
 
 public class Score {
-	protected String id_score;
+	protected int id_score;
 	protected int score;
 
-	public Score(String id_score, int score) {
+	public Score(int id_score, int score) {
 		this.id_score = id_score;
 	}
 
-	public String getId_score() {
+	public int getId_score() {
 		return id_score;
 	}
 
-	public void setId_score(String id_score) {
+	public void setId_score(int id_score) {
 		this.id_score = id_score;
 	}
 
