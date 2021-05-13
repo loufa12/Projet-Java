@@ -1,11 +1,13 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
 
 	// Lance le jeu.
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		Partie partie = new Partie();
-		partie.play();
+		partie.creationDominos();
+
 	}
 }
 
