@@ -1,8 +1,8 @@
 
 public class Joueur {
 	protected int id_joueur;
-	protected String name;
-	protected String color;
+	protected static String name;
+	protected static String color;
 
 	public Joueur(int id_joueur, String name, String color) {
 		this.id_joueur = id_joueur;
@@ -17,14 +17,14 @@ public class Joueur {
 		this.id_joueur = id_joueur;
 	}
 
-	public String getName() {
+	public static String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getColor() {
+	public static String getColor() {
 		return color;
 	}
 	public void setColor(String color) {

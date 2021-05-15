@@ -1,6 +1,6 @@
 
 public class Domino {
-	protected int id_domino;
+	protected static int id_domino;
 	protected String domaine1;
 	protected String domaine2;
 	protected int nb_couronnes1;
@@ -14,8 +14,8 @@ public class Domino {
 		this.nb_couronnes2 = nb_couronnes2;
 	}
 
-	public int getId_domino() {
-		return id_domino;
+	public static int getId_domino() {
+		return 	id_domino;
 	}
 	public void setId_domino(int id_domino) {
 		this.id_domino = id_domino;

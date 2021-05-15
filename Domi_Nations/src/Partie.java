@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.io.FileReader;
@@ -16,6 +17,7 @@ public class Partie {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Quel est le nombre de joueurs ?");
 		int nbPlayers = scanner.nextInt();
+
 		scanner.nextLine();
 
 		// On vérifie que le nb de joueurs est compris entre 2 et 4
@@ -24,6 +26,11 @@ public class Partie {
 			nbPlayers = scanner.nextInt();
 			scanner.nextLine();
 		}
+
+		// On calcule le nombre de dominos
+		int nbDominosMax = 48;
+		int nbDomino = 48 - 12*(4-nbPlayers);
+		System.out.println("Nombre de dominos : "+ nbDomino);
 
 		// On crée la liste des couleurs possibles
 		ArrayList<String> colors_list = new ArrayList<String>();
@@ -34,6 +41,7 @@ public class Partie {
 
 		// On crée la liste des joueurs
 		String[] playersTable = new String[nbPlayers];
+		String[] players_color_list = new String[nbPlayers];
 		for (int i=0; i < nbPlayers; i++) {
 			System.out.println("Indiquez le nom du joueur " + (i+1) + " :");
 			String name_player = scanner.nextLine();
@@ -43,13 +51,16 @@ public class Partie {
 			String chosen_color = scanner.nextLine();
 
 			// On vérifie que la couleurs choisie appartient à la liste
-			if (!(colors_list.contains(chosen_color))) {
+			while (!(colors_list.contains(chosen_color))) {
 				System.out.println("Vous devez choisir une couleur parmi : " + colors_list);
 				chosen_color = scanner.nextLine();
 			}
 
+			players_color_list[i] = chosen_color;
+
 			// On crée les différents joueurs à chaque tour de boucle
 			Joueur player = new Joueur(i+1, name_player, chosen_color);
+			System.out.println(player.getName()+ " : " + player.getColor());
 
 			// On crée les différents rois avec leur couleur
 			Roi king = new Roi(i+1, chosen_color, null);
@@ -62,23 +73,24 @@ public class Partie {
 
 		// On affiche les noms des différents joueurs
 		for (int j=0; j < playersTable.length; j++) {
-			System.out.println("Bienvenue " + playersTable[j] + ", vous êtes le joueur n°" + (j+1) + " !");
+			System.out.println("Bienvenue " + playersTable[j] + ", vous êtes le joueur n°" + (j+1) + " avec la couleur " + players_color_list[j] + " !");
 		}
-	}
 
-	public void creationDominos() throws FileNotFoundException {
 		// On récupère les dominos à partir du fichier CSV
-		Scanner scanner = new Scanner(new File("dominos.csv"));
+		Scanner scanner2 = new Scanner(new File("dominos.csv"));
 		StringBuilder stringBuilder = new StringBuilder();
 
-		scanner.nextLine();
-		while (scanner.hasNextLine()) {
-			stringBuilder.append(scanner.nextLine()).append("\n");
+		scanner2.nextLine();
+		while (scanner2.hasNextLine()) {
+			stringBuilder.append(scanner2.nextLine()).append("\n");
 		}
-		scanner.close();
+		scanner2.close();
 
 		String filetostr = stringBuilder.toString();
 		String[] dominos = filetostr.split("\n");
+
+		ArrayList<Domino> infoDomino = new ArrayList<Domino>();
+
 
 		// Pour chaque ligne, on récupère les caractéristiques
 		for (int i=0; i < dominos.length; i++) {
@@ -90,7 +102,28 @@ public class Partie {
 			String domaine1 = param[1];
 			String domaine2 = param[3];
 
+
 			Domino domino = new Domino(id_domino, domaine1, domaine2, nbcouronnes1, nbcouronnes2);
+
+			infoDomino.add(domino);
+
+			System.out.println("ok");
 		}
+
+		System.out.println(Arrays.toString(infoDomino.toArray()));
+
+		int nb;
+
+		while (infoDomino.size() != nbDomino) {
+			Random random = new Random();
+			nb = random.nextInt(infoDomino.size()+1);
+			infoDomino.remove(infoDomino.get(nb));
+			System.out.println(Arrays.toString(infoDomino.toArray()));
+		}
+
+
+		System.out.println(Arrays.toString(infoDomino.toArray()));
+
 	}
+
 }
