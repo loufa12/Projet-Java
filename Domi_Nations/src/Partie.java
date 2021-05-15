@@ -89,8 +89,8 @@ public class Partie {
 		String filetostr = stringBuilder.toString();
 		String[] dominos = filetostr.split("\n");
 
-		ArrayList<Domino> infoDomino = new ArrayList<Domino>();
-
+		// On crée la liste des objets dominos
+		ArrayList<Domino> infosDominos = new ArrayList<Domino>();
 
 		// Pour chaque ligne, on récupère les caractéristiques
 		for (int i=0; i < dominos.length; i++) {
@@ -102,28 +102,23 @@ public class Partie {
 			String domaine1 = param[1];
 			String domaine2 = param[3];
 
-
+			// On crée les 48 dominos
 			Domino domino = new Domino(id_domino, domaine1, domaine2, nbcouronnes1, nbcouronnes2);
 
-			infoDomino.add(domino);
-
-			System.out.println("ok");
+			// On ajoute chaque domino créé à la liste
+			infosDominos.add(domino);
 		}
 
-		System.out.println(Arrays.toString(infoDomino.toArray()));
-
+		// On génère un nombre aléatoire de dominos à retirer du nombre total
 		int nb;
-
-		while (infoDomino.size() != nbDomino) {
-			Random random = new Random();
-			nb = random.nextInt(infoDomino.size()+1);
-			infoDomino.remove(infoDomino.get(nb));
-			System.out.println(Arrays.toString(infoDomino.toArray()));
+		Random random = new Random();
+		while (infosDominos.size() != nbDomino) {
+			nb = random.nextInt(infosDominos.size()+1);
+			infosDominos.remove(infosDominos.get(nb));
 		}
 
-
-		System.out.println(Arrays.toString(infoDomino.toArray()));
-
+		for (Domino x : infosDominos) {
+			System.out.println(x.getId_domino());
+		}
 	}
-
 }
