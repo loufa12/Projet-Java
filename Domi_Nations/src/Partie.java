@@ -128,14 +128,28 @@ public class Partie {
 			pioche.add(x);
 		}
 
+		// On crée la liste des dominos du plateau
+		ArrayList<Domino> plateau = new ArrayList<Domino>();
+
+		// On prend aléatoirement autant de dominos que de joueurs pour le plateau
 		Random random1 = new Random();
 		int i = 0;
-//		for (String player : playersTable) {
-//			nb = random1.nextInt(pioche.size() + 1);
-//			pioche.remove(pioche.get(nb));
-//			//System.out.println(x.getId_domino());
-//			i += 1;
-//		}
+		for (String player : playersTable) {
+			nb = random1.nextInt(pioche.size() + 1);
+			plateau.add(pioche.get(nb));
+			pioche.remove(pioche.get(nb));
+			i += 1;
+		}
 		System.out.println(i);
+
+		// Test affichage des dominos restants dans la pioche
+		for (Domino x : pioche) {
+			System.out.println("pioche : " + x.getId_domino());
+		}
+
+		// On affiche les numéros des dominos tirés au hasard pour le plateau
+		for (Domino x : plateau) {
+			System.out.println("plateau : " + x.getId_domino());
+		}
 	}
 }
