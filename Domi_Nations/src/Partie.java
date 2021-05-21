@@ -116,7 +116,7 @@ public class Partie {
 		int nb;
 		Random random = new Random();
 		while (playedDominos.size() != nbDomino) {
-			nb = random.nextInt(playedDominos.size() + 1);
+			nb = random.nextInt(playedDominos.size());
 			playedDominos.remove(playedDominos.get(nb));
 		}
 
