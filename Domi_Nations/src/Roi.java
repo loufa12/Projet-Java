@@ -1,20 +1,20 @@
 
 public class Roi {
-	protected int id_roi;
+	protected Joueur joueur;
 	protected String color;
 	protected Domino domino_roi;
 
-	public Roi(int id_roi, String color, Domino domino_roi) {
-		this.id_roi = id_roi;
+	public Roi(Joueur joueur, String color, Domino domino_roi) {
+		this.joueur = joueur;
 		this.color = color;
 		this.domino_roi = domino_roi;
 	}
 
-	public int getId_roi() {
-		return id_roi;
+	public Joueur getJoueur() {
+		return joueur;
 	}
-	public void setId_roi(int id_roi) {
-		this.id_roi = id_roi;
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 
 	public String getColor() {

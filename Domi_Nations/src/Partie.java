@@ -2,10 +2,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 import java.io.FileReader;
 
 
@@ -44,6 +41,9 @@ public class Partie {
 		String[] players_color_list = new String[nbPlayers];
 		//ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
 
+		// On crée la liste des dés, ie. des rois
+		ArrayList<Roi> liste_rois = new ArrayList<Roi>();
+
 		for (int i = 0; i < nbPlayers; i++) {
 			System.out.println("Indiquez le nom du joueur " + (i + 1) + " :");
 			String name_player = scanner.nextLine();
@@ -57,19 +57,22 @@ public class Partie {
 				System.out.println("Vous devez choisir une couleur parmi : " + colors_list);
 				chosen_color = scanner.nextLine();
 			}
-
 			players_color_list[i] = chosen_color;
 
 			// On crée les différents joueurs à chaque tour de boucle
 			Joueur player = new Joueur(i + 1, name_player, chosen_color);
-			//System.out.println(player.getName() + " : " + player.getColor());
+			System.out.println(player.getName() + " : " + player.getColor() + ", " + player.getId_joueur());
 			//listeJoueurs.add(player);
 
-			// On crée les différents rois avec leur couleur
-			Roi king = new Roi(i + 1, chosen_color, null);
-
 			if (playersTable.length == 2) {
-				Roi kingbis = new Roi(i + 2, chosen_color, null);
+				Roi roi = new Roi(player, chosen_color, null);
+				Roi roibis = new Roi(player, chosen_color, null);
+				liste_rois.add(roibis);
+			}
+			else {
+				// On crée les différents rois avec leur couleur
+				Roi roi = new Roi(player, chosen_color, null);
+				liste_rois.add(roi);
 			}
 			colors_list.remove(chosen_color);
 		}
@@ -132,15 +135,11 @@ public class Partie {
 		ArrayList<Domino> plateau = new ArrayList<Domino>();
 
 		// On prend aléatoirement autant de dominos que de joueurs pour le plateau
-		Random random1 = new Random();
-		int i = 0;
 		for (String player : playersTable) {
-			nb = random1.nextInt(pioche.size() + 1);
+			nb = random.nextInt(pioche.size() + 1);
 			plateau.add(pioche.get(nb));
 			pioche.remove(pioche.get(nb));
-			i += 1;
 		}
-		System.out.println(i);
 
 		// Test affichage des dominos restants dans la pioche
 		for (Domino x : pioche) {
@@ -151,5 +150,14 @@ public class Partie {
 		for (Domino x : plateau) {
 			System.out.println("plateau : " + x.getId_domino());
 		}
+
+		// On crée la liste des joueurs dans l'ordre de passage
+		ArrayList<Joueur> ordre_passage = new ArrayList<Joueur>();
+		Collections.shuffle(liste_rois);
+		System.out.println(liste_rois.size());
+		for (Roi roi : liste_rois) {
+			ordre_passage.add(roi.getJoueur());
+		}
+
 	}
 }
