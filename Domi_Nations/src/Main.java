@@ -6,7 +6,8 @@ public class Main {
 	// Lance le jeu.
 	public static void main(String[] args) throws FileNotFoundException {
 		Partie partie = new Partie();
-		partie.play();
+		partie.creationJoueurs();
+		partie.creationDominos();
 
 	}
 }
