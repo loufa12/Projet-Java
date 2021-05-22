@@ -139,6 +139,25 @@ public class Partie {
 			pioche.remove(domino);
 		}
 
+		ArrayList<Domino> plateau_tri = new ArrayList<Domino>();
+
+		// On trie le plateau dans l'ordre croissant
+		// Tant que le plateau n'est pas vide, on séléctionne le plus petit domino pour le mettre dans un plateau trié
+		while (plateau.size() != 0){
+			int plus_petit_id = plateau.get(0).getId_domino();
+			int place_plus_petit_domino = 0;
+			for (int j=0; j < (plateau.size()); j++){
+				if (plateau.get(j).getId_domino() < plus_petit_id){
+					plus_petit_id = plateau.get(j).getId_domino();
+					place_plus_petit_domino = j;
+				}
+			}
+			plateau_tri.add(plateau.get(place_plus_petit_domino));
+			plateau.remove(plateau.get(place_plus_petit_domino));
+		}
+		plateau = plateau_tri;
+
+
 		// Test affichage des dominos restants dans la pioche
 		for (Domino x : pioche) {
 			System.out.println("pioche : " + x.getId_domino());
