@@ -21,7 +21,7 @@ public class Domino {
 		this.id_domino = id_domino;
 	}
 
-	public String getDomaine1() {
+		public String getDomaine1() {
 		return domaine1;
 	}
 	public void setDomaine1(String couleur1) {

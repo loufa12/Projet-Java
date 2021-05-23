@@ -187,5 +187,20 @@ public class Partie {
 		for (Joueur x : ordre_passage) {
 			System.out.println(x.getId_joueur() + ", " + x.getName() + ", " + x.getColor());
 		}
+
+		Scanner scanner3 = new Scanner(System.in);
+
+		for (int i = 0; i < ordre_passage.size(); i++) {
+			System.out.println("Joueur " + ordre_passage.get(i).getName() + " : choisissez sur quel domino placer votre roi : " + plateau);
+			String domino_recouvert = scanner3.nextLine();
+
+			// On vérifie que la couleurs choisie appartient à la liste
+			while (!(plateau.contains(domino_recouvert))) {
+				System.out.println("Vous devez choisir un domino parmi : " + plateau);
+				domino_recouvert = scanner3.nextLine();
+			}
+
+			plateau.remove(domino_recouvert);
+		}
 	}
 }
