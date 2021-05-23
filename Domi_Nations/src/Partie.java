@@ -132,8 +132,8 @@ public class Partie {
 		// On crée la liste des dominos du plateau
 		ArrayList<Domino> plateau = new ArrayList<Domino>();
 
-		// On prend aléatoirement autant de dominos que de joueurs pour le plateau
-		for (int i=0; i < nb_joueurs; i++) {
+		// On prend aléatoirement autant de dominos que de rois pour le plateau
+		for (int i=0; i < listeRois.size(); i++) {
 			Domino domino = pioche.get(random.nextInt(pioche.size()));
 			plateau.add(domino);
 			pioche.remove(domino);
