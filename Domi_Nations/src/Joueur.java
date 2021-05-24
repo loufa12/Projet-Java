@@ -4,12 +4,14 @@ public class Joueur {
 	protected String name;
 	protected String color;
 	protected Roi roi;
+	protected Score score;
 
-	public Joueur(int id_joueur, String name, String color, Roi roi) {
+	public Joueur(int id_joueur, String name, String color, Roi roi, Score score) {
 		this.id_joueur = id_joueur;
 		this.name = name;
 		this.color = color;
 		this.roi = roi;
+		this.score = score;
 	}
 
 	public int getId_joueur() {
@@ -38,5 +40,12 @@ public class Joueur {
 	}
 	public void setRoi(Roi roi) {
 		this.roi = roi;
+	}
+
+	public Score getScore() {
+		return score;
+	}
+	public void setScore(Score score) {
+		this.score = score;
 	}
 }
