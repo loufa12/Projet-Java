@@ -188,29 +188,24 @@ public class Partie {
 			System.out.println(x.getId_joueur() + ", " + x.getName() + ", " + x.getColor());
 		}
 
-		List<Integer> plateau_id = new ArrayList<Integer>();
+		List<String> plateau_id = new ArrayList<String>();
 		for (Domino x : plateau) {
-			plateau_id.add(x.getId_domino());
-		}
-
-		List<String> plateau_id_str = new ArrayList<>(plateau_id.size());
-		for (Integer monEntier : plateau_id) {
-			plateau_id_str.add(String.valueOf(monEntier));
+			plateau_id.add(String.valueOf(x.getId_domino()));
 		}
 
 		Scanner scanner3 = new Scanner(System.in);
 
 		for (int i = 0; i < ordre_passage.size(); i++) {
-			System.out.println("Joueur " + ordre_passage.get(i).getName() + " : choisissez sur quel domino placer votre roi : " + plateau_id_str);
+			System.out.println("Joueur " + ordre_passage.get(i).getName() + " : choisissez sur quel domino placer votre roi : " + plateau_id);
 			String domino_recouvert = scanner3.nextLine();
 
 			// On vérifie que la couleurs choisie appartient à la liste
-			while (!(plateau_id_str.contains(domino_recouvert))) {
-				System.out.println("Vous devez choisir un domino parmi : " + plateau_id_str);
+			while (!(plateau_id.contains(domino_recouvert))) {
+				System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
 				domino_recouvert = scanner3.nextLine();
 			}
 
-			plateau_id_str.remove(domino_recouvert);
+			plateau_id.remove(domino_recouvert);
 		}
 	}
 }
