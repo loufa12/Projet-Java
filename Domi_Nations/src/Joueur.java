@@ -3,11 +3,13 @@ public class Joueur {
 	protected int id_joueur;
 	protected String name;
 	protected String color;
+	protected Roi roi;
 
-	public Joueur(int id_joueur, String name, String color) {
+	public Joueur(int id_joueur, String name, String color, Roi roi) {
 		this.id_joueur = id_joueur;
 		this.name = name;
 		this.color = color;
+		this.roi = roi;
 	}
 
 	public int getId_joueur() {
@@ -29,5 +31,12 @@ public class Joueur {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public Roi getRoi() {
+		return roi;
+	}
+	public void setRoi(Roi roi) {
+		this.roi = roi;
 	}
 }

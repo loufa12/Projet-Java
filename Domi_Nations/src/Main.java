@@ -8,6 +8,7 @@ public class Main {
 		Partie partie = new Partie();
 		partie.creationJoueurs();
 		partie.creationDominos();
+		partie.premierTour();
 
 	}
 }
