@@ -5,13 +5,15 @@ public class Domino {
 	protected String domaine2;
 	protected int nb_couronnes1;
 	protected int nb_couronnes2;
+	protected Position position_domino;
 
-	public Domino(int id_domino, String domaine1, String domaine2, int nb_couronnes1, int nb_couronnes2) {
+	public Domino(int id_domino, String domaine1, String domaine2, int nb_couronnes1, int nb_couronnes2, Position position_domino) {
 		this.id_domino = id_domino;
 		this.domaine1 = domaine1;
 		this.domaine2 = domaine2;
 		this.nb_couronnes1 = nb_couronnes1;
 		this.nb_couronnes2 = nb_couronnes2;
+		this.position_domino = position_domino;
 	}
 
 	public int getId_domino() {
@@ -47,5 +49,12 @@ public class Domino {
 	}
 	public void setNb_couronnes2(int nb_couronnes2) {
 		this.nb_couronnes2 = nb_couronnes2;
+	}
+
+	public Position getPosition_domino() {
+		return position_domino;
+	}
+	public void setPosition_domino(Position position_domino) {
+		this.position_domino = position_domino;
 	}
 }

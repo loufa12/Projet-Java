@@ -56,7 +56,7 @@ public class Partie {
 			}
 			players_color_list[i] = chosen_color;
 			// On crée les différents joueurs à chaque tour de boucle
-			Joueur player = new Joueur(i + 1, name_player, chosen_color, null, null);
+			Joueur player = new Joueur(i + 1, name_player, chosen_color, null);
 
 			listeJoueurs[i] = player;
 			//System.out.println(listeJoueurs[i].getName() + " : " + listeJoueurs[i].getColor() + ", " + listeJoueurs[i].getId_joueur());
@@ -124,7 +124,7 @@ public class Partie {
 			String domaine2 = param[3];
 
 			// On crée les 48 dominos du jeu
-			Domino domino = new Domino(id_domino, domaine1, domaine2, nbcouronnes1, nbcouronnes2);
+			Domino domino = new Domino(id_domino, domaine1, domaine2, nbcouronnes1, nbcouronnes2, null);
 
 			// On ajoute chaque domino créé à la liste
 			playedDominos.add(domino);
@@ -151,6 +151,7 @@ public class Partie {
 			pioche.remove(domino);
 		}
 
+		// On crée la liste des dominos contenus dans le plateau trié
 		ArrayList<Domino> plateau_tri = new ArrayList<Domino>();
 
 		// On trie le plateau dans l'ordre croissant
@@ -214,8 +215,7 @@ public class Partie {
 		}
 
 		Scanner scanner3 = new Scanner(System.in);
-
-		// Pour chaque joueur dans l'ordre de passage, on demande quel domino il/elle choisit
+		// Pour chaque joueur dans l'ordre de passage,
 		for (int i = 0; i < ordre_passage.size(); i++) {
 
 			// On récupère les informations de chaque domino du plateau
@@ -226,6 +226,10 @@ public class Partie {
 				int nb_couronnes2 = x.getNb_couronnes2();
 			}
 
+			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
+			ordre_passage.get(i).setId_joueur(i+1);
+
+			// on demande au joueur quel domino il/elle choisit
 			System.out.println(ordre_passage.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
 			String domino_choisi = scanner3.nextLine();
 
@@ -235,7 +239,7 @@ public class Partie {
 				domino_choisi = scanner3.nextLine();
 			}
 
-			// Pour chaque domino choisi, on met à jour domino_roi dans Roi
+			// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
 			for (Domino x : plateau) {
 				if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
 					ordre_passage.get(i).getRoi().setDomino_roi(x);
@@ -244,11 +248,31 @@ public class Partie {
 
 			// Une fois le domino choisi par un joueur, on le retire du plateau
 			plateau_id.remove(domino_choisi);
-		}
-	}
 
-	public void calculScore() throws FileNotFoundException {
-		for (Joueur x : listeJoueurs) {
-			ArrayList<Integer> score_temporaire = new ArrayList<Integer>();
+
+
+
+			//----------------------------------- A finir ----------------------------------//
+
+			
+			royaume = new Royaume[5][5];
+
+
+			Scanner scanner4 = new Scanner(System.in);
+			System.out.println(ordre_passage.get(i).getName() + ", où souhaitez-vous votre domino dans votre royaume :");
+			System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
+			int position_ligne1 = Integer.parseInt(scanner4.nextLine());
+			System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
+			int position_colonne1 = Integer.parseInt(scanner4.nextLine());
+			System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
+			int position_ligne2 = Integer.parseInt(scanner4.nextLine());
+			System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
+			int position_colonne2 = Integer.parseInt(scanner4.nextLine());
+
+
+			Position position = new Position(position_colonne1, position_colonne2, position_ligne1, position_ligne2);
+			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino(position);
 		}
+
 	}
+}
