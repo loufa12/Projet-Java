@@ -257,19 +257,48 @@ public class Partie {
 			
 			royaume = new Royaume[5][5];
 
+			ArrayList<Integer> liste_positions = new ArrayList<>();
 
 			Scanner scanner4 = new Scanner(System.in);
 			System.out.println(ordre_passage.get(i).getName() + ", où souhaitez-vous votre domino dans votre royaume :");
+
 			System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
 			int position_ligne1 = Integer.parseInt(scanner4.nextLine());
+			liste_positions.add(position_ligne1);
+
 			System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
 			int position_colonne1 = Integer.parseInt(scanner4.nextLine());
+			liste_positions.add(position_colonne1);
+
 			System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
 			int position_ligne2 = Integer.parseInt(scanner4.nextLine());
+			liste_positions.add(position_ligne2);
+
 			System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
 			int position_colonne2 = Integer.parseInt(scanner4.nextLine());
+			liste_positions.add(position_colonne2);
 
+			// On vérifie que le premier domino est à côté du chateau
+			while (!((liste_positions.contains(2)) || (liste_positions.contains(3)) || (liste_positions.contains(4)))) {
+				System.out.println("Votre premier domino doit avoir au moins une face à côté du chateau au centre. Saisissez à nouveau la ligne du domaine 1");
 
+				System.out.println("Indiquez la nouvelle position du domaine 1 du domino (ligne) :");
+				position_ligne1 = Integer.parseInt(scanner4.nextLine());
+				liste_positions.add(position_ligne1);
+
+				System.out.println("Indiquez la nouvelle position du domaine 1 du domino (colonne) :");
+				position_colonne1 = Integer.parseInt(scanner4.nextLine());
+				liste_positions.add(position_colonne1);
+
+				System.out.println("Indiquez la nouvelle position du domaine 2 du domino (ligne) :");
+				position_ligne2 = Integer.parseInt(scanner4.nextLine());
+				liste_positions.add(position_ligne2);
+
+				System.out.println("Indiquez la nouvelle position du domaine 2 du domino (colonne) :");
+				position_colonne2 = Integer.parseInt(scanner4.nextLine());
+				liste_positions.add(position_colonne2);
+			}
+			
 			Position position = new Position(position_colonne1, position_colonne2, position_ligne1, position_ligne2);
 			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino(position);
 		}
