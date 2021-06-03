@@ -5,15 +5,17 @@ public class Domino {
 	protected String domaine2;
 	protected int nb_couronnes1;
 	protected int nb_couronnes2;
-	protected Position position_domino;
+	protected Position position_domino1;
+	protected Position position_domino2;
 
-	public Domino(int id_domino, String domaine1, String domaine2, int nb_couronnes1, int nb_couronnes2, Position position_domino) {
+	public Domino(int id_domino, String domaine1, String domaine2, int nb_couronnes1, int nb_couronnes2, Position position_domino, Position position_domino2) {
 		this.id_domino = id_domino;
 		this.domaine1 = domaine1;
 		this.domaine2 = domaine2;
 		this.nb_couronnes1 = nb_couronnes1;
 		this.nb_couronnes2 = nb_couronnes2;
-		this.position_domino = position_domino;
+		this.position_domino1 = position_domino1;
+		this.position_domino2 = position_domino2;
 	}
 
 	public int getId_domino() {
@@ -51,10 +53,17 @@ public class Domino {
 		this.nb_couronnes2 = nb_couronnes2;
 	}
 
-	public Position getPosition_domino() {
-		return position_domino;
+	public Position getPosition_domino1() {
+		return position_domino1;
 	}
-	public void setPosition_domino(Position position_domino) {
-		this.position_domino = position_domino;
+	public void setPosition_domino1(Position position_domino1) {
+		this.position_domino1 = position_domino1;
+	}
+
+	public Position getPosition_domino2() {
+		return position_domino2;
+	}
+	public void setPosition_domino2(Position position_domino2) {
+		this.position_domino2 = position_domino2;
 	}
 }

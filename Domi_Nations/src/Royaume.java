@@ -1,11 +1,11 @@
 
 public class Royaume {
 	protected int id_joueur;
-	protected String taille;
+	protected int[][] taille_royaume;
 
-	public Royaume (int id_joueur, String taille) {
+	public Royaume (int id_joueur, int[][] taille) {
 		this.id_joueur = id_joueur;
-		this.taille = taille;
+		this.taille_royaume = taille_royaume;
 	}
 
 	public int getId_joueur() {
@@ -15,11 +15,11 @@ public class Royaume {
 		this.id_joueur = id_joueur;
 	}
 
-	public String getTaille() {
-		return taille;
+	public int[][] getTaille_royaume() {
+		return taille_royaume;
 	}
-	public void setTaille(String taille) {
-		this.taille = taille;
+	public void setTaille_royaume(int[][] taille) {
+		this.taille_royaume = taille_royaume;
 	}
 
 }
