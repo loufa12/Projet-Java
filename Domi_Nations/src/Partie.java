@@ -251,16 +251,15 @@ public class Partie {
 
 
 
-
 			//----------------------------------- A finir ----------------------------------//
 
 			
-			royaume = new Royaume[5][5];
+			royaume = new Royaume[9][9];
 
 			ArrayList<Integer> liste_positions = new ArrayList<>();
 
 			Scanner scanner4 = new Scanner(System.in);
-			System.out.println(ordre_passage.get(i).getName() + ", où souhaitez-vous votre domino dans votre royaume :");
+			System.out.println(ordre_passage.get(i).getName() + ", où souhaitez-vous placer votre domino dans votre royaume :");
 
 			System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
 			int position_ligne1 = Integer.parseInt(scanner4.nextLine());
@@ -277,6 +276,7 @@ public class Partie {
 			System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
 			int position_colonne2 = Integer.parseInt(scanner4.nextLine());
 			liste_positions.add(position_colonne2);
+
 
 			// On vérifie que le premier domino est à côté du chateau
 			while (!((liste_positions.contains(2)) || (liste_positions.contains(3)) || (liste_positions.contains(4)))) {
@@ -298,7 +298,7 @@ public class Partie {
 				position_colonne2 = Integer.parseInt(scanner4.nextLine());
 				liste_positions.add(position_colonne2);
 			}
-			
+
 			Position position = new Position(position_colonne1, position_colonne2, position_ligne1, position_ligne2);
 			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino(position);
 		}
