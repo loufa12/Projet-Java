@@ -175,6 +175,23 @@ public class Partie {
 		//for (Domino x : plateau) {
 		//	System.out.println("plateau : " + x.getId_domino());
 		//}
+
+		String [][] board = new String[49][2];
+		for (Domino x : plateau) {
+			board[x.getId_domino()][0] = String.valueOf(x.getId_domino());
+			board[x.getId_domino()][1] = "Plateau";
+		}
+		for (Domino y : pioche) {
+			board[y.getId_domino()][0] = String.valueOf(y.getId_domino());
+			board[y.getId_domino()][1] = "Pioche";
+		}
+
+		for (String[] tab: board) {
+			for (String s: tab) {
+				System.out.print(s + "\t");
+			}
+			System.out.println("\n");
+		}
 	}
 
 
