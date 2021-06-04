@@ -210,23 +210,29 @@ public class Partie {
 			plateau_id.add(String.valueOf(x.getId_domino()));
 		}
 
+		// On récupère les informations de chaque domino du plateau
+		for (Domino x : plateau) {
+			String domaine1 = x.getDomaine1();
+			String domaine2 = x.getDomaine2();
+			int nb_couronnes1 = x.getNb_couronnes1();
+			int nb_couronnes2 = x.getNb_couronnes2();
+		}
+
 		Scanner scanner3 = new Scanner(System.in);
+
+		// On crée le tableau des scores en fonction des joueurs
+		int[][] tableau_scores = new int[nb_joueurs][2];
 
 		// Pour chaque joueur dans l'ordre de passage,
 		for (int i = 0; i < ordre_passage.size(); i++) {
 
-			// On récupère les informations de chaque domino du plateau
-			for (Domino x : plateau) {
-				String domaine1 = x.getDomaine1();
-				String domaine2 = x.getDomaine2();
-				int nb_couronnes1 = x.getNb_couronnes1();
-				int nb_couronnes2 = x.getNb_couronnes2();
-			}
+			// On ajoute en première colonne les id des joueurs dans l'ordre de passage
+			tableau_scores[i][0] = ordre_passage.get(i).getId_joueur();
 
 			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
 			ordre_passage.get(i).setId_joueur(i + 1);
 
-			// on demande au joueur quel domino il/elle choisit
+			// On demande au joueur quel domino il/elle choisit
 			System.out.println(ordre_passage.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
 			String domino_choisi = scanner3.nextLine();
 
@@ -246,9 +252,9 @@ public class Partie {
 			// Une fois le domino choisi par un joueur, on le retire du plateau
 			plateau_id.remove(domino_choisi);
 
+		}
 
-			//----------------------------------- A finir ----------------------------------//
-
+		for (int i = 0; i < ordre_passage.size(); i++) {
 			//int[][] taille_max = new int[13][13];
 			int[][] taille_initiale = new int[5][5];
 
@@ -270,7 +276,6 @@ public class Partie {
 
 			Scanner scanner4 = new Scanner(System.in);
 			System.out.println(ordre_passage.get(i).getName() + ", placez votre premier domino dans votre royaume :");
-
 
 			boolean incorrect_input = true;
 			while (incorrect_input) {
@@ -303,10 +308,21 @@ public class Partie {
 
 				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
 				ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
+
+			}
+			if (ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes1() == 0 && ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes2() == 0) {
+				tableau_scores[i][1] = 0;
+			}
+			else {
+				tableau_scores[i][1] = ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes1() + ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes2();
+			}
+		}
+
+		for (int i=0; i<nb_joueurs; i++){
+			System.out.println("Le score actuel du joueur " + tableau_scores[i][0] + " est :");
+			for(int j=0; j<2; j++){
+				System.out.println(tableau_scores[1][j]);
 			}
 		}
 	}
-
-	public void suiteJeu() throws FileNotFoundException {
-
-	}
+}
