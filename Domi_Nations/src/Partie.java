@@ -356,6 +356,11 @@ public class Partie {
 						break;
 					}
 				}
+
+				if (incorrect_input == true){
+					System.out.println("erreur, veuillez positionner votre domino à côté du chateau");
+				}
+
 			}
 
 			// On crée la position du domaine 1 du domino placé
