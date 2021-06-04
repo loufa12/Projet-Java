@@ -221,7 +221,7 @@ public class Partie {
 		Scanner scanner3 = new Scanner(System.in);
 
 		// On crée le tableau des scores en fonction des joueurs
-		int[][] tableau_scores = new int[nb_joueurs][2];
+		int[][] tableau_scores = new int[ordre_passage.size()][2];
 
 		// Pour chaque joueur dans l'ordre de passage,
 		for (int i = 0; i < ordre_passage.size(); i++) {
@@ -308,8 +308,8 @@ public class Partie {
 
 				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
 				ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
-
 			}
+
 			if (ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes1() == 0 && ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes2() == 0) {
 				tableau_scores[i][1] = 0;
 			}
@@ -319,9 +319,9 @@ public class Partie {
 		}
 
 		for (int i=0; i<nb_joueurs; i++){
-			System.out.println("Le score actuel du joueur " + tableau_scores[i][0] + " est :");
+			System.out.println("Le score actuel du joueur" + i + " est :");
 			for(int j=0; j<2; j++){
-				System.out.println(tableau_scores[1][j]);
+				System.out.println(tableau_scores[i][j]);
 			}
 		}
 	}
