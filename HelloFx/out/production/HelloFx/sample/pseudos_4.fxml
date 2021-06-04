@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="488.0" prefWidth="738.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="79.0" layoutY="21.0" prefHeight="53.0" prefWidth="475.0" text="Saisisez vos pseudos et la couleur de votre royaume " textFill="#df670a">
+         <font>
+            <Font name="Century Gothic" size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="102.0" layoutY="130.0" prefHeight="16.0" prefWidth="157.0" />
+      <Label layoutX="30.0" layoutY="134.0" text="Joueur 1 " />
+      <Label layoutX="31.0" layoutY="235.0" text="Joueur 2" />
+      <TextField layoutX="106.0" layoutY="231.0" />
+      <TextArea layoutX="-193.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="31.0" layoutY="342.0" text="Joueur 3" />
+      <TextField layoutX="107.0" layoutY="338.0" />
+      <RadioButton layoutX="293.0" layoutY="134.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="358.0" layoutY="134.0" mnemonicParsing="false" text="Jaune " />
+      <RadioButton layoutX="431.0" layoutY="134.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="493.0" layoutY="134.0" mnemonicParsing="false" text="Bleu" />
+      <RadioButton layoutX="293.0" layoutY="235.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="358.0" layoutY="235.0" mnemonicParsing="false" text="Jaune" />
+      <RadioButton layoutX="430.0" layoutY="235.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="493.0" layoutY="235.0" mnemonicParsing="false" text="Bleu" />
+      <RadioButton layoutX="293.0" layoutY="342.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="358.0" layoutY="342.0" mnemonicParsing="false" text="Jaune" />
+      <RadioButton layoutX="430.0" layoutY="342.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="493.0" layoutY="342.0" mnemonicParsing="false" text="Bleu" />
+      <Label layoutX="612.0" layoutY="99.0" text="Idée : cliquez sur un bouton rend qqch avec la couleur voulue" />
+      <Label layoutX="30.0" layoutY="430.0" text="Joueur 4" />
+      <TextField layoutX="107.0" layoutY="426.0" />
+      <RadioButton layoutX="293.0" layoutY="430.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="358.0" layoutY="430.0" mnemonicParsing="false" text="Jaune" />
+      <RadioButton layoutX="431.0" layoutY="430.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="494.0" layoutY="430.0" mnemonicParsing="false" text="Bleu" />
+   </children>
+</AnchorPane>

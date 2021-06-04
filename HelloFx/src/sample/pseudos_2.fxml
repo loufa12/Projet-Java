@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="552.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="171.0" layoutY="38.0" prefHeight="31.0" prefWidth="379.0" text="Indiquez vos pseudos ainsi que la couleur de vos royaumes" textFill="#b29015">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="Jaune_pseudos2_J1" layoutX="513.0" layoutY="120.0" mnemonicParsing="false" text="Jaune">
+         <toggleGroup>
+            <ToggleGroup fx:id="pseudos2_j1_couleur" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="Vert_pseudos2_J1" layoutX="595.0" layoutY="120.0" mnemonicParsing="false" text="Vert" toggleGroup="$pseudos2_j1_couleur" />
+      <RadioButton fx:id="Rose_pseudos2_J1" layoutX="439.0" layoutY="120.0" mnemonicParsing="false" text="Rose" toggleGroup="$pseudos2_j1_couleur" />
+      <RadioButton fx:id="Bleu_pseudos2_J1" layoutX="678.0" layoutY="120.0" mnemonicParsing="false" text="Bleu" toggleGroup="$pseudos2_j1_couleur" />
+      <RadioButton fx:id="Rose_pseudos2_J2" layoutX="439.0" layoutY="224.0" mnemonicParsing="false" text="Rose">
+         <toggleGroup>
+            <ToggleGroup fx:id="pseudos2__j2_couleur" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="Jaune_pseudos2_J2" layoutX="513.0" layoutY="225.0" mnemonicParsing="false" text="Jaune" toggleGroup="$pseudos2__j2_couleur" />
+      <RadioButton fx:id="Vert_pseudos2_J2" layoutX="595.0" layoutY="225.0" mnemonicParsing="false" text="Vert" toggleGroup="$pseudos2__j2_couleur" />
+      <RadioButton fx:id="Bleu_pseudos2_J2" layoutX="678.0" layoutY="224.0" mnemonicParsing="false" text="Bleu" toggleGroup="$pseudos2__j2_couleur" />
+      <TextField fx:id="pseudos2_j1_field" layoutX="177.0" layoutY="116.0" />
+      <TextField fx:id="pseudos2_j2_field" layoutX="177.0" layoutY="220.0" />
+      <Label layoutX="65.0" layoutY="120.0" text="Joueur 1" />
+      <Label layoutX="65.0" layoutY="224.0" text="Joueur 2" />
+      <Button fx:id="Validation_pseudos2" layoutX="65.0" layoutY="305.0" mnemonicParsing="false" onAction="#pseudos2_validation_j1" prefHeight="31.0" prefWidth="186.0" text="Valider pour le joueur 1">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="pseudos2_Validation_j2" layoutX="513.0" layoutY="305.0" mnemonicParsing="false" onAction="#pseudos2_validation_j2" prefHeight="31.0" prefWidth="186.0" text="Valider pour le joueur 2">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font></Button>
+      <Label fx:id="pseudos2_label" layoutX="206.0" layoutY="372.0" prefHeight="39.0" prefWidth="339.0" textFill="#d71212">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="pseudos2_validation" layoutX="316.0" layoutY="356.0" mnemonicParsing="false" onAction="#pseudos2_validation" prefHeight="31.0" prefWidth="119.0" text="Validation final">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

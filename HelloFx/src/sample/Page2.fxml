@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
+   <children>
+      <Label fx:id="myLabel" layoutX="188.0" layoutY="31.0" textFill="#cf0d2a" />
+      <TextField fx:id="nbjoueursfield" layoutX="189.0" layoutY="94.0" />
+      <Button fx:id="validation" layoutX="237.0" layoutY="151.0" mnemonicParsing="false" onAction="#valider" text="Validation" />
+      <Label layoutX="198.0" layoutY="69.0" text="Entrez le nombre de joueurs" />
+      <Label fx:id="myLabel1" layoutX="198.0" layoutY="41.0" prefHeight="18.0" prefWidth="0.0" textFill="#cf0d2a" />
+      <Label fx:id="Mylabelwin" layoutX="36.0" layoutY="237.0" prefHeight="156.0" prefWidth="527.0" textFill="#0caf1c">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

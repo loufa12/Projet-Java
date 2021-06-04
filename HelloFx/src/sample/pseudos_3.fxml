@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="51.0" layoutY="24.0" text="Indiquez vos pseudos ainsi que la couleur de votre royaume " textFill="#c2700a">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="122.0" layoutY="99.0" prefHeight="18.0" prefWidth="95.0" />
+      <TextField layoutX="122.0" layoutY="173.0" prefHeight="26.0" prefWidth="95.0" />
+      <TextField layoutX="122.0" layoutY="247.0" prefHeight="11.0" prefWidth="95.0" />
+      <RadioButton layoutX="308.0" layoutY="103.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="376.0" layoutY="103.0" mnemonicParsing="false" text="Jaune" />
+      <RadioButton layoutX="439.0" layoutY="103.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="504.0" layoutY="103.0" mnemonicParsing="false" text="Bleu" />
+      <RadioButton layoutX="308.0" layoutY="178.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="376.0" layoutY="178.0" mnemonicParsing="false" text="Jaune" />
+      <RadioButton layoutX="440.0" layoutY="178.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="504.0" layoutY="178.0" mnemonicParsing="false" text="Bleu" />
+      <RadioButton layoutX="308.0" layoutY="251.0" mnemonicParsing="false" text="Rose" />
+      <RadioButton layoutX="376.0" layoutY="251.0" mnemonicParsing="false" text="Jaune" />
+      <RadioButton layoutX="440.0" layoutY="251.0" mnemonicParsing="false" text="Vert" />
+      <RadioButton layoutX="504.0" layoutY="251.0" mnemonicParsing="false" text="Bleu" />
+      <Label layoutX="20.0" layoutY="103.0" text="Joueur 1" />
+      <Label layoutX="20.0" layoutY="178.0" text="Joueur 2" />
+      <Label layoutX="20.0" layoutY="251.0" text="Joueur 3" />
+   </children>
+</AnchorPane>

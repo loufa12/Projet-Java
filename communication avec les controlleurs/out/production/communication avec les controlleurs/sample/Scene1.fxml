@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Scene1">
+   <children>
+      <Label layoutX="155.0" layoutY="88.0" text="Combien de joueurs ?">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="182.0" layoutY="207.0" mnemonicParsing="false" text="Valider" />
+      <TextField layoutX="151.0" layoutY="136.0" />
+   </children>
+</AnchorPane>

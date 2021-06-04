@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Scene2">
+   <children>
+      <Button layoutX="272.0" layoutY="174.0" mnemonicParsing="false" text="Valider " />
+      <Label layoutX="224.0" layoutY="74.0" text="Combien êtes vous à jouer  ?" />
+      <TextArea layoutX="158.0" layoutY="117.0" prefHeight="38.0" prefWidth="284.0" />
+   </children>
+</AnchorPane>

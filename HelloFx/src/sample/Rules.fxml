@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="447.0" prefWidth="478.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="522.0" fitWidth="500.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./Imagesrules/rules1.JPG" />
+         </image></ImageView>
+      <Button fx:id="passage_Rules1_Rules2" layoutX="199.0" layoutY="484.0" mnemonicParsing="false" onAction="#SwitchtoRules2" text="Page suivante " />
+   </children>
+</AnchorPane>

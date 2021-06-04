@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NbJoueurs">
+   <children>
+      <Label layoutX="194.0" layoutY="102.0" text="Bienvenue dans le jeu KINGDOMINO ">
+         <font>
+            <Font name="Algerian" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="258.0" layoutY="158.0" mnemonicParsing="false" text="Lancez le jeu" />
+   </children>
+   <cursor>
+      <Cursor fx:constant="OPEN_HAND" />
+   </cursor>
+</AnchorPane>

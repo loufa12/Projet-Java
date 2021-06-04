@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="38b12709-f1d5-4f88-80d6-ef6a2d707890" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Domaine.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Domaine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Domino.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Domino.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Joueur.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Joueur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Partie.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Partie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Pioche.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Pioche.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Roi.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Roi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Royaume.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Royaume.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/bin/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/bin/Score.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/src/Domaine.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/src/Domaine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domi_Nations/src/Roi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Domi_Nations/src/Roi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Interface/out/production/Interface/inter/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Interface/src/inter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Interface/src/inter/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1rtNQr8w5cKsNO5TOd9YiJQFv8n" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="Interface_java" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="38b12709-f1d5-4f88-80d6-ef6a2d707890" name="Default Changelist" comment="" />
+      <created>1619791421480</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619791421480</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

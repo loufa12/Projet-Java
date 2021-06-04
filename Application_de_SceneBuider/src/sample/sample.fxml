@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<GridPane alignment="center" hgap="10" prefHeight="345.0" prefWidth="369.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="20.0" layoutY="61.0" text="Saisisez le nombre de joueurs " />
+            <TextField layoutX="20.0" layoutY="87.0" />
+            <Button layoutX="67.0" layoutY="125.0" mnemonicParsing="false" text="Valider" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>

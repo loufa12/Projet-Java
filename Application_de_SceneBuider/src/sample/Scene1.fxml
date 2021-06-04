@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Scene1">
+   <children>
+      <TextField layoutX="532.0" layoutY="171.0" prefHeight="0.0" prefWidth="0.0">
+         <effect>
+            <Glow />
+         </effect></TextField>
+      <Button layoutX="248.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchtoscene2" text="Lancez le Jeu " AnchorPane.rightAnchor="263.2" />
+      <Label layoutX="212.0" layoutY="134.0" text="Bienvenue dans le jeu King Domino !" />
+   </children>
+</AnchorPane>

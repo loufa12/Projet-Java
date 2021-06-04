@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="152.0" layoutY="14.0" text="Bienvenue dans le Jeu King Domino ">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="230.0" layoutY="260.0" mnemonicParsing="false" onAction="#Switchtopage2" prefHeight="42.0" prefWidth="138.0" text="Lancer le jeu " textAlignment="CENTER" textFill="#0da6ff" />
+      <Button fx:id="Launch_rules" layoutX="230.0" layoutY="208.0" mnemonicParsing="false" onAction="#SwitchtoRules" prefHeight="42.0" prefWidth="138.0" text="Règles du Jeu " />
+      <ImageView fitHeight="157.0" fitWidth="448.0" layoutX="76.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagesrules/KingDomino.PNG" />
+         </image></ImageView>
+   </children>
+</AnchorPane>
