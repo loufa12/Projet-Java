@@ -24,7 +24,6 @@ public class Position {
         this.row = row;
     }
 
-
     public boolean equals(Position otherPosition) {
         if (this.column == otherPosition.getPositionColumn() && this.row == otherPosition.getPositionRow()) {
             return true;
