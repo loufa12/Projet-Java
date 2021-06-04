@@ -224,7 +224,7 @@ public class Partie {
 			}
 
 			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
-			ordre_passage.get(i).setId_joueur(i+1);
+			ordre_passage.get(i).setId_joueur(i + 1);
 
 			// on demande au joueur quel domino il/elle choisit
 			System.out.println(ordre_passage.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
@@ -247,7 +247,6 @@ public class Partie {
 			plateau_id.remove(domino_choisi);
 
 
-
 			//----------------------------------- A finir ----------------------------------//
 
 			//int[][] taille_max = new int[13][13];
@@ -256,62 +255,58 @@ public class Partie {
 			int colum_chateau = 3;
 			int row_chateau = 3;
 
-			Royaume royaume = new Royaume(ordre_passage.get(i).getId_joueur(),taille_initiale);
+			Royaume royaume = new Royaume(ordre_passage.get(i).getId_joueur(), taille_initiale);
 			Position position_chateau = new Position(colum_chateau, row_chateau);
 			Chateau chateau = new Chateau(royaume, position_chateau);
 
 			Position[] liste_positions_autour_chateau = new Position[4];
 			// On parcourt dans l'ordre haut/bas/gauche/droite les cases autour du chateau :
-			liste_positions_autour_chateau[0] = new Position(colum_chateau, row_chateau-1);
-			liste_positions_autour_chateau[1] = new Position(colum_chateau, row_chateau+1);
-			liste_positions_autour_chateau[2] = new Position(colum_chateau-1, row_chateau);
-			liste_positions_autour_chateau[3] = new Position(colum_chateau+1, row_chateau);
-
+			liste_positions_autour_chateau[0] = new Position(colum_chateau, row_chateau - 1);
+			liste_positions_autour_chateau[1] = new Position(colum_chateau, row_chateau + 1);
+			liste_positions_autour_chateau[2] = new Position(colum_chateau - 1, row_chateau);
+			liste_positions_autour_chateau[3] = new Position(colum_chateau + 1, row_chateau);
 
 			Position[] liste_positions = new Position[2];
 
 			Scanner scanner4 = new Scanner(System.in);
-			System.out.println(ordre_passage.get(i).getName() + ", où souhaitez-vous placer votre domino dans votre royaume :");
+			System.out.println(ordre_passage.get(i).getName() + ", placez votre premier domino dans votre royaume :");
 
-			int position_ligne1 = 0;
-			int position_colonne1 = 0;
-			int position_ligne2 = 0;
-			int position_colonne2 = 0;
 
 			boolean incorrect_input = true;
 			while (incorrect_input) {
 				System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
-				position_ligne1 = Integer.parseInt(scanner4.nextLine());
+				int position_ligne1 = Integer.parseInt(scanner4.nextLine());
 
 				System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
-				position_colonne1 = Integer.parseInt(scanner4.nextLine());
+				int position_colonne1 = Integer.parseInt(scanner4.nextLine());
 
 				liste_positions[0] = new Position(position_colonne1, position_ligne1);
 
 				System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
-				position_ligne2 = Integer.parseInt(scanner4.nextLine());
+				int position_ligne2 = Integer.parseInt(scanner4.nextLine());
 
 				System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
-				position_colonne2 = Integer.parseInt(scanner4.nextLine());
+				int position_colonne2 = Integer.parseInt(scanner4.nextLine());
 
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
-
 				// On vérifie que le premier domino est à côté du chateau
-				for (int j=0; j<4; j++) {
+				for (int j = 0; j < 4; j++) {
 					Position position_case = liste_positions_autour_chateau[j];
 					if (position_case.equals(liste_positions[0]) || position_case.equals(liste_positions[1])) {
 						incorrect_input = false;
 						break;
 					}
 				}
-			}
-			
-			Position position_domaine1 = new Position(position_colonne1, position_ligne1);
-			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
 
-			Position position_domaine2 = new Position(position_colonne2, position_ligne2);
-			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
+				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
+				ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
+
+				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
+				ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
+			}
 		}
+	}
+
+	public void suiteJeu() throws FileNotFoundException {
 
 	}
-}
