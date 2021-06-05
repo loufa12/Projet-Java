@@ -3,6 +3,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import java.util.Scanner;
+import static java.lang.System.*;
+import java.util.InputMismatchException;
+
 public class Partie {
 	private Joueur[] listeJoueurs;
 	private int nb_joueurs;
@@ -11,19 +15,39 @@ public class Partie {
 
 
 	public void creationJoueurs() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Quel est le nombre de joueurs ?");
-		nb_joueurs = scanner.nextInt();
-
-		scanner.nextLine();
-
-		// On vérifie que le nb de joueurs est compris entre 2 et 4
-		while (nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4) {
-			System.out.println("Saisissez un nombre de joueurs compris entre 2 et 4.");
-			nb_joueurs = scanner.nextInt();
-			scanner.nextLine();
+		class Inf10Exception extends Exception{
+			public Inf10Exception(){
+				super( "division par zéro" );
+			}
+			public Inf10Exception(String msg){
+				super( msg );
+			}
 		}
 
+		Scanner input = new Scanner(System.in);
+		String s;
+		int nb_joueurs = 0;
+		while(nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4){
+			try{
+				System.out.println("Saisissez un nombre de joueurs compris entre 2 et 4.");;
+				nb_joueurs = input.nextInt();
+				if(nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4) throw new Inf10Exception();
+				break;
+			}
+			catch(InputMismatchException e){
+				// il faut consommer la valeur du buffer d'entrée
+				s = input.next();
+				out.println("Veuillez entrer un entier");
+			}
+			catch ( Inf10Exception e) {
+				out.println("Il faut que l'entier soit compris entre 2 et 4 !");
+				input.nextLine();
+			}
+		};
+
+		out.println("Vous avez choisi : " + nb_joueurs);
+
+		Scanner scanner = new Scanner(System.in);
 		// On crée la liste des couleurs possibles
 		ArrayList<String> colors_list = new ArrayList<>();
 		colors_list.add("rose");
