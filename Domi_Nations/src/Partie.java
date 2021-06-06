@@ -63,13 +63,24 @@ public class Partie {
 
 		for (int i = 0; i < nb_joueurs; i++) {
 			String name_player;
+			boolean isInteger;
 			do {
 				System.out.println("Indiquez le nom du joueur " + (i + 1) + " :");
 				name_player = scanner.nextLine();
+				try {
+					int name_player_integer = Integer.parseInt(name_player);
+					isInteger = true;
+				}
+				catch (NumberFormatException nfe){
+					isInteger = false;
+				}
 				if (name_player == ""){
 					out.println("Veuillez entrer un nom non vide");
 				}
-			} while (name_player == "");
+				if (isInteger == true){
+					out.println("Veuillez entrer un nom non uniquement de type int");
+				}
+			} while (name_player == "" || isInteger == true);
 
 
 			System.out.println("Parmi les couleurs " + colors_list + " laquelle choisissez-vous ?");
