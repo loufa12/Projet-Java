@@ -366,20 +366,56 @@ public class Partie {
 
 			// On vérifie que le premier domino est collé au chateau au centre du royaume
 			boolean incorrect_input = true;
+			boolean do_we_continue;
 			while (incorrect_input) {
-				System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
-				position_ligne1 = Integer.parseInt(scanner4.nextLine());
+				do{
+					try{
+						System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
+						position_ligne1 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					}
+					catch (NumberFormatException nfe){
+						do_we_continue = false;
+					}
+				}while(do_we_continue == false);
 
-				System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
-				position_colonne1 = Integer.parseInt(scanner4.nextLine());
+				do{
+					try{
+						System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
+						position_colonne1 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					}
+					catch (NumberFormatException nfe){
+						do_we_continue = false;
+					}
+				}while(do_we_continue == false);
+
 
 				liste_positions[0] = new Position(position_colonne1, position_ligne1);
 
-				System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
-				position_ligne2 = Integer.parseInt(scanner4.nextLine());
 
-				System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
-				position_colonne2 = Integer.parseInt(scanner4.nextLine());
+				do{
+					try{
+						System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
+						position_ligne2 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					}
+					catch (NumberFormatException nfe){
+						do_we_continue = false;
+					}
+				}while(do_we_continue == false);
+
+				do{
+					try{
+						System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
+						position_colonne2 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					}
+					catch (NumberFormatException nfe){
+						do_we_continue = false;
+					}
+				}while(do_we_continue == false);
+
 
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
@@ -387,17 +423,49 @@ public class Partie {
 				while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1-position_ligne2)==1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1-position_colonne2)==1))) {
 					System.out.println("Les deux domaines de votre domino sont séparés... :( ");
 
-					System.out.println("Indiquez à nouveau la position du domaine 1 du domino (ligne) :");
-					position_ligne1 = Integer.parseInt(scanner4.nextLine());
+					do{
+						try{
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (ligne) :");
+							position_ligne1 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						}
+						catch (NumberFormatException nfe){
+							do_we_continue = false;
+						}
+					}while(do_we_continue == false);
 
-					System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
-					position_colonne1 = Integer.parseInt(scanner4.nextLine());
+					do{
+						try{
+							System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
+							position_colonne1 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						}
+						catch (NumberFormatException nfe){
+							do_we_continue = false;
+						}
+					}while(do_we_continue == false);
 
-					System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
-					position_ligne2 = Integer.parseInt(scanner4.nextLine());
+					do{
+						try{
+							System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
+							position_ligne2 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						}
+						catch (NumberFormatException nfe){
+							do_we_continue = false;
+						}
+					}while(do_we_continue == false);
 
-					System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
-					position_colonne2 = Integer.parseInt(scanner4.nextLine());
+					do{
+						try{
+							System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
+							position_colonne2 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						}
+						catch (NumberFormatException nfe){
+							do_we_continue = false;
+						}
+					}while(do_we_continue == false);
 				}
 
 				// On met à jour les positions du domino
