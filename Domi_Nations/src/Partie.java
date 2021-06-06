@@ -436,7 +436,7 @@ public class Partie {
 
 					do{
 						try{
-							System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (colonne) :");
 							position_colonne1 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
 						}
@@ -447,7 +447,7 @@ public class Partie {
 
 					do{
 						try{
-							System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (ligne) :");
 							position_ligne2 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
 						}
@@ -458,7 +458,7 @@ public class Partie {
 
 					do{
 						try{
-							System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (colonne) :");
 							position_colonne2 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
 						}
