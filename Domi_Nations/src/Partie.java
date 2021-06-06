@@ -62,8 +62,15 @@ public class Partie {
 		listeRois = new ArrayList<>();
 
 		for (int i = 0; i < nb_joueurs; i++) {
-			System.out.println("Indiquez le nom du joueur " + (i + 1) + " :");
-			String name_player = scanner.nextLine();
+			String name_player;
+			do {
+				System.out.println("Indiquez le nom du joueur " + (i + 1) + " :");
+				name_player = scanner.nextLine();
+				if (name_player == ""){
+					out.println("Veuillez entrer un nom non vide");
+				}
+			} while (name_player == "");
+
 
 			System.out.println("Parmi les couleurs " + colors_list + " laquelle choisissez-vous ?");
 			String chosen_color = scanner.nextLine();
