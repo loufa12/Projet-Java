@@ -15,11 +15,11 @@ public class Partie {
 
 
 	public void creationJoueurs() {
-		class Inf10Exception extends Exception{
-			public Inf10Exception(){
+		class IntervalException extends Exception{
+			public IntervalException(){
 				super( "division par zéro" );
 			}
-			public Inf10Exception(String msg){
+			public IntervalException(String msg){
 				super( msg );
 			}
 		}
@@ -30,7 +30,7 @@ public class Partie {
 			try{
 				System.out.println("Saisissez un nombre de joueurs compris entre 2 et 4.");;
 				nb_joueurs = scanner.nextInt();
-				if(nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4) throw new Inf10Exception();
+				if(nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4) throw new IntervalException();
 				break;
 			}
 			catch(InputMismatchException e){
@@ -38,7 +38,7 @@ public class Partie {
 				s = scanner.next();
 				out.println("Veuillez entrer un entier");
 			}
-			catch ( Inf10Exception e) {
+			catch ( IntervalException e) {
 				out.println("Il faut que l'entier soit compris entre 2 et 4 !");
 				scanner.nextLine();
 			}
