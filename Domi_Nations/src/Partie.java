@@ -323,7 +323,7 @@ public class Partie {
 		}
 
 
-		// On crée l'ordre de passage du tour suivant en fonction des dominos pris par les joueurs
+		// On crée l'ordre de passage du tour suivant en fonction des dominos pris par les joueurs 
 		ArrayList<Joueur> ordre_passage_temp = ordre_passage;
 		ArrayList<Joueur> ordre_de_passage = new ArrayList<Joueur>();
 
