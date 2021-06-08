@@ -24,6 +24,7 @@ public class Partie {
 			}
 		}
 
+		// On demande le nombre de joueurs tant que la réponse n'est pas un entier entre 2 et 4
 		Scanner scanner = new Scanner(System.in);
 		String s;
 		while(nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4){
@@ -61,6 +62,8 @@ public class Partie {
 		// On crée la liste des dés, ie. des rois
 		listeRois = new ArrayList<>();
 
+		// On demande le nom des joueurs
+		// Le nom d'un joueur doit être composé de lettres (il ne doit pas être vide ni ne comporter uniquement des chiffres)
 		for (int i = 0; i < nb_joueurs; i++) {
 			String name_player;
 			boolean isInteger;
@@ -83,6 +86,7 @@ public class Partie {
 			} while (name_player == "" || isInteger == true);
 
 
+			// On demande la couleur des joueurs parmi celles restantes
 			System.out.println("Parmi les couleurs " + colors_list + " laquelle choisissez-vous ?");
 			String chosen_color = scanner.nextLine();
 
@@ -119,6 +123,7 @@ public class Partie {
 			//System.out.println(player.getRoi());
 		}
 
+		// Message de bienvenue
 		for (int i = 0; i < nb_joueurs; i++) {
 			Joueur joueur = listeJoueurs[i];
 			System.out.println("Bienvenue " + joueur.getName() + ", vous êtes le joueur n°" + joueur.getId_joueur() + " avec la couleur " + joueur.getColor() + " !");
@@ -216,6 +221,9 @@ public class Partie {
 		//for (Domino x : plateau) {
 		//	System.out.println("plateau : " + x.getId_domino());
 		//}
+
+
+		// Affichage du plateau et de la pioche
 
 		String [][] board = new String[49][2];
 		for (Domino x : plateau) {
@@ -387,6 +395,7 @@ public class Partie {
 			int position_colonne2 = 0;
 
 			// On vérifie que le premier domino est collé au chateau au centre du royaume
+			// On vérifie que le joueur rentre bien une valeur de ligne et de colonne plausible, sinon on redemande
 			boolean incorrect_input = true;
 			boolean do_we_continue;
 			while (incorrect_input) {
