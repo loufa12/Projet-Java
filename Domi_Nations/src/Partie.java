@@ -289,6 +289,7 @@ public class Partie {
 		// On crée le tableau des scores en fonction des joueurs
 		// avec 2 colonnes et autant de lignes que de joueurs
 		int[][] tableau_scores = new int[2][ordre_passage.size()];
+		List<String>dominos_choisis = new ArrayList<String>() ;
 
 		// Pour chaque joueur dans l'ordre de passage,
 		for (int i = 0; i < ordre_passage.size(); i++) {
@@ -302,6 +303,9 @@ public class Partie {
 			// On demande au joueur quel domino il/elle choisit
 			System.out.println(ordre_passage.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
 			String domino_choisi = scanner3.nextLine();
+
+			dominos_choisis.add(domino_choisi);
+
 
 			// On vérifie que le numéro de domino choisi appartient bien à la liste
 			while (!(plateau_id.contains(domino_choisi))) {
@@ -318,6 +322,8 @@ public class Partie {
 			// Une fois le domino choisi par un joueur, on le retire du plateau
 			plateau_id.remove(domino_choisi);
 		}
+
+
 
 		// Pour chaque joueur dans l'ordre de passage :
 		for (int i = 0; i < ordre_passage.size(); i++) {
@@ -532,6 +538,23 @@ public class Partie {
 		// On affiche le score intermédiaire de chaque joueur
 		for (int i=0; i<ordre_passage.size(); i++){
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
+		}
+
+		// On crée l'odre de passage du tour suivant en fonction des dominos pris par les joueurs
+		ArrayList<Joueur> ordre_passage_temp = ordre_passage;
+		ArrayList<Joueur> ordre_de_passage = new ArrayList<Joueur>();
+		while (dominos_choisis.size() != 0) {
+			String plus_petit_id_domino = dominos_choisis.get(0);
+			int place_plus_petit_domino = 0;
+			for (int j = 0; j < (dominos_choisis.size()); j++) {
+				if (Integer.parseInt(dominos_choisis.get(j)) < Integer.parseInt(plus_petit_id_domino)) {
+					plus_petit_id_domino = dominos_choisis.get(j);
+					place_plus_petit_domino = j;
+				}
+			}
+			ordre_de_passage.add(ordre_passage_temp.get(place_plus_petit_domino));
+			ordre_passage_temp.remove(ordre_passage_temp.get(place_plus_petit_domino));
+			dominos_choisis.remove(dominos_choisis.get(place_plus_petit_domino));
 		}
 	}
 }
