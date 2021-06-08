@@ -12,6 +12,7 @@ public class Partie {
 	private int nb_joueurs;
 	private ArrayList<Roi> listeRois;
 	private ArrayList<Domino> plateau;
+	private ArrayList<Joueur> ordre_passage_suite;
 
 
 	public void creationJoueurs() {
@@ -250,7 +251,7 @@ public class Partie {
 	public void premierTour() throws FileNotFoundException {
 
 		// On crée la liste des joueurs dans l'ordre de passage
-		ArrayList<Joueur> ordre_passage = new ArrayList<Joueur>();
+		ArrayList<Joueur> ordre_passage_1 = new ArrayList<Joueur>();
 
 		// On mélange les rois dans la liste pour les choisir dans un ordre aléatoire
 		Collections.shuffle(listeRois);
@@ -260,7 +261,7 @@ public class Partie {
 			String id_color = roi.getColor();
 			for (Joueur joueur : listeJoueurs) {
 				if (joueur.getColor() == id_color) {
-					ordre_passage.add(joueur);
+					ordre_passage_1.add(joueur);
 				}
 			}
 		}
@@ -288,20 +289,20 @@ public class Partie {
 
 		// On crée le tableau des scores en fonction des joueurs
 		// avec 2 colonnes et autant de lignes que de joueurs
-		int[][] tableau_scores = new int[2][ordre_passage.size()];
+		int[][] tableau_scores = new int[2][ordre_passage_1.size()];
 		List<String>dominos_choisis = new ArrayList<String>() ;
 
 		// Pour chaque joueur dans l'ordre de passage,
-		for (int i = 0; i < ordre_passage.size(); i++) {
+		for (int i = 0; i < ordre_passage_1.size(); i++) {
 
 			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
-			ordre_passage.get(i).setId_joueur(i + 1);
+			ordre_passage_1.get(i).setId_joueur(i + 1);
 
 			// On ajoute en première colonne les id des joueurs dans l'ordre de passage
-			tableau_scores[0][i] = ordre_passage.get(i).getId_joueur();
+			tableau_scores[0][i] = ordre_passage_1.get(i).getId_joueur();
 
 			// On demande au joueur quel domino il/elle choisit
-			System.out.println(ordre_passage.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
+			System.out.println(ordre_passage_1.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
 			String domino_choisi = scanner3.nextLine();
 
 			dominos_choisis.add(domino_choisi);
@@ -316,7 +317,7 @@ public class Partie {
 			// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
 			for (Domino x : plateau) {
 				if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
-					ordre_passage.get(i).getRoi().setDomino_roi(x);
+					ordre_passage_1.get(i).getRoi().setDomino_roi(x);
 				}
 			}
 			// Une fois le domino choisi par un joueur, on le retire du plateau
@@ -326,7 +327,7 @@ public class Partie {
 
 
 		// Pour chaque joueur dans l'ordre de passage :
-		for (int i = 0; i < ordre_passage.size(); i++) {
+		for (int i = 0; i < ordre_passage_1.size(); i++) {
 
 			//int[][] taille_max = new int[13][13];
 
@@ -340,8 +341,8 @@ public class Partie {
 			// On crée un royaume par joueur et 2 royaumes par joueur s'il y a 2 joueurs
 			// On crée aussi un chateau au centre de chaque royaume
 			if (nb_joueurs == 2) {
-				Royaume royaume = new Royaume(ordre_passage.get(i).getId_joueur(), taille_initiale);
-				Royaume royaume_bis = new Royaume(ordre_passage.get(i).getId_joueur(), taille_initiale);
+				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
+				Royaume royaume_bis = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
 
 				Position position_chateau = new Position(colum_chateau, row_chateau);
 				Chateau chateau = new Chateau(royaume, position_chateau);
@@ -352,7 +353,7 @@ public class Partie {
 
 			// Pour 3 ou 4 joueurs :
 			else {
-				Royaume royaume = new Royaume(ordre_passage.get(i).getId_joueur(), taille_initiale);
+				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
 				Position position_chateau = new Position(colum_chateau, row_chateau);
 				Chateau chateau = new Chateau(royaume, position_chateau);
 			}
@@ -370,7 +371,7 @@ public class Partie {
 			Position[] liste_positions = new Position[2];
 
 			Scanner scanner4 = new Scanner(System.in);
-			System.out.println(ordre_passage.get(i).getName() + ", placez votre premier domino dans votre royaume :");
+			System.out.println(ordre_passage_1.get(i).getName() + ", placez votre premier domino dans votre royaume :");
 
 			// On initialise les positions du domino
 			int position_ligne1 = 0;
@@ -506,17 +507,17 @@ public class Partie {
 
 			// On crée la position du domaine 1 du domino placé
 			Position position_domaine1 = new Position(position_colonne1, position_ligne1);
-			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
+			ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
 
 			// On crée la position du domaine 2 du domino placé
 			Position position_domaine2 = new Position(position_colonne2, position_ligne2);
-			ordre_passage.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
+			ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
 
 			// On définit les domaines et nombres de couronnes
-			int nb_couronnes_domaine1 = ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes1();
-			int nb_couronnes_domaine2 = ordre_passage.get(i).getRoi().getDomino_roi().getNb_couronnes2();
-			String domaine1 = ordre_passage.get(i).getRoi().getDomino_roi().getDomaine1();
-			String domaine2 = ordre_passage.get(i).getRoi().getDomino_roi().getDomaine2();
+			int nb_couronnes_domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes1();
+			int nb_couronnes_domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
+			String domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
+			String domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
 
 			// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
 			if (domaine1 == domaine2) {
@@ -536,13 +537,13 @@ public class Partie {
 		}
 
 		// On affiche le score intermédiaire de chaque joueur
-		for (int i=0; i<ordre_passage.size(); i++){
+		for (int i=0; i<ordre_passage_1.size(); i++){
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
 		}
 
 		// On crée l'odre de passage du tour suivant en fonction des dominos pris par les joueurs
-		ArrayList<Joueur> ordre_passage_temp = ordre_passage;
-		ArrayList<Joueur> ordre_de_passage = new ArrayList<Joueur>();
+		ArrayList<Joueur> ordre_passage_temp = ordre_passage_1;
+		ordre_passage_suite = new ArrayList<Joueur>();
 		while (dominos_choisis.size() != 0) {
 			String plus_petit_id_domino = dominos_choisis.get(0);
 			int place_plus_petit_domino = 0;
@@ -552,9 +553,17 @@ public class Partie {
 					place_plus_petit_domino = j;
 				}
 			}
-			ordre_de_passage.add(ordre_passage_temp.get(place_plus_petit_domino));
+
+			ordre_passage_suite.add(ordre_passage_temp.get(place_plus_petit_domino));
 			ordre_passage_temp.remove(ordre_passage_temp.get(place_plus_petit_domino));
 			dominos_choisis.remove(dominos_choisis.get(place_plus_petit_domino));
+		}
+	}
+
+	public void SuiteJeu() throws FileNotFoundException {
+
+		for (int i=0; i < ordre_passage_suite.size(); i++) {
+			out.println(ordre_passage_suite.get(i).getName());
 		}
 	}
 }

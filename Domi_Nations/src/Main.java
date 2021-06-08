@@ -9,6 +9,7 @@ public class Main {
 		partie.creationJoueurs();
 		partie.creationDominos();
 		partie.premierTour();
+		partie.SuiteJeu();
 	}
 }
 
