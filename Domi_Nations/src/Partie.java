@@ -556,4 +556,10 @@ public class Partie {
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
 		}
 	}
+
+	public void Tour() throws FileNotFoundException {
+		for (int i=0; i<ordre_de_passage.size(); i++){
+			System.out.println(i);
+		}
+	}
 }
