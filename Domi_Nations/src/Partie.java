@@ -13,6 +13,8 @@ public class Partie {
 	private ArrayList<Roi> listeRois;
 	private ArrayList<Domino> plateau;
 	private ArrayList<Joueur> ordre_passage_suite;
+	private ArrayList<Domino> pioche;
+	private ArrayList<Domino> plateau_trie;
 
 
 	public void creationJoueurs() {
@@ -182,7 +184,7 @@ public class Partie {
 		}
 
 		// On crée la pioche avec les dominos choisis aléatoirement
-		ArrayList<Domino> pioche = new ArrayList(playedDominos);
+		pioche = new ArrayList(playedDominos);
 
 		// On crée la liste des dominos du plateau
 		plateau = new ArrayList<Domino>();
@@ -195,7 +197,7 @@ public class Partie {
 		}
 
 		// On crée la liste des dominos contenus dans le plateau trié
-		ArrayList<Domino> plateau_tri = new ArrayList<Domino>();
+		plateau_trie = new ArrayList<Domino>();
 
 		// On trie le plateau dans l'ordre croissant
 		// Tant que le plateau n'est pas vide, on séléctionne le plus petit domino pour le mettre dans un plateau trié
@@ -208,10 +210,10 @@ public class Partie {
 					place_plus_petit_domino = j;
 				}
 			}
-			plateau_tri.add(plateau.get(place_plus_petit_domino));
+			plateau_trie.add(plateau.get(place_plus_petit_domino));
 			plateau.remove(plateau.get(place_plus_petit_domino));
 		}
-		plateau = plateau_tri;
+		plateau = plateau_trie;
 
 		// Test affichage des dominos restants dans la pioche
 		//for (Domino x : pioche) {
@@ -298,14 +300,13 @@ public class Partie {
 		ArrayList<Joueur> ordre_passage_temp = ordre_passage_1;
 		ordre_passage_suite = new ArrayList<Joueur>();
 
-
 		// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
 
 			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
 			ordre_passage_1.get(i).setId_joueur(i + 1);
 
-			// On ajoute en première colonne les id des joueurs dans l'ordre de passage
+			// On ajoute en première colonne les id des joueurs (dans l'ordre de passage)
 			tableau_scores[0][i] = ordre_passage_1.get(i).getId_joueur();
 
 			// On demande au joueur quel domino il/elle choisit
@@ -336,10 +337,6 @@ public class Partie {
 
 		for (Domino domino_plateau : plateau) {
 			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
-		}
-
-		for (int p=0; p<ordre_passage_suite.size(); p++) {
-			out.println(ordre_passage_suite.get(p).getName());
 		}
 
 		// Pour chaque joueur dans l'ordre de passage, on place son domino
@@ -395,108 +392,98 @@ public class Partie {
 			int position_colonne2 = 0;
 
 			// On vérifie que le premier domino est collé au chateau au centre du royaume
-			// On vérifie que le joueur rentre bien une valeur de ligne et de colonne plausible, sinon on redemande
+			// On vérifie que le joueur rentre bien une valeur de ligne et de colonne plausibles, sinon on redemande
 			boolean incorrect_input = true;
 			boolean do_we_continue;
 			while (incorrect_input) {
-				do{
-					try{
+				do {
+					try {
 						System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
 						position_ligne1 = Integer.parseInt(scanner4.nextLine());
 						do_we_continue = true;
-					}
-					catch (NumberFormatException nfe){
+					} catch (NumberFormatException nfe) {
 						do_we_continue = false;
 					}
-				}while(do_we_continue == false);
+				} while (do_we_continue == false);
 
-				do{
-					try{
+				do {
+					try {
 						System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
 						position_colonne1 = Integer.parseInt(scanner4.nextLine());
 						do_we_continue = true;
-					}
-					catch (NumberFormatException nfe){
+					} catch (NumberFormatException nfe) {
 						do_we_continue = false;
 					}
-				}while(do_we_continue == false);
-
+				} while (do_we_continue == false);
 
 				liste_positions[0] = new Position(position_colonne1, position_ligne1);
 
-
-				do{
-					try{
+				do {
+					try {
 						System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
 						position_ligne2 = Integer.parseInt(scanner4.nextLine());
 						do_we_continue = true;
-					}
-					catch (NumberFormatException nfe){
+					} catch (NumberFormatException nfe) {
 						do_we_continue = false;
 					}
-				}while(do_we_continue == false);
+				} while (do_we_continue == false);
 
-				do{
-					try{
+				do {
+					try {
 						System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
 						position_colonne2 = Integer.parseInt(scanner4.nextLine());
 						do_we_continue = true;
-					}
-					catch (NumberFormatException nfe){
+					} catch (NumberFormatException nfe) {
 						do_we_continue = false;
 					}
-				}while(do_we_continue == false);
+				} while (do_we_continue == false);
 
 
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
 				// On vérifie que les deux domaines du domino sont bien collés
-				while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1-position_ligne2)==1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1-position_colonne2)==1))) {
+				while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1))) {
 					System.out.println("Les deux domaines de votre domino sont séparés... :( ");
 
-					do{
-						try{
+					do {
+						try {
 							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (ligne) :");
 							position_ligne1 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
-						}
-						catch (NumberFormatException nfe){
+						} catch (NumberFormatException nfe) {
 							do_we_continue = false;
 						}
-					}while(do_we_continue == false);
+					} while (do_we_continue == false);
 
-					do{
-						try{
+					do {
+						try {
 							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (colonne) :");
 							position_colonne1 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
-						}
-						catch (NumberFormatException nfe){
+						} catch (NumberFormatException nfe) {
 							do_we_continue = false;
 						}
-					}while(do_we_continue == false);
+					} while (do_we_continue == false);
 
-					do{
-						try{
+					do {
+						try {
 							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (ligne) :");
 							position_ligne2 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
-						}
-						catch (NumberFormatException nfe){
+						} catch (NumberFormatException nfe) {
 							do_we_continue = false;
 						}
-					}while(do_we_continue == false);
+					} while (do_we_continue == false);
 
-					do{
-						try{
+					do {
+						try {
 							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (colonne) :");
 							position_colonne2 = Integer.parseInt(scanner4.nextLine());
 							do_we_continue = true;
-						}
-						catch (NumberFormatException nfe){
+						} catch (NumberFormatException nfe) {
 							do_we_continue = false;
 						}
-					}while(do_we_continue == false);
+					} while (do_we_continue == false);
 				}
 
 				// On met à jour les positions du domino
@@ -513,8 +500,7 @@ public class Partie {
 						break;
 					}
 				}
-
-				if (incorrect_input == true){
+				if (incorrect_input == true) {
 					System.out.println("erreur, veuillez positionner votre domino à côté du chateau");
 				}
 			}
@@ -527,6 +513,23 @@ public class Partie {
 			Position position_domaine2 = new Position(position_colonne2, position_ligne2);
 			ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
 
+
+			// On retire du plateau le domino placé par le joueur i
+
+			// A REVOIR
+			plateau.remove(ordre_passage_1.get(i).getRoi().getDomino_roi());
+
+			// On retire de la liste des id des dominos du plateau le domino choisi et placé
+			int indexToRemove = 0;
+			for (int x=0; x<plateau_id.size(); x++) {
+				if (plateau_id.get(x).equals(ordre_passage_1.get(i).getRoi().getDomino_roi().getId_domino())) {
+					indexToRemove = x;
+				}
+			}
+			plateau_id.remove(ordre_passage_1.get(indexToRemove));
+
+			// --------------------- CALCUL DU SCORE -----------------------//
+
 			// On définit les domaines et nombres de couronnes
 			int nb_couronnes_domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes1();
 			int nb_couronnes_domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
@@ -535,7 +538,7 @@ public class Partie {
 
 			// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
 			if (domaine1 == domaine2) {
-				tableau_scores[1][i] = 2*(nb_couronnes_domaine1 + nb_couronnes_domaine2);
+				tableau_scores[1][i] = 2 * (nb_couronnes_domaine1 + nb_couronnes_domaine2);
 			} else {
 				tableau_scores[1][i] = nb_couronnes_domaine1 + nb_couronnes_domaine2;
 			}
@@ -545,19 +548,14 @@ public class Partie {
 					if (ordre_passage.get(i).getName())
 				}
 			}*/
-
-			System.out.println("nombre de couronnes du domaine 1 : " + nb_couronnes_domaine1);
-			System.out.println("nombre de couronnes du domaine 2 : " + nb_couronnes_domaine2);
 		}
 
 		// On affiche le score intermédiaire de chaque joueur
-		for (int i=0; i<ordre_passage_1.size(); i++){
+		for (int i = 0; i < ordre_passage_1.size(); i++) {
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
 		}
 
-		for (int i=0; i<ordre_passage_suite.size(); i++) {
-			out.println(ordre_passage_suite.get(i));
-		}
+
 	}
 
 	public void SuiteJeu() throws FileNotFoundException {
