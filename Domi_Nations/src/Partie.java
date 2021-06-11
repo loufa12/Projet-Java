@@ -167,7 +167,7 @@ public class Partie {
 			String domaine2 = param[3];
 
 			// On crée les 48 dominos du jeu
-			Domino domino = new Domino(id_domino, domaine1, domaine2, nbcouronnes1, nbcouronnes2, null, null);
+			Domino domino = new Domino(id_domino, domaine1, domaine2, nbcouronnes1, nbcouronnes2, null, null, null);
 
 			// On ajoute chaque domino créé à la liste
 			playedDominos.add(domino);
@@ -290,9 +290,16 @@ public class Partie {
 		// On crée le tableau des scores en fonction des joueurs
 		// avec 2 colonnes et autant de lignes que de joueurs
 		int[][] tableau_scores = new int[2][ordre_passage_1.size()];
-		List<String>dominos_choisis = new ArrayList<String>() ;
 
-		// Pour chaque joueur dans l'ordre de passage,
+		//List<String>dominos_choisis = new ArrayList<String>() ;
+
+
+		// On crée l'odre de passage du tour suivant en fonction des dominos pris par les joueurs
+		ArrayList<Joueur> ordre_passage_temp = ordre_passage_1;
+		ordre_passage_suite = new ArrayList<Joueur>();
+
+
+		// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
 
 			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
@@ -305,8 +312,7 @@ public class Partie {
 			System.out.println(ordre_passage_1.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
 			String domino_choisi = scanner3.nextLine();
 
-			dominos_choisis.add(domino_choisi);
-
+			//dominos_choisis.add(domino_choisi);
 
 			// On vérifie que le numéro de domino choisi appartient bien à la liste
 			while (!(plateau_id.contains(domino_choisi))) {
@@ -318,17 +324,26 @@ public class Partie {
 			for (Domino x : plateau) {
 				if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
 					ordre_passage_1.get(i).getRoi().setDomino_roi(x);
+
+					// Et on met à jour le roi du domino choisi
+					ordre_passage_1.get(i).getRoi().getDomino_roi().setRoi_domino(ordre_passage_1.get(i).getRoi());
 				}
 			}
+
 			// Une fois le domino choisi par un joueur, on le retire du plateau
 			plateau_id.remove(domino_choisi);
 		}
 
+		for (Domino domino_plateau : plateau) {
+			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
+		}
 
+		for (int p=0; p<ordre_passage_suite.size(); p++) {
+			out.println(ordre_passage_suite.get(p).getName());
+		}
 
-		// Pour chaque joueur dans l'ordre de passage :
+		// Pour chaque joueur dans l'ordre de passage, on place son domino
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
-
 			//int[][] taille_max = new int[13][13];
 
 			// On définit la taille du royaume
@@ -502,7 +517,6 @@ public class Partie {
 				if (incorrect_input == true){
 					System.out.println("erreur, veuillez positionner votre domino à côté du chateau");
 				}
-
 			}
 
 			// On crée la position du domaine 1 du domino placé
@@ -541,22 +555,8 @@ public class Partie {
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
 		}
 
-		// On crée l'odre de passage du tour suivant en fonction des dominos pris par les joueurs
-		ArrayList<Joueur> ordre_passage_temp = ordre_passage_1;
-		ordre_passage_suite = new ArrayList<Joueur>();
-		while (dominos_choisis.size() != 0) {
-			String plus_petit_id_domino = dominos_choisis.get(0);
-			int place_plus_petit_domino = 0;
-			for (int j = 0; j < (dominos_choisis.size()); j++) {
-				if (Integer.parseInt(dominos_choisis.get(j)) < Integer.parseInt(plus_petit_id_domino)) {
-					plus_petit_id_domino = dominos_choisis.get(j);
-					place_plus_petit_domino = j;
-				}
-			}
-
-			ordre_passage_suite.add(ordre_passage_temp.get(place_plus_petit_domino));
-			ordre_passage_temp.remove(ordre_passage_temp.get(place_plus_petit_domino));
-			dominos_choisis.remove(dominos_choisis.get(place_plus_petit_domino));
+		for (int i=0; i<ordre_passage_suite.size(); i++) {
+			out.println(ordre_passage_suite.get(i));
 		}
 	}
 
@@ -565,5 +565,6 @@ public class Partie {
 		for (int i=0; i < ordre_passage_suite.size(); i++) {
 			out.println(ordre_passage_suite.get(i).getName());
 		}
+
 	}
 }
