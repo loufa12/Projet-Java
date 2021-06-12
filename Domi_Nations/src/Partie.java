@@ -2,7 +2,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-
 import java.util.Scanner;
 import static java.lang.System.*;
 import java.util.InputMismatchException;
@@ -46,7 +45,7 @@ public class Partie {
 				out.println("Il faut que l'entier soit compris entre 2 et 4 !");
 				scanner.nextLine();
 			}
-		};
+		}
 
 		scanner.nextLine();
 
@@ -213,7 +212,6 @@ public class Partie {
 			plateau_trie.add(plateau.get(place_plus_petit_domino));
 			plateau.remove(plateau.get(place_plus_petit_domino));
 		}
-		plateau = plateau_trie;
 
 		// Test affichage des dominos restants dans la pioche
 		//for (Domino x : pioche) {
@@ -229,7 +227,7 @@ public class Partie {
 		// Affichage du plateau et de la pioche
 
 		String [][] board = new String[49][2];
-		for (Domino x : plateau) {
+		for (Domino x : plateau_trie) {
 			board[x.getId_domino()][0] = String.valueOf(x.getId_domino());
 			board[x.getId_domino()][1] = "Plateau";
 		}
@@ -275,12 +273,12 @@ public class Partie {
 
 		// On crée la liste des id des dominos présents sur le plateau
 		List<String> plateau_id = new ArrayList<>();
-		for (Domino x : plateau) {
+		for (Domino x : plateau_trie) {
 			plateau_id.add(String.valueOf(x.getId_domino()));
 		}
 
 		// On récupère les informations de chaque domino du plateau
-		for (Domino x : plateau) {
+		for (Domino x : plateau_trie) {
 			String domaine1 = x.getDomaine1();
 			String domaine2 = x.getDomaine2();
 			int nb_couronnes1 = x.getNb_couronnes1();
@@ -322,7 +320,7 @@ public class Partie {
 			}
 
 			// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
-			for (Domino x : plateau) {
+			for (Domino x : plateau_trie) {
 				if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
 					ordre_passage_1.get(i).getRoi().setDomino_roi(x);
 
@@ -335,7 +333,7 @@ public class Partie {
 			plateau_id.remove(domino_choisi);
 		}
 
-		for (Domino domino_plateau : plateau) {
+		for (Domino domino_plateau : plateau_trie) {
 			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
 		}
 
@@ -517,16 +515,20 @@ public class Partie {
 			// On retire du plateau le domino placé par le joueur i
 
 			// A REVOIR
+			plateau_trie.remove(ordre_passage_1.get(i).getRoi().getDomino_roi());
 			plateau.remove(ordre_passage_1.get(i).getRoi().getDomino_roi());
 
 			// On retire de la liste des id des dominos du plateau le domino choisi et placé
 			int indexToRemove = 0;
-			for (int x=0; x<plateau_id.size(); x++) {
+			for (int x = 0; x < plateau_id.size(); x++) {
 				if (plateau_id.get(x).equals(ordre_passage_1.get(i).getRoi().getDomino_roi().getId_domino())) {
 					indexToRemove = x;
 				}
 			}
 			plateau_id.remove(ordre_passage_1.get(indexToRemove));
+
+			out.println(plateau.size());
+			out.println(plateau_trie.size());
 
 			// --------------------- CALCUL DU SCORE -----------------------//
 
@@ -555,7 +557,30 @@ public class Partie {
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
 		}
 
+		Random random = new Random();
+		// On prend aléatoirement autant de dominos que de rois pour le plateau
+		for (int i = 0; i < listeRois.size(); i++) {
+			Domino domino = pioche.get(random.nextInt(pioche.size()));
+			plateau.add(domino);
+			pioche.remove(domino);
+		}
 
+		while (plateau.size() != 0) {
+			int plus_petit_id = plateau.get(0).getId_domino();
+			int place_plus_petit_domino = 0;
+			for (int j = 0; j < (plateau.size()); j++) {
+				if (plateau.get(j).getId_domino() < plus_petit_id) {
+					plus_petit_id = plateau.get(j).getId_domino();
+					place_plus_petit_domino = j;
+				}
+			}
+			plateau_trie.add(plateau.get(place_plus_petit_domino));
+			plateau.remove(plateau.get(place_plus_petit_domino));
+		}
+
+		for (int i = 0; i < plateau_trie.size(); i++) {
+			out.println(plateau_trie.get(i).getId_domino());
+		}
 	}
 
 	public void SuiteJeu() throws FileNotFoundException {
