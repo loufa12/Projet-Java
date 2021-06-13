@@ -302,7 +302,7 @@ public class Partie {
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
 
 			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
-			ordre_passage_1.get(i).setId_joueur(i + 1);
+			// ordre_passage_1.get(i).setId_joueur(i + 1);
 
 			// On ajoute en première colonne les id des joueurs (dans l'ordre de passage)
 			tableau_scores[0][i] = ordre_passage_1.get(i).getId_joueur();
@@ -578,9 +578,57 @@ public class Partie {
 			plateau.remove(plateau.get(place_plus_petit_domino));
 		}
 
-		for (int i = 0; i < plateau_trie.size(); i++) {
-			out.println(plateau_trie.get(i).getId_domino());
+		plateau = plateau_trie;
+
+		for (Domino x : plateau){
+			out.println(x.getId_domino());
 		}
+
+		for (Domino x : plateau_trie){
+			out.println(x.getId_domino());
+		}
+
+		for (Joueur x : ordre_passage_suite){
+			out.println(x.getId_joueur());
+		}
+
+		for (Domino x : plateau_trie) {
+			plateau_id.add(String.valueOf(x.getId_domino()));
+		}
+
+		// Pour chaque joueur dans l'ordre de passage, on choisit un domino
+		for (int i = 0; i < ordre_passage_suite.size(); i++) {
+
+			// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
+			// ordre_passage_suite.get(i).setId_joueur(i + 1);
+
+			// On demande au joueur quel domino il/elle choisit
+			System.out.println(ordre_passage_suite.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
+			String domino_choisi = scanner3.nextLine();
+
+			//dominos_choisis.add(domino_choisi);
+
+			// On vérifie que le numéro de domino choisi appartient bien à la liste
+			while (!(plateau_id.contains(domino_choisi))) {
+				System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
+				domino_choisi = scanner3.nextLine();
+			}
+
+			// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
+			for (Domino x : plateau_trie) {
+				if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
+					ordre_passage_suite.get(i).getRoi().setDomino_roi(x);
+
+					// Et on met à jour le roi du domino choisi
+					ordre_passage_suite.get(i).getRoi().getDomino_roi().setRoi_domino(ordre_passage_suite.get(i).getRoi());
+				}
+			}
+
+			// Une fois le domino choisi par un joueur, on le retire du plateau
+			plateau_id.remove(domino_choisi);
+		}
+
+
 	}
 
 	public void SuiteJeu() throws FileNotFoundException {
