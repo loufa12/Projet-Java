@@ -578,22 +578,12 @@ public class Partie {
 			plateau.remove(plateau.get(place_plus_petit_domino));
 		}
 
-		plateau = plateau_trie;
-
-		for (Domino x : plateau){
-			out.println(x.getId_domino());
-		}
-
-		for (Domino x : plateau_trie){
-			out.println(x.getId_domino());
-		}
-
-		for (Joueur x : ordre_passage_suite){
-			out.println(x.getId_joueur());
-		}
 
 		for (Domino x : plateau_trie) {
-			plateau_id.add(String.valueOf(x.getId_domino()));
+			String domaine1 = x.getDomaine1();
+			String domaine2 = x.getDomaine2();
+			int nb_couronnes1 = x.getNb_couronnes1();
+			int nb_couronnes2 = x.getNb_couronnes2();
 		}
 
 		// Pour chaque joueur dans l'ordre de passage, on choisit un domino
@@ -627,6 +617,29 @@ public class Partie {
 			// Une fois le domino choisi par un joueur, on le retire du plateau
 			plateau_id.remove(domino_choisi);
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// A ajouter à la fin, pour l'ordre du tour suivant
+		/*ordre_passage_suite.clear();
+
+		for (Domino domino_plateau : plateau_trie) {
+			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
+		}
+
+		for (Joueur x : ordre_passage_suite){
+			out.println(x.getId_joueur());
+		}*/
 
 
 	}
