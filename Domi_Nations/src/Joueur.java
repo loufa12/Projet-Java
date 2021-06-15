@@ -4,12 +4,14 @@ public class Joueur {
 	protected String name;
 	protected String color;
 	protected Roi roi;
+	protected Roi roi_bis;
 
-	public Joueur(int id_joueur, String name, String color, Roi roi) {
+	public Joueur(int id_joueur, String name, String color, Roi roi, Roi roi_bis) {
 		this.id_joueur = id_joueur;
 		this.name = name;
 		this.color = color;
 		this.roi = roi;
+		this.roi_bis = roi_bis;
 	}
 
 	public int getId_joueur() {
@@ -38,5 +40,13 @@ public class Joueur {
 	}
 	public void setRoi(Roi roi) {
 		this.roi = roi;
+	}
+
+	public Roi getRoi_bis() {
+		return roi_bis;
+	}
+
+	public void setRoi_bis(Roi roi_bis) {
+		this.roi_bis = roi_bis;
 	}
 }

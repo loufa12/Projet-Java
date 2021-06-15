@@ -8,8 +8,9 @@ public class Domino {
 	protected Position position_domino1;
 	protected Position position_domino2;
 	protected Roi roi_domino;
+	protected Roi roi_bis_domino;
 
-	public Domino(int id_domino, String domaine1, String domaine2, int nb_couronnes1, int nb_couronnes2, Position position_domino, Position position_domino2, Roi roi_domino) {
+	public Domino(int id_domino, String domaine1, String domaine2, int nb_couronnes1, int nb_couronnes2, Position position_domino, Position position_domino2, Roi roi_domino, Roi roi_bis_domino) {
 		this.id_domino = id_domino;
 		this.domaine1 = domaine1;
 		this.domaine2 = domaine2;
@@ -18,6 +19,7 @@ public class Domino {
 		this.position_domino1 = position_domino1;
 		this.position_domino2 = position_domino2;
 		this.roi_domino = roi_domino;
+		this.roi_bis_domino = roi_bis_domino;
 	}
 
 	public int getId_domino() {
@@ -76,7 +78,11 @@ public class Domino {
 		this.roi_domino = roi_domino;
 	}
 
-	public void setRoi_domino(Joueur joueur, String color, Domino domino_roi) {
+	public Roi getRoi_bis_domino() {
+		return roi_bis_domino;
+	}
 
+	public void setRoi_bis_domino(Roi roi_bis_domino) {
+		this.roi_bis_domino = roi_bis_domino;
 	}
 }
