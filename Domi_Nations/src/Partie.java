@@ -641,22 +641,32 @@ public class Partie {
 					}
 				}
 
-				// On crée la position du domaine 1 du domino placé
-				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
-				ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
-
-				// On crée la position du domaine 2 du domino placé
-				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
-				ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
 
 				indice_temp = ordre_passage_1.get(i).getId_joueur();
 
 				if (listeRois.get(i).getName() == "roi") {
+					// On crée la position du domaine 1 du domino placé
+					Position position_domaine1 = new Position(position_colonne1, position_ligne1);
+					ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
+
+					// On crée la position du domaine 2 du domino placé
+					Position position_domaine2 = new Position(position_colonne2, position_ligne2);
+					ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
+
 					table.get(indice_temp - 1)[position_ligne1][position_colonne1] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
 					table.get(indice_temp - 1)[position_ligne2][position_colonne2] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
 				}
 
 				else if (listeRois.get(i).getName() == "roibis") {
+
+					// On crée la position du domaine 1 du domino placé
+					Position position_domaine1 = new Position(position_colonne1, position_ligne1);
+					ordre_passage_1.get(i).getRoi_bis().getDomino_roi().setPosition_domino1(position_domaine1);
+
+					// On crée la position du domaine 2 du domino placé
+					Position position_domaine2 = new Position(position_colonne2, position_ligne2);
+					ordre_passage_1.get(i).getRoi_bis().getDomino_roi().setPosition_domino2(position_domaine2);
+
 					table.get(indice_temp-1)[position_ligne1][position_colonne1] = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
 					table.get(indice_temp-1)[position_ligne2][position_colonne2] = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 				}
