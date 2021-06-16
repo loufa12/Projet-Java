@@ -478,7 +478,7 @@ public class Partie {
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
 				// On vérifie que les deux domaines du domino sont bien collés
-				while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1))) {
+				while (!(((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1)))) {
 					System.out.println("Les deux domaines de votre domino sont séparés... :( ");
 
 					do {
@@ -533,6 +533,9 @@ public class Partie {
 					Position position_case = liste_positions_autour_chateau[j];
 					if (position_case.equals(liste_positions[0]) || position_case.equals(liste_positions[1])) {
 						incorrect_input = false;
+					}
+					if ((position_colonne1 == 3 && position_ligne1 == 3) ||  (position_colonne2 == 3 && position_ligne2 ==3)){
+						incorrect_input = true;
 						break;
 					}
 				}
@@ -598,7 +601,7 @@ public class Partie {
 		out.println("----------------------------------------------------");
 
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
-			out.println("Royaume " + i+1);
+			out.println("Royaume " + (i+1));
 			for ( int line=0; line<table.get(i).length; line++ ) {
 				for ( int column=0; column<table.get(i)[line].length; column++ ) {
 					System.out.print( table.get(i)[line][column] + " " );
