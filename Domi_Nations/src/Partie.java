@@ -575,7 +575,7 @@ public class Partie {
 					liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
 					// On vérifie que les deux domaines du domino sont bien collés
-					while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1))) {
+					while (!(((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1)))) {
 						System.out.println("Les deux domaines de votre domino sont séparés... :( ");
 
 						do {
@@ -805,7 +805,7 @@ public class Partie {
 					liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
 					// On vérifie que les deux domaines du domino sont bien collés
-					while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1))) {
+					while (!(((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1)))) {
 						System.out.println("Les deux domaines de votre domino sont séparés... :( ");
 
 						do {
