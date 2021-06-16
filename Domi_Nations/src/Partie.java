@@ -1181,6 +1181,52 @@ public class Partie {
 					} while (do_we_continue == false);
 				}
 
+				indice_temp = ordre_passage_suite.get(i).getId_joueur();
+
+				while ((table.get(indice_temp - 1)[position_ligne1][position_colonne1] != "Vide") || (table.get(indice_temp - 1)[position_ligne2][position_colonne2] != "Vide")) {
+					System.out.println("Le domino n'est pas sur un emplacement vide ");
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (ligne) :");
+							position_ligne1 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (colonne) :");
+							position_colonne1 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (ligne) :");
+							position_ligne2 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (colonne) :");
+							position_colonne2 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+				}
+
 				// On met à jour les positions du domino
 				liste_positions[0].setPositionColumn(position_colonne1);
 				liste_positions[0].setPositionRow(position_ligne1);
@@ -1189,11 +1235,7 @@ public class Partie {
 
 				incorrect_input = false;
 
-				boolean test_temp1 = table.get(indice_temp - 1)[position_ligne1][position_colonne1] == "Vide";
-				boolean test_temp2 = table.get(indice_temp - 1)[position_ligne2][position_colonne2] == "Vide";
 
-				out.println("--------" + test_temp1  );
-				out.println("--------" + test_temp2  );
 
 				out.println("--------" + position_ligne1  );
 				out.println("--------" + position_colonne1  );
@@ -1233,7 +1275,7 @@ public class Partie {
 
 		out.println("----------------------------------------------------");
 
-		for (int i = 0; i < ordre_passage_1.size(); i++) {
+		for (int i = 0; i < ordre_passage_suite.size(); i++) {
 			out.println("Royaume " + (i+1));
 			for (int line=0; line<table.get(i).length; line++) {
 				for (int column=0; column<table.get(i)[line].length; column++) {
