@@ -339,35 +339,51 @@ public class Partie {
 
 		ArrayList<String[][]> table = new ArrayList<>();
 		String [][]Roy1 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
 		};
 
 		String [][]Roy2 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
 		};
 
 		String [][]Roy3 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
 		};
 
 		String [][]Roy4 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
 		};
 
 		table.add(Roy1);
@@ -380,11 +396,11 @@ public class Partie {
 			//int[][] taille_max = new int[13][13];
 
 			// On définit la taille du royaume
-			int[][] taille_initiale = new int[5][5];
+			int[][] taille_initiale = new int[9][9];
 
 			// On définit l'emplacement du chateau (au centre du royaume)
-			int colum_chateau = 3;
-			int row_chateau = 3;
+			int colum_chateau = 4;
+			int row_chateau = 4;
 
 			// On crée un royaume par joueur et 2 royaumes par joueur s'il y a 2 joueurs
 			// On crée aussi un chateau au centre de chaque royaume
@@ -534,7 +550,7 @@ public class Partie {
 					if (position_case.equals(liste_positions[0]) || position_case.equals(liste_positions[1])) {
 						incorrect_input = false;
 					}
-					if ((position_colonne1 == 3 && position_ligne1 == 3) ||  (position_colonne2 == 3 && position_ligne2 ==3)){
+					if ((position_colonne1 == colum_chateau && position_ligne1 == row_chateau) ||  (position_colonne2 == colum_chateau && position_ligne2 ==row_chateau)){
 						incorrect_input = true;
 						break;
 					}
@@ -546,8 +562,8 @@ public class Partie {
 
 			int indice_temp = ordre_passage_1.get(i).getId_joueur();
 
-			table.get(indice_temp - 1)[position_ligne1 - 1][position_colonne1 - 1] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
-			table.get(indice_temp - 1)[position_ligne2 - 1][position_colonne2 - 1] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
+			table.get(indice_temp - 1)[position_ligne1][position_colonne1] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
+			table.get(indice_temp - 1)[position_ligne2][position_colonne2] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
 
 			// On crée la position du domaine 1 du domino placé
 			Position position_domaine1 = new Position(position_colonne1, position_ligne1);
@@ -691,8 +707,8 @@ public class Partie {
 			int[][] taille_initiale = new int[5][5];
 
 			// On définit l'emplacement du chateau (au centre du royaume)
-			int colum_chateau = 3;
-			int row_chateau = 3;
+			int colum_chateau = 5;
+			int row_chateau = 5;
 
 			// On crée un royaume par joueur et 2 royaumes par joueur s'il y a 2 joueurs
 			// On crée aussi un chateau au centre de chaque royaume
