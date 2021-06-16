@@ -938,14 +938,6 @@ public class Partie {
 		out.println("----------------------------------------------------");
 
 
-		/*// A ajouter à la fin, pour l'ordre du tour suivant
-		ordre_passage_suite.clear();
-		for (Domino domino_plateau : plateau_trie) {
-			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
-		}
-		for (Joueur x : ordre_passage_suite){
-			out.println(x.getId_joueur());
-		}*/
 	}
 
 	public void SuiteJeu() {
@@ -985,6 +977,16 @@ public class Partie {
 
 		for (Domino x : plateau_trie) {
 			plateau_id.add(String.valueOf(x.getId_domino()));
+		}*/
+
+
+		/*// A ajouter à la fin, pour l'ordre du tour suivant
+		ordre_passage_suite.clear();
+		for (Domino domino_plateau : plateau_trie) {
+			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
+		}
+		for (Joueur x : ordre_passage_suite){
+			out.println(x.getId_joueur());
 		}*/
 	}
 }
