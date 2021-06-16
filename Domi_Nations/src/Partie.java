@@ -337,6 +337,44 @@ public class Partie {
 			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
 		}
 
+		ArrayList<String[][]> table = new ArrayList<>();
+		String [][]Roy1 = {
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+		};
+
+		String [][]Roy2 = {
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+		};
+
+		String [][]Roy3 = {
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+		};
+
+		String [][]Roy4 = {
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+				{ "Vide", "Vide", "Vide", "Vide", "Vide" },
+		};
+
+		table.add(Roy1);
+		table.add(Roy2);
+		table.add(Roy3);
+		table.add(Roy4);
+
 		// Pour chaque joueur dans l'ordre de passage, on place son domino
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
 			//int[][] taille_max = new int[13][13];
@@ -503,6 +541,11 @@ public class Partie {
 				}
 			}
 
+			int indice_temp = ordre_passage_1.get(i).getId_joueur();
+
+			table.get(indice_temp - 1)[position_ligne1 - 1][position_colonne1 - 1] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
+			table.get(indice_temp - 1)[position_ligne2 - 1][position_colonne2 - 1] = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
+
 			// On crée la position du domaine 1 du domino placé
 			Position position_domaine1 = new Position(position_colonne1, position_ligne1);
 			ordre_passage_1.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
@@ -552,6 +595,22 @@ public class Partie {
 			}*/
 		}
 
+		out.println("----------------------------------------------------");
+
+		for (int i = 0; i < ordre_passage_1.size(); i++) {
+			out.println("Royaume " + i+1);
+			for ( int line=0; line<table.get(i).length; line++ ) {
+				for ( int column=0; column<table.get(i)[line].length; column++ ) {
+					System.out.print( table.get(i)[line][column] + " " );
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+
+
+		out.println("----------------------------------------------------");
+
 		// On affiche le score intermédiaire de chaque joueur
 		for (int i = 0; i < ordre_passage_1.size(); i++) {
 			System.out.println("Score actuel du joueur " + tableau_scores[0][i] + " : " + (tableau_scores[1][i]));
@@ -586,6 +645,10 @@ public class Partie {
 			int nb_couronnes2 = x.getNb_couronnes2();
 		}
 
+		for (Domino x : plateau_trie) {
+			plateau_id.add(String.valueOf(x.getId_domino()));
+		}
+
 		// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 		for (int i = 0; i < ordre_passage_suite.size(); i++) {
 
@@ -618,6 +681,170 @@ public class Partie {
 			plateau_id.remove(domino_choisi);
 		}
 
+		for (int i = 0; i < ordre_passage_1.size(); i++) {
+			//int[][] taille_max = new int[13][13];
+
+			// On définit la taille du royaume
+			int[][] taille_initiale = new int[5][5];
+
+			// On définit l'emplacement du chateau (au centre du royaume)
+			int colum_chateau = 3;
+			int row_chateau = 3;
+
+			// On crée un royaume par joueur et 2 royaumes par joueur s'il y a 2 joueurs
+			// On crée aussi un chateau au centre de chaque royaume
+			if (nb_joueurs == 2) {
+				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
+				Royaume royaume_bis = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
+
+				Position position_chateau = new Position(colum_chateau, row_chateau);
+				Chateau chateau = new Chateau(royaume, position_chateau);
+
+				Position position_chateau_bis = new Position(colum_chateau, row_chateau);
+				Chateau chateau_bis = new Chateau(royaume_bis, position_chateau_bis);
+			}
+
+			// Pour 3 ou 4 joueurs :
+			else {
+				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
+				Position position_chateau = new Position(colum_chateau, row_chateau);
+				Chateau chateau = new Chateau(royaume, position_chateau);
+			}
+
+			// On crée la liste des 4 positions autour du chateau
+			Position[] liste_positions_autour_chateau = new Position[4];
+
+			// On parcourt dans l'ordre haut/bas/gauche/droite les cases autour du chateau :
+			liste_positions_autour_chateau[0] = new Position(colum_chateau, row_chateau - 1);
+			liste_positions_autour_chateau[1] = new Position(colum_chateau, row_chateau + 1);
+			liste_positions_autour_chateau[2] = new Position(colum_chateau - 1, row_chateau);
+			liste_positions_autour_chateau[3] = new Position(colum_chateau + 1, row_chateau);
+
+			// On crée la liste des positions du domino (2 domaines)
+			Position[] liste_positions = new Position[2];
+
+			Scanner scanner4 = new Scanner(System.in);
+			System.out.println(ordre_passage_1.get(i).getName() + ", placez votre premier domino dans votre royaume :");
+
+			// On initialise les positions du domino
+			int position_ligne1 = 0;
+			int position_colonne1 = 0;
+			int position_ligne2 = 0;
+			int position_colonne2 = 0;
+
+			// On vérifie que le premier domino est collé au chateau au centre du royaume
+			// On vérifie que le joueur rentre bien une valeur de ligne et de colonne plausibles, sinon on redemande
+			boolean incorrect_input = true;
+			boolean do_we_continue;
+			while (incorrect_input) {
+				do {
+					try {
+						System.out.println("Indiquez la position du domaine 1 du domino (ligne) :");
+						position_ligne1 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					} catch (NumberFormatException nfe) {
+						do_we_continue = false;
+					}
+				} while (do_we_continue == false);
+
+				do {
+					try {
+						System.out.println("Indiquez la position du domaine 1 du domino (colonne) :");
+						position_colonne1 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					} catch (NumberFormatException nfe) {
+						do_we_continue = false;
+					}
+				} while (do_we_continue == false);
+
+				liste_positions[0] = new Position(position_colonne1, position_ligne1);
+
+				do {
+					try {
+						System.out.println("Indiquez la position du domaine 2 du domino (ligne) :");
+						position_ligne2 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					} catch (NumberFormatException nfe) {
+						do_we_continue = false;
+					}
+				} while (do_we_continue == false);
+
+				do {
+					try {
+						System.out.println("Indiquez la position du domaine 2 du domino (colonne) :");
+						position_colonne2 = Integer.parseInt(scanner4.nextLine());
+						do_we_continue = true;
+					} catch (NumberFormatException nfe) {
+						do_we_continue = false;
+					}
+				} while (do_we_continue == false);
+
+
+				liste_positions[1] = new Position(position_colonne2, position_ligne2);
+
+				// On vérifie que les deux domaines du domino sont bien collés
+				while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1))) {
+					System.out.println("Les deux domaines de votre domino sont séparés... :( ");
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (ligne) :");
+							position_ligne1 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (colonne) :");
+							position_colonne1 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (ligne) :");
+							position_ligne2 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (colonne) :");
+							position_colonne2 = Integer.parseInt(scanner4.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+				}
+
+				// On met à jour les positions du domino
+				liste_positions[0].setPositionColumn(position_colonne1);
+				liste_positions[0].setPositionRow(position_ligne1);
+				liste_positions[1].setPositionColumn(position_colonne2);
+				liste_positions[1].setPositionRow(position_ligne2);
+
+				// On vérifie que le premier domino est à côté du chateau
+				for (int j = 0; j < 4; j++) {
+					Position position_case = liste_positions_autour_chateau[j];
+					if (position_case.equals(liste_positions[0]) || position_case.equals(liste_positions[1])) {
+						incorrect_input = false;
+						break;
+					}
+				}
+				if (incorrect_input == true) {
+					System.out.println("erreur, veuillez positionner votre domino à côté du chateau");
+				}
+			}
 
 
 
@@ -630,7 +857,9 @@ public class Partie {
 
 
 
-		// A ajouter à la fin, pour l'ordre du tour suivant
+
+
+			// A ajouter à la fin, pour l'ordre du tour suivant
 		/*ordre_passage_suite.clear();
 
 		for (Domino domino_plateau : plateau_trie) {
@@ -641,6 +870,8 @@ public class Partie {
 			out.println(x.getId_joueur());
 		}*/
 
+
+		}
 
 	}
 
