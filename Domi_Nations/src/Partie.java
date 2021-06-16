@@ -650,7 +650,6 @@ public class Partie {
 					String domaine2 = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 					out.println("nom domaine 2 " + domaine2);
 				}
-
 				// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
 				if (domaine1 == domaine2) {
 					tableau_scores[i][0] = 2 * (nb_couronnes_domaine1 + nb_couronnes_domaine2);
