@@ -25,11 +25,9 @@ public class Partie {
 	public void creationJoueurs() {
 		class IntervalException extends Exception {
 			public IntervalException() {
-				super("division par zéro");
 			}
 
 			public IntervalException(String msg) {
-				super(msg);
 			}
 		}
 
@@ -44,7 +42,6 @@ public class Partie {
 				if (nb_joueurs != 2 && nb_joueurs != 3 && nb_joueurs != 4) throw new IntervalException();
 				break;
 			} catch (InputMismatchException e) {
-				// il faut consommer la valeur du buffer d'entrée
 				s = scanner.next();
 				out.println("Veuillez entrer un entier");
 			} catch (IntervalException e) {
