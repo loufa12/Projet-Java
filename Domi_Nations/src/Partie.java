@@ -445,7 +445,7 @@ public class Partie {
 				//int[][] taille_max = new int[13][13];
 
 				// On définit la taille du royaume
-				int[][] taille_initiale = new int[5][5];
+				//int[][] taille_initiale = new int[5][5];
 
 				// On définit l'emplacement du chateau (au centre du royaume)
 				int colum_chateau = 3;
@@ -453,8 +453,8 @@ public class Partie {
 
 				// On crée un royaume par joueur et 2 royaumes par joueur s'il y a 2 joueurs
 				// On crée aussi un chateau au centre de chaque royaume
-				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
-				Royaume royaume_bis = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
+				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), 0);
+				Royaume royaume_bis = new Royaume(ordre_passage_1.get(i).getId_joueur(), 0);
 
 				Position position_chateau = new Position(colum_chateau, row_chateau);
 				Chateau chateau = new Chateau(royaume, position_chateau);
@@ -636,6 +636,8 @@ public class Partie {
 					out.println("nom domaine 1 " + domaine1);
 					domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
 					out.println("nom domaine 2 " + domaine2);
+
+					//royaume.setTaille_royaume();
 				}
 
 				else if (listeRois.get(i).getName() == "roibis") {
@@ -659,36 +661,21 @@ public class Partie {
 				out.println("score du joueur : " + tableau_scores[i][0]);
 			}
 		}
+
 		else {
 			for (int i = 0; i < nb_joueurs; i++) {
 				//int[][] taille_max = new int[13][13];
 
 				// On définit la taille du royaume
-				int[][] taille_initiale = new int[5][5];
+				//int[][] taille_initiale = new int[5][5];
 
 				// On définit l'emplacement du chateau (au centre du royaume)
 				int colum_chateau = 3;
 				int row_chateau = 3;
 
-				// On crée un royaume par joueur et 2 royaumes par joueur s'il y a 2 joueurs
-				// On crée aussi un chateau au centre de chaque royaume
-				if (nb_joueurs == 2) {
-					Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
-					Royaume royaume_bis = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
-
-					Position position_chateau = new Position(colum_chateau, row_chateau);
-					Chateau chateau = new Chateau(royaume, position_chateau);
-
-					Position position_chateau_bis = new Position(colum_chateau, row_chateau);
-					Chateau chateau_bis = new Chateau(royaume_bis, position_chateau_bis);
-				}
-
-				// Pour 3 ou 4 joueurs :
-				else {
-					Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), taille_initiale);
-					Position position_chateau = new Position(colum_chateau, row_chateau);
-					Chateau chateau = new Chateau(royaume, position_chateau);
-				}
+				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), 0);
+				Position position_chateau = new Position(colum_chateau, row_chateau);
+				Chateau chateau = new Chateau(royaume, position_chateau);
 
 				// On crée la liste des 4 positions autour du chateau
 				Position[] liste_positions_autour_chateau = new Position[4];
@@ -875,19 +862,9 @@ public class Partie {
 		}
 	}
 
-	/*if (nb_joueurs == 2) {
-			*//*int[] score_temp = new int[2];
-			score_temp[0] = 0;
-			score_temp[1] = 0;*//*
-
-		for (int i = 0; i < nb_joueurs*2; i++) {
-			if (domaine1 == domaine2) {
-				tableau_scores[i][0] = 2 * (nb_couronnes_domaine1 + nb_couronnes_domaine2);
-			} else {
-				tableau_scores[i][0] = nb_couronnes_domaine1 + nb_couronnes_domaine2;
-			}
-			*//*int int_temp =*//*tableau_scores[i][0];
-			//score_temp[int_temp-1] += tableau_scores[i][1];
+	public void SuiteJeu() {
+		for (int i=0; i<ordre_passage_suite.size(); i++) {
+			out.println(ordre_passage_suite.get(i).getName());
 		}
-	}*/
+	}
 }
