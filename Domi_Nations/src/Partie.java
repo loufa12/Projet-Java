@@ -21,9 +21,65 @@ public class Partie {
 	private int indice_temp;
 	private List<String> plateau_id;
 	ArrayList<Joueur> ordre_passage_1 = new ArrayList<Joueur>();
+	int[][] tableau_scores;
+	ArrayList<String[][]> table = new ArrayList<>();
+	String [][]Roy1 = {
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+	};
+
+	String [][]Roy2 = {
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+	};
+
+	String [][]Roy3 = {
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+	};
+
+	String [][]Roy4 = {
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+			{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
+	};
+
+
+
 
 
 	public void creationJoueurs() {
+		table.add(Roy1);
+		table.add(Roy2);
+		table.add(Roy3);
+		table.add(Roy4);
 		class IntervalException extends Exception {
 			public IntervalException() {
 			}
@@ -335,59 +391,7 @@ public class Partie {
 			out.println("nom du joueur " + k + ordre_passage_1.get(k).getName());
 		}
 
-		ArrayList<String[][]> table = new ArrayList<>();
-		String [][]Roy1 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-		};
 
-		String [][]Roy2 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-		};
-
-		String [][]Roy3 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-		};
-
-		String [][]Roy4 = {
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-				{ "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", },
-		};
-
-		table.add(Roy1);
-		table.add(Roy2);
-		table.add(Roy3);
-		table.add(Roy4);
 
 		if (nb_joueurs == 2) {
 			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
@@ -942,6 +946,117 @@ public class Partie {
 	}
 
 	public void SuiteJeu() {
+		Scanner scanner5 = new Scanner(System.in);
+
+		Random random = new Random();
+		// On prend aléatoirement autant de dominos que de rois pour le plateau
+		for (int i = 0; i < listeRois.size(); i++) {
+			Domino domino = pioche.get(random.nextInt(pioche.size()));
+			plateau.add(domino);
+			pioche.remove(domino);
+		}
+
+		while (plateau.size() != 0) {
+			int plus_petit_id = plateau.get(0).getId_domino();
+			int place_plus_petit_domino = 0;
+			for (int j = 0; j < (plateau.size()); j++) {
+				if (plateau.get(j).getId_domino() < plus_petit_id) {
+					plus_petit_id = plateau.get(j).getId_domino();
+					place_plus_petit_domino = j;
+				}
+			}
+			plateau_trie.add(plateau.get(place_plus_petit_domino));
+			plateau.remove(plateau.get(place_plus_petit_domino));
+		}
+
+
+		for (Domino x : plateau_trie) {
+			String domaine1 = x.getDomaine1();
+			String domaine2 = x.getDomaine2();
+			int nb_couronnes1 = x.getNb_couronnes1();
+			int nb_couronnes2 = x.getNb_couronnes2();
+		}
+
+		for (Domino x : plateau_trie) {
+			plateau_id.add(String.valueOf(x.getId_domino()));
+		}
+
+		if (nb_joueurs == 2) {
+			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
+			for (int i = 0; i < listeRois.size(); i++) {
+
+				// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
+				//ordre_passage_suite.get(i).setId_joueur(i + 1);
+
+				// On demande au joueur quel domino il/elle choisit
+				System.out.println(listeRois.get(i).getJoueur().getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
+				String domino_choisi = scanner5.nextLine();
+
+				//dominos_choisis.add(domino_choisi);
+
+				// On vérifie que le numéro de domino choisi appartient bien à la liste
+				while (!(plateau_id.contains(domino_choisi))) {
+					System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
+					domino_choisi = scanner5.nextLine();
+				}
+
+				// Pour chaque domino choisi par un roi, on met à jour domino_roi dans Roi
+				for (Domino domino_plateau : plateau_trie) {
+					if (domino_plateau.getId_domino() == Integer.valueOf(domino_choisi)) {
+
+						listeRois.get(i).setDomino_roi(domino_plateau);
+						//out.println("id du domino du roi joué : " + listeRois.get(i).getDomino_roi().getId_domino());
+
+						if (listeRois.get(i).getName() == "roi") {
+							listeRois.get(i).getDomino_roi().setRoi_domino(listeRois.get(i));
+							//out.println("nom du roi sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getName());
+							//out.println("nom du joueur du roi posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getJoueur().getName());
+						}
+						else if (listeRois.get(i).getName() == "roibis") {
+							listeRois.get(i).getDomino_roi().setRoi_bis_domino(listeRois.get(i));
+							//out.println("nom du roi_bis sur le domino choisi :" + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getName());
+							//out.println("nom du joueur du roi_bis posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getJoueur().getName());
+						}
+					}
+				}
+				// Une fois le domino choisi par un joueur, on le retire du plateau
+				plateau_id.remove(domino_choisi);
+
+			}
+		}
+
+		else {
+
+			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
+			for (int i = 0; i < nb_joueurs; i++) {
+
+				// On demande au joueur quel domino il/elle choisit
+				System.out.println(ordre_passage_suite.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
+				String domino_choisi = scanner5.nextLine();
+
+				//dominos_choisis.add(domino_choisi);
+
+				// On vérifie que le numéro de domino choisi appartient bien à la liste
+				while (!(plateau_id.contains(domino_choisi))) {
+					System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
+					domino_choisi = scanner5.nextLine();
+				}
+
+				// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
+				for (Domino x : plateau_trie) {
+					if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
+						ordre_passage_suite.get(i).getRoi().setDomino_roi(x);
+
+						// Et on met à jour le roi du domino choisi
+						ordre_passage_suite.get(i).getRoi().getDomino_roi().setRoi_domino(ordre_passage_suite.get(i).getRoi());
+					}
+				}
+
+				// Une fois le domino choisi par un joueur, on le retire du plateau
+				plateau_id.remove(domino_choisi);
+			}
+
+		}
 
 		for (int i = 0; i < ordre_passage_suite.size(); i++) {
 			//int[][] taille_max = new int[13][13];
@@ -962,7 +1077,7 @@ public class Partie {
 			// On crée la liste des positions du domino (2 domaines)
 			Position[] liste_positions = new Position[2];
 
-			Scanner scanner5 = new Scanner(System.in);
+
 			System.out.println(ordre_passage_suite.get(i).getName() + ", placez votre domino dans votre royaume :");
 
 			// On initialise les positions du domino
@@ -1022,7 +1137,7 @@ public class Partie {
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
 				// On vérifie que les deux domaines du domino sont bien collés
-				while (!((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1))) {
+				while (!(((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1)))) {
 					System.out.println("Les deux domaines de votre domino sont séparés... :( ");
 
 					do {
@@ -1074,6 +1189,21 @@ public class Partie {
 
 				incorrect_input = false;
 
+				boolean test_temp1 = table.get(indice_temp - 1)[position_ligne1][position_colonne1] == "Vide";
+				boolean test_temp2 = table.get(indice_temp - 1)[position_ligne2][position_colonne2] == "Vide";
+
+				out.println("--------" + test_temp1  );
+				out.println("--------" + test_temp2  );
+
+				out.println("--------" + position_ligne1  );
+				out.println("--------" + position_colonne1  );
+
+				out.println("--------" + position_ligne2  );
+				out.println("--------" + position_colonne2  );
+
+				out.println("--------" + row_chateau  );
+				out.println("--------" + colum_chateau  );
+
 				// On vérifie que le premier domino est à côté du chateau
 				if ((position_colonne1 == colum_chateau && position_ligne1 == row_chateau) ||  (position_colonne2 == colum_chateau && position_ligne2 ==row_chateau)){
 					incorrect_input = true;
@@ -1084,49 +1214,37 @@ public class Partie {
 				}
 			}
 
+			indice_temp = ordre_passage_suite.get(i).getId_joueur();
 
-		/*Random random = new Random();
-		// On prend aléatoirement autant de dominos que de rois pour le plateau
-		for (int i = 0; i < listeRois.size(); i++) {
-			Domino domino = pioche.get(random.nextInt(pioche.size()));
-			plateau.add(domino);
-			pioche.remove(domino);
-		}
+			table.get(indice_temp - 1)[position_ligne1][position_colonne1] = ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1();
+			table.get(indice_temp - 1)[position_ligne2][position_colonne2] = ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2();
 
-		while (plateau.size() != 0) {
-			int plus_petit_id = plateau.get(0).getId_domino();
-			int place_plus_petit_domino = 0;
-			for (int j = 0; j < (plateau.size()); j++) {
-				if (plateau.get(j).getId_domino() < plus_petit_id) {
-					plus_petit_id = plateau.get(j).getId_domino();
-					place_plus_petit_domino = j;
-				}
-			}
-			plateau_trie.add(plateau.get(place_plus_petit_domino));
-			plateau.remove(plateau.get(place_plus_petit_domino));
 		}
 
 
-		for (Domino x : plateau_trie) {
-			String domaine1 = x.getDomaine1();
-			String domaine2 = x.getDomaine2();
-			int nb_couronnes1 = x.getNb_couronnes1();
-			int nb_couronnes2 = x.getNb_couronnes2();
-		}
-
-		for (Domino x : plateau_trie) {
-			plateau_id.add(String.valueOf(x.getId_domino()));
-		}*/
-
-
-		/*// A ajouter à la fin, pour l'ordre du tour suivant
-		ordre_passage_suite.clear();
+		// A ajouter à la fin, pour l'ordre du tour suivant
+		/*ordre_passage_suite.clear();
 		for (Domino domino_plateau : plateau_trie) {
 			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
 		}
 		for (Joueur x : ordre_passage_suite){
 			out.println(x.getId_joueur());
 		}*/
+
+		out.println("----------------------------------------------------");
+
+		for (int i = 0; i < ordre_passage_1.size(); i++) {
+			out.println("Royaume " + (i+1));
+			for (int line=0; line<table.get(i).length; line++) {
+				for (int column=0; column<table.get(i)[line].length; column++) {
+					System.out.print(table.get(i)[line][column] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println();
 		}
+
+		out.println("----------------------------------------------------");
 	}
+
 }
