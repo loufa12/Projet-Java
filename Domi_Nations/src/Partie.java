@@ -1284,10 +1284,111 @@ public class Partie {
 		}
 
 		// On vérifie que un des deux domaines est à côté d'un même domaine ou du chateau
-		if (!(
-				try{table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())}
-				catch ()
-
+		if(position_ligne1 == 0){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_colonne1 == 0){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_ligne2 == 0){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_colonne2 == 0){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_ligne1 == 8){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_colonne1 == 8){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_ligne2 == 8){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (position_colonne2 == 8){
+			if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+					|| correct_input)) {
+				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
+				return false;
+			}
+		}
+		if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
 				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
 				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
 				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
