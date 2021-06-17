@@ -884,8 +884,6 @@ public class Partie {
 
 
 				// On retire du plateau le domino placé par le joueur i
-
-				// A REVOIR
 				plateau_trie.remove(ordre_passage_1.get(i).getRoi().getDomino_roi());
 				plateau.remove(ordre_passage_1.get(i).getRoi().getDomino_roi());
 
@@ -943,261 +941,314 @@ public class Partie {
 
 	public void SuiteJeu() {
 		Scanner scanner5 = new Scanner(System.in);
-
-		Random random = new Random();
-		// On prend aléatoirement autant de dominos que de rois pour le plateau
-		for (int i = 0; i < listeRois.size(); i++) {
-			Domino domino = pioche.get(random.nextInt(pioche.size()));
-			plateau.add(domino);
-			pioche.remove(domino);
-		}
-
-		while (plateau.size() != 0) {
-			int plus_petit_id = plateau.get(0).getId_domino();
-			int place_plus_petit_domino = 0;
-			for (int j = 0; j < (plateau.size()); j++) {
-				if (plateau.get(j).getId_domino() < plus_petit_id) {
-					plus_petit_id = plateau.get(j).getId_domino();
-					place_plus_petit_domino = j;
-				}
-			}
-			plateau_trie.add(plateau.get(place_plus_petit_domino));
-			plateau.remove(plateau.get(place_plus_petit_domino));
-		}
-
-
-		for (Domino x : plateau_trie) {
-			String domaine1 = x.getDomaine1();
-			String domaine2 = x.getDomaine2();
-			int nb_couronnes1 = x.getNb_couronnes1();
-			int nb_couronnes2 = x.getNb_couronnes2();
-		}
-
-		for (Domino x : plateau_trie) {
-			plateau_id.add(String.valueOf(x.getId_domino()));
-		}
-
-		if (nb_joueurs == 2) {
-			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
+		int faireUnAutreTour = 0;
+		while (faireUnAutreTour != 3){
+			Random random = new Random();
+			// On prend aléatoirement autant de dominos que de rois pour le plateau
 			for (int i = 0; i < listeRois.size(); i++) {
+				Domino domino = pioche.get(random.nextInt(pioche.size()));
+				plateau.add(domino);
+				pioche.remove(domino);
+			}
 
-				// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
-				//ordre_passage_suite.get(i).setId_joueur(i + 1);
-
-				// On demande au joueur quel domino il/elle choisit
-				System.out.println(listeRois.get(i).getJoueur().getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
-				String domino_choisi = scanner5.nextLine();
-
-				//dominos_choisis.add(domino_choisi);
-
-				// On vérifie que le numéro de domino choisi appartient bien à la liste
-				while (!(plateau_id.contains(domino_choisi))) {
-					System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
-					domino_choisi = scanner5.nextLine();
+			while (plateau.size() != 0) {
+				int plus_petit_id = plateau.get(0).getId_domino();
+				int place_plus_petit_domino = 0;
+				for (int j = 0; j < (plateau.size()); j++) {
+					if (plateau.get(j).getId_domino() < plus_petit_id) {
+						plus_petit_id = plateau.get(j).getId_domino();
+						place_plus_petit_domino = j;
+					}
 				}
+				plateau_trie.add(plateau.get(place_plus_petit_domino));
+				plateau.remove(plateau.get(place_plus_petit_domino));
+			}
 
-				// Pour chaque domino choisi par un roi, on met à jour domino_roi dans Roi
-				for (Domino domino_plateau : plateau_trie) {
-					if (domino_plateau.getId_domino() == Integer.valueOf(domino_choisi)) {
 
-						listeRois.get(i).setDomino_roi(domino_plateau);
-						//out.println("id du domino du roi joué : " + listeRois.get(i).getDomino_roi().getId_domino());
+			for (Domino x : plateau_trie) {
+				String domaine1 = x.getDomaine1();
+				String domaine2 = x.getDomaine2();
+				int nb_couronnes1 = x.getNb_couronnes1();
+				int nb_couronnes2 = x.getNb_couronnes2();
+			}
 
-						if (listeRois.get(i).getName() == "roi") {
-							listeRois.get(i).getDomino_roi().setRoi_domino(listeRois.get(i));
-							//out.println("nom du roi sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getName());
-							//out.println("nom du joueur du roi posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getJoueur().getName());
-						} else if (listeRois.get(i).getName() == "roibis") {
-							listeRois.get(i).getDomino_roi().setRoi_bis_domino(listeRois.get(i));
-							//out.println("nom du roi_bis sur le domino choisi :" + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getName());
-							//out.println("nom du joueur du roi_bis posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getJoueur().getName());
+			for (Domino x : plateau_trie) {
+				plateau_id.add(String.valueOf(x.getId_domino()));
+			}
+
+			if (nb_joueurs == 2) {
+				// Pour chaque joueur dans l'ordre de passage, on choisit un domino
+				for (int i = 0; i < listeRois.size(); i++) {
+
+					// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
+					//ordre_passage_suite.get(i).setId_joueur(i + 1);
+
+					// On demande au joueur quel domino il/elle choisit
+					System.out.println(listeRois.get(i).getJoueur().getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
+					String domino_choisi = scanner5.nextLine();
+
+					//dominos_choisis.add(domino_choisi);
+
+					// On vérifie que le numéro de domino choisi appartient bien à la liste
+					while (!(plateau_id.contains(domino_choisi))) {
+						System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
+						domino_choisi = scanner5.nextLine();
+					}
+
+					// Pour chaque domino choisi par un roi, on met à jour domino_roi dans Roi
+					for (Domino domino_plateau : plateau_trie) {
+						if (domino_plateau.getId_domino() == Integer.valueOf(domino_choisi)) {
+
+							listeRois.get(i).setDomino_roi(domino_plateau);
+							//out.println("id du domino du roi joué : " + listeRois.get(i).getDomino_roi().getId_domino());
+
+							if (listeRois.get(i).getName() == "roi") {
+								listeRois.get(i).getDomino_roi().setRoi_domino(listeRois.get(i));
+								//out.println("nom du roi sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getName());
+								//out.println("nom du joueur du roi posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getJoueur().getName());
+							} else if (listeRois.get(i).getName() == "roibis") {
+								listeRois.get(i).getDomino_roi().setRoi_bis_domino(listeRois.get(i));
+								//out.println("nom du roi_bis sur le domino choisi :" + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getName());
+								//out.println("nom du joueur du roi_bis posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getJoueur().getName());
+							}
 						}
 					}
+					// Une fois le domino choisi par un joueur, on le retire du plateau
+					plateau_id.remove(domino_choisi);
+
 				}
-				// Une fois le domino choisi par un joueur, on le retire du plateau
-				plateau_id.remove(domino_choisi);
+			} else {
+
+				// Pour chaque joueur dans l'ordre de passage, on choisit un domino
+				for (int i = 0; i < nb_joueurs; i++) {
+
+					// On demande au joueur quel domino il/elle choisit
+					System.out.println(ordre_passage_suite.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
+					String domino_choisi = scanner5.nextLine();
+
+					//dominos_choisis.add(domino_choisi);
+
+					// On vérifie que le numéro de domino choisi appartient bien à la liste
+					while (!(plateau_id.contains(domino_choisi))) {
+						System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
+						domino_choisi = scanner5.nextLine();
+					}
+
+					// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
+					for (Domino x : plateau_trie) {
+						if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
+							ordre_passage_suite.get(i).getRoi().setDomino_roi(x);
+
+							// Et on met à jour le roi du domino choisi
+							ordre_passage_suite.get(i).getRoi().getDomino_roi().setRoi_domino(ordre_passage_suite.get(i).getRoi());
+						}
+					}
+
+					// Une fois le domino choisi par un joueur, on le retire du plateau
+					plateau_id.remove(domino_choisi);
+				}
 
 			}
-		} else {
 
-			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
-			for (int i = 0; i < nb_joueurs; i++) {
+			for (int i = 0; i < ordre_passage_suite.size(); i++) {
+				//int[][] taille_max = new int[13][13];
 
-				// On demande au joueur quel domino il/elle choisit
-				System.out.println(ordre_passage_suite.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateau_id);
-				String domino_choisi = scanner5.nextLine();
+				// On définit l'emplacement du chateau (au centre du royaume)
+				int colum_chateau = 4;
+				int row_chateau = 4;
 
-				//dominos_choisis.add(domino_choisi);
+				// On crée la liste des 4 positions autour du chateau
+				Position[] liste_positions_autour_chateau = new Position[4];
 
-				// On vérifie que le numéro de domino choisi appartient bien à la liste
-				while (!(plateau_id.contains(domino_choisi))) {
-					System.out.println("Vous devez choisir un domino parmi : " + plateau_id);
-					domino_choisi = scanner5.nextLine();
-				}
+				// On parcourt dans l'ordre haut/bas/gauche/droite les cases autour du chateau :
+				liste_positions_autour_chateau[0] = new Position(colum_chateau, row_chateau - 1);
+				liste_positions_autour_chateau[1] = new Position(colum_chateau, row_chateau + 1);
+				liste_positions_autour_chateau[2] = new Position(colum_chateau - 1, row_chateau);
+				liste_positions_autour_chateau[3] = new Position(colum_chateau + 1, row_chateau);
 
-				// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
-				for (Domino x : plateau_trie) {
-					if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
-						ordre_passage_suite.get(i).getRoi().setDomino_roi(x);
+				// On crée la liste des positions du domino (2 domaines)
+				Position[] liste_positions = new Position[2];
 
-						// Et on met à jour le roi du domino choisi
-						ordre_passage_suite.get(i).getRoi().getDomino_roi().setRoi_domino(ordre_passage_suite.get(i).getRoi());
+
+				System.out.println(ordre_passage_suite.get(i).getName() + ", placez votre domino dans votre royaume :");
+
+				// On initialise les positions du domino
+				int position_ligne1 = 0;
+				int position_colonne1 = 0;
+				int position_ligne2 = 0;
+				int position_colonne2 = 0;
+
+				boolean do_we_continue;
+
+				int idDomino = ordre_passage_suite.get(i).getRoi().getDomino_roi().getId_domino();
+				Domino dominoDomaines = ordre_passage_suite.get(i).getRoi().getDomino_roi();
+				String domaine1 = dominoDomaines.getDomaine1();
+				String domaine2 = dominoDomaines.getDomaine2();
+
+				do {
+					do {
+						try {
+							System.out.println("Indiquez la position du domaine " + domaine1 + " domino " + idDomino + " (ligne) :");
+							position_ligne1 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez la position du domaine " + domaine1 + " du domino " + idDomino + " (colonne) :");
+							position_colonne1 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					liste_positions[0] = new Position(position_colonne1, position_ligne1);
+
+					do {
+						try {
+							System.out.println("Indiquez la position du domaine " + domaine2 + " du domino " + idDomino + " (ligne) :");
+							position_ligne2 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez la position du domaine " + domaine2 + " du domino " + idDomino + " (colonne) :");
+							position_colonne2 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+					// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
+					int min_ligne_temp = java.lang.Math.min(position_ligne1, position_ligne2);
+					int min_col_temp = java.lang.Math.min(position_colonne1, position_colonne2);
+					int max_ligne_temp = java.lang.Math.max(position_ligne1, position_ligne2);
+					int max_col_temp = java.lang.Math.max(position_colonne1, position_colonne2);
+
+					for (int line = 0; line < table.get(i).length; line++) {
+						for (int column = 0; column < table.get(i)[line].length; column++) {
+							if (table.get(i)[line][column] != "Vide") {
+								max_ligne_temp = java.lang.Math.max(line, max_ligne_temp);
+								max_col_temp = java.lang.Math.max(column, max_col_temp);
+							}
+						}
+					}
+
+					for (int line = table.get(i).length; line > 0; line--) {
+						for (int column = table.get(i)[line - 1].length; column > 0; column--) {
+							if (table.get(i)[line - 1][column - 1] != "Vide") {
+								min_ligne_temp = java.lang.Math.min(line - 1, min_ligne_temp);
+								min_col_temp = java.lang.Math.min(column - 1, min_col_temp);
+							}
+						}
+					}
+					out.println(min_ligne_temp);
+					out.println(min_col_temp);
+					out.println(max_ligne_temp);
+					out.println(max_col_temp);
+				} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, i, min_ligne_temp, min_col_temp, max_ligne_temp, max_col_temp));
+
+				liste_positions[1] = new Position(position_colonne2, position_ligne2);
+
+
+				// On met à jour les positions du domino
+				liste_positions[0].setPositionColumn(position_colonne1);
+				liste_positions[0].setPositionRow(position_ligne1);
+				liste_positions[1].setPositionColumn(position_colonne2);
+				liste_positions[1].setPositionRow(position_ligne2);
+
+				indice_temp = ordre_passage_suite.get(i).getId_joueur();
+
+				table.get(indice_temp - 1)[position_ligne1][position_colonne1] = domaine1;
+				table.get(indice_temp - 1)[position_ligne2][position_colonne2] = domaine2;
+
+				// On crée la position du domaine 1 du domino placé
+				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
+				ordre_passage_suite.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
+
+				// On crée la position du domaine 2 du domino placé
+				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
+				ordre_passage_suite.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
+
+				// On retire de la liste des id des dominos du plateau le domino choisi et placé
+				int indexToRemove = 0;
+				for (int x = 0; x < plateau_id.size(); x++) {
+					if (plateau_id.get(x).equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getId_domino())) {
+						indexToRemove = x;
 					}
 				}
+				plateau_id.remove(ordre_passage_suite.get(indexToRemove));
 
-				// Une fois le domino choisi par un joueur, on le retire du plateau
-				plateau_id.remove(domino_choisi);
+				out.println(plateau.size());
+				out.println(plateau_trie.size());
+
+				// --------------------- CALCUL DU SCORE -----------------------//
+
+				// On définit les domaines et nombres de couronnes
+				/*int nb_couronnes_domaine1 = ordre_passage_suite.get(i).getRoi().getDomino_roi().getNb_couronnes1();
+				out.println("couronnes domaine 1 : " + nb_couronnes_domaine1);
+				int nb_couronnes_domaine2 = ordre_passage_suite.get(i).getRoi().getDomino_roi().getNb_couronnes2();
+				out.println("couronnes domaine 2 : " + nb_couronnes_domaine2);
+				domaine1 = ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1();
+				out.println("nom domaine 1 " + domaine1);
+				domaine2 = ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2();
+				out.println("nom domaine 2 " + domaine2);
+
+				// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
+				if (domaine1 == domaine2) {
+					tableau_scores[i][0] = 2 * (nb_couronnes_domaine1 + nb_couronnes_domaine2);
+				} else {
+					tableau_scores[i][0] = nb_couronnes_domaine1 + nb_couronnes_domaine2;
+				}
+				out.println(tableau_scores[i][0]);*/
+
 			}
 
-		}
 
-		for (int i = 0; i < ordre_passage_suite.size(); i++) {
-			//int[][] taille_max = new int[13][13];
+			out.println("----------------------------------------------------");
 
-			// On définit l'emplacement du chateau (au centre du royaume)
-			int colum_chateau = 4;
-			int row_chateau = 4;
-
-			// On crée la liste des 4 positions autour du chateau
-			Position[] liste_positions_autour_chateau = new Position[4];
-
-			// On parcourt dans l'ordre haut/bas/gauche/droite les cases autour du chateau :
-			liste_positions_autour_chateau[0] = new Position(colum_chateau, row_chateau - 1);
-			liste_positions_autour_chateau[1] = new Position(colum_chateau, row_chateau + 1);
-			liste_positions_autour_chateau[2] = new Position(colum_chateau - 1, row_chateau);
-			liste_positions_autour_chateau[3] = new Position(colum_chateau + 1, row_chateau);
-
-			// On crée la liste des positions du domino (2 domaines)
-			Position[] liste_positions = new Position[2];
-
-
-			System.out.println(ordre_passage_suite.get(i).getName() + ", placez votre domino dans votre royaume :");
-
-			// On initialise les positions du domino
-			int position_ligne1 = 0;
-			int position_colonne1 = 0;
-			int position_ligne2 = 0;
-			int position_colonne2 = 0;
-
-			boolean do_we_continue;
-
-			int idDomino = ordre_passage_suite.get(i).getRoi().getDomino_roi().getId_domino();
-			Domino dominoDomaines = ordre_passage_suite.get(i).getRoi().getDomino_roi();
-			String domaine1 = dominoDomaines.getDomaine1();
-			String domaine2 = dominoDomaines.getDomaine2();
-
-			do {
-				do {
-					try {
-						System.out.println("Indiquez la position du domaine " + domaine1 + " domino " + idDomino + " (ligne) :");
-						position_ligne1 = Integer.parseInt(scanner5.nextLine());
-						do_we_continue = true;
-					} catch (NumberFormatException nfe) {
-						do_we_continue = false;
-					}
-				} while (do_we_continue == false);
-
-				do {
-					try {
-						System.out.println("Indiquez la position du domaine " + domaine1 + " du domino " + idDomino + " (colonne) :");
-						position_colonne1 = Integer.parseInt(scanner5.nextLine());
-						do_we_continue = true;
-					} catch (NumberFormatException nfe) {
-						do_we_continue = false;
-					}
-				} while (do_we_continue == false);
-
-				liste_positions[0] = new Position(position_colonne1, position_ligne1);
-
-				do {
-					try {
-						System.out.println("Indiquez la position du domaine " + domaine2 + " du domino " + idDomino + " (ligne) :");
-						position_ligne2 = Integer.parseInt(scanner5.nextLine());
-						do_we_continue = true;
-					} catch (NumberFormatException nfe) {
-						do_we_continue = false;
-					}
-				} while (do_we_continue == false);
-
-				do {
-					try {
-						System.out.println("Indiquez la position du domaine " + domaine2 + " du domino " + idDomino + " (colonne) :");
-						position_colonne2 = Integer.parseInt(scanner5.nextLine());
-						do_we_continue = true;
-					} catch (NumberFormatException nfe) {
-						do_we_continue = false;
-					}
-				} while (do_we_continue == false);
-				// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
-				int min_ligne_temp = java.lang.Math.min(position_ligne1, position_ligne2);
-				int min_col_temp = java.lang.Math.min(position_colonne1, position_colonne2);
-				int max_ligne_temp = java.lang.Math.max(position_ligne1, position_ligne2);
-				int max_col_temp = java.lang.Math.max(position_colonne1, position_colonne2);
-
+			for (int i = 0; i < ordre_passage_suite.size(); i++) {
+				out.println("Royaume " + (i + 1));
 				for (int line = 0; line < table.get(i).length; line++) {
 					for (int column = 0; column < table.get(i)[line].length; column++) {
-						if (table.get(i)[line][column] != "Vide") {
-							max_ligne_temp = java.lang.Math.max(line, max_ligne_temp);
-							max_col_temp = java.lang.Math.max(column, max_col_temp);
-						}
+						System.out.print(table.get(i)[line][column] + " ");
 					}
-				}
-
-				for (int line = table.get(i).length; line > 0; line--) {
-					for (int column = table.get(i)[line - 1].length; column > 0; column--) {
-						if (table.get(i)[line - 1][column - 1] != "Vide") {
-							min_ligne_temp = java.lang.Math.min(line - 1, min_ligne_temp);
-							min_col_temp = java.lang.Math.min(column - 1, min_col_temp);
-						}
-					}
-				}
-				out.println(min_ligne_temp);
-				out.println(min_col_temp);
-				out.println(max_ligne_temp);
-				out.println(max_col_temp);
-			} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, i, min_ligne_temp, min_col_temp, max_ligne_temp, max_col_temp));
-
-			liste_positions[1] = new Position(position_colonne2, position_ligne2);
-
-
-			// On met à jour les positions du domino
-			liste_positions[0].setPositionColumn(position_colonne1);
-			liste_positions[0].setPositionRow(position_ligne1);
-			liste_positions[1].setPositionColumn(position_colonne2);
-			liste_positions[1].setPositionRow(position_ligne2);
-
-			indice_temp = ordre_passage_suite.get(i).getId_joueur();
-
-			table.get(indice_temp - 1)[position_ligne1][position_colonne1] = domaine1;
-			table.get(indice_temp - 1)[position_ligne2][position_colonne2] = domaine2;
-
-		}
-
-
-		// A ajouter à la fin, pour l'ordre du tour suivant
-		/*ordre_passage_suite.clear();
-		for (Domino domino_plateau : plateau_trie) {
-			ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
-		}
-		for (Joueur x : ordre_passage_suite){
-			out.println(x.getId_joueur());
-		}*/
-
-		out.println("----------------------------------------------------");
-
-		for (int i = 0; i < ordre_passage_suite.size(); i++) {
-			out.println("Royaume " + (i + 1));
-			for (int line = 0; line < table.get(i).length; line++) {
-				for (int column = 0; column < table.get(i)[line].length; column++) {
-					System.out.print(table.get(i)[line][column] + " ");
+					System.out.println();
 				}
 				System.out.println();
+
 			}
-			System.out.println();
 
+			out.println("----------------------------------------------------");
+
+			// A ajouter à la fin, pour l'ordre du tour suivant
+			ordre_passage_suite.clear();
+			for (Domino domino_plateau : plateau_trie) {
+				ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
+			}
+			for (Joueur x : ordre_passage_suite) {
+				out.println(x.getId_joueur());
+			}
+
+			// Permet de faire un dernier tour lorsque la pioche est vide
+			if (pioche.size() == 0) {
+				faireUnAutreTour += 1;
+			}
+
+			for (int i = 0; i < ordre_passage_suite.size(); i++) {
+				// On retire du plateau le domino placé par le joueur i
+				plateau_trie.remove(ordre_passage_suite.get(i).getRoi().getDomino_roi());
+				plateau.remove(ordre_passage_suite.get(i).getRoi().getDomino_roi());
+			}
 		}
-
-		out.println("----------------------------------------------------");
 	}
 
 	public boolean isPositionCorrect(int position_ligne1, int position_colonne1, int position_ligne2, int position_colonne2, int i, int min_ligne_temp, int min_col_temp, int max_ligne_temp, int max_col_temp) {
@@ -1233,7 +1284,10 @@ public class Partie {
 		}
 
 		// On vérifie que un des deux domaines est à côté d'un même domaine ou du chateau
-		if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+		if (!(
+				try{table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())}
+				catch ()
+
 				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
 				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
 				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
