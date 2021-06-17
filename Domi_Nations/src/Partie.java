@@ -1185,6 +1185,7 @@ public class Partie {
 
 				indice_temp = ordre_passage_suite.get(i).getId_joueur();
 
+
 				// Tant que le domino est pas sur un emplacment vide, on redemande
 				while ((table.get(indice_temp - 1)[position_ligne1][position_colonne1] != "Vide") || (table.get(indice_temp - 1)[position_ligne2][position_colonne2] != "Vide")) {
 					System.out.println("Le domino n'est pas sur un emplacement vide ");
@@ -1230,11 +1231,40 @@ public class Partie {
 					} while (do_we_continue == false);
 				}
 
+				// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
+				int min_ligne_temp = java.lang.Math.min(position_ligne1, position_ligne2);
+				int min_col_temp = java.lang.Math.min(position_colonne1, position_colonne2);
+				int max_ligne_temp = java.lang.Math.max(position_ligne1, position_ligne2);
+				int max_col_temp = java.lang.Math.max(position_colonne1, position_colonne2);
+
+				for (int line = 0; line < table.get(i).length; line++) {
+					for (int column = 0; column < table.get(i)[line].length; column++) {
+						if (table.get(i)[line][column] != "Vide") {
+							max_ligne_temp = java.lang.Math.max(line, max_ligne_temp);
+							max_col_temp = java.lang.Math.max(column, max_col_temp);
+						}
+					}
+					System.out.println();
+				}
+
+				for (int line = table.get(i).length; line > 0; line--) {
+					for (int column = table.get(i)[line - 1].length; column > 0; column--) {
+						if (table.get(i)[line - 1][column - 1] != "Vide") {
+							min_ligne_temp = java.lang.Math.min(line - 1, min_ligne_temp);
+							min_col_temp = java.lang.Math.min(column - 1, min_col_temp);
+						}
+					}
+					System.out.println();
+				}
+				out.println(min_ligne_temp);
+				out.println(min_col_temp);
+				out.println(max_ligne_temp);
+				out.println(max_col_temp);
 
 
 				// Tant que la taille du terrain de jeu dépasse pas 5 domaine, on redemande
-				/*while (do_we_continue) {
-					System.out.println("Le domino n'est pas sur un emplacement vide ");
+				while ((max_ligne_temp - min_ligne_temp) >= 5 || (max_col_temp - min_col_temp) >= 5) {
+					System.out.println("Le Royaume est trop grand ");
 
 					do {
 						try {
@@ -1275,7 +1305,37 @@ public class Partie {
 							do_we_continue = false;
 						}
 					} while (do_we_continue == false);
-				}*/
+
+					// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
+					min_ligne_temp = java.lang.Math.min(position_ligne1, position_ligne2);
+					min_col_temp = java.lang.Math.min(position_colonne1, position_colonne2);
+					max_ligne_temp = java.lang.Math.max(position_ligne1, position_ligne2);
+					max_col_temp = java.lang.Math.max(position_colonne1, position_colonne2);
+
+					for (int line = 0; line < table.get(i).length; line++) {
+						for (int column = 0; column < table.get(i)[line].length; column++) {
+							if (table.get(i)[line][column] != "Vide") {
+								max_ligne_temp = java.lang.Math.max(line, max_ligne_temp);
+								max_col_temp = java.lang.Math.max(column, max_col_temp);
+							}
+						}
+						System.out.println();
+					}
+
+					for (int line = table.get(i).length; line > 0; line--) {
+						for (int column = table.get(i)[line - 1].length; column > 0; column--) {
+							if (table.get(i)[line - 1][column - 1] != "Vide") {
+								min_ligne_temp = java.lang.Math.min(line - 1, min_ligne_temp);
+								min_col_temp = java.lang.Math.min(column - 1, min_col_temp);
+							}
+						}
+						System.out.println();
+					}
+					out.println(min_ligne_temp);
+					out.println(min_col_temp);
+					out.println(max_ligne_temp);
+					out.println(max_col_temp);
+				}
 
 				// On met à jour les positions du domino
 				liste_positions[0].setPositionColumn(position_colonne1);
@@ -1286,18 +1346,17 @@ public class Partie {
 				incorrect_input = false;
 
 
+				out.println("--------" + position_ligne1);
+				out.println("--------" + position_colonne1);
 
-				out.println("--------" + position_ligne1  );
-				out.println("--------" + position_colonne1  );
+				out.println("--------" + position_ligne2);
+				out.println("--------" + position_colonne2);
 
-				out.println("--------" + position_ligne2  );
-				out.println("--------" + position_colonne2  );
-
-				out.println("--------" + row_chateau  );
-				out.println("--------" + colum_chateau  );
+				out.println("--------" + row_chateau);
+				out.println("--------" + colum_chateau);
 
 				// On vérifie que le premier domino est à côté du chateau
-				if ((position_colonne1 == colum_chateau && position_ligne1 == row_chateau) ||  (position_colonne2 == colum_chateau && position_ligne2 ==row_chateau)){
+				if ((position_colonne1 == colum_chateau && position_ligne1 == row_chateau) || (position_colonne2 == colum_chateau && position_ligne2 == row_chateau)) {
 					incorrect_input = true;
 					break;
 				}
@@ -1310,38 +1369,8 @@ public class Partie {
 
 			table.get(indice_temp - 1)[position_ligne1][position_colonne1] = ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1();
 			table.get(indice_temp - 1)[position_ligne2][position_colonne2] = ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2();
-
-			// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
-			int min_ligne_temp = java.lang.Math.min(position_ligne1,position_ligne2);
-			int min_col_temp = java.lang.Math.min(position_colonne1,position_colonne2);
-			int max_ligne_temp = java.lang.Math.max(position_ligne1,position_ligne2);
-			int max_col_temp = java.lang.Math.max(position_colonne1,position_colonne2);
-
-			for (int line=0; line<table.get(i).length; line++) {
-				for (int column=0; column<table.get(i)[line].length; column++) {
-					if (table.get(i)[line][column] != "Vide") {
-						max_ligne_temp = java.lang.Math.max(line,max_ligne_temp);
-						max_col_temp = java.lang.Math.max(column,max_col_temp);
-					}
-				}
-				System.out.println();
-			}
-
-			for (int line=table.get(i).length; line>0; line--) {
-				for (int column=table.get(i)[line-1].length; column>0; column--) {
-					if (table.get(i)[line-1][column-1] != "Vide") {
-						min_ligne_temp = java.lang.Math.min(line-1,min_ligne_temp);
-						min_col_temp = java.lang.Math.min(column-1,min_col_temp);
-					}
-				}
-				System.out.println();
-			}
-			out.println(min_ligne_temp);
-			out.println(min_col_temp);
-			out.println(max_ligne_temp);
-			out.println(max_col_temp);
-
 		}
+
 
 
 		// A ajouter à la fin, pour l'ordre du tour suivant
