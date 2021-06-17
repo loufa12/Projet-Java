@@ -1143,7 +1143,7 @@ public class Partie {
 				out.println(min_col_temp);
 				out.println(max_ligne_temp);
 				out.println(max_col_temp);
-			} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, ordre_passage_suite.get(i).getId_joueur(), min_ligne_temp, min_col_temp, max_ligne_temp, max_col_temp));
+			} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, i, min_ligne_temp, min_col_temp, max_ligne_temp, max_col_temp));
 
 			liste_positions[1] = new Position(position_colonne2, position_ligne2);
 
@@ -1205,12 +1205,14 @@ public class Partie {
 			return false;
 		}
 		// Tant que le domino est pas sur un emplacement vide, on redemande
-		if(!((table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1] != "Vide") || (table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2] != "Vide"))) {
+		if(((table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1] != "Vide") && (table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2] != "Vide"))) {
 			out.println("Erreur, veuillez indiquer un emplacement vide");
+			out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1]);
+			out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2]);
 			return false;
 		}
 		// Tant que la taille du terrain de jeu dépasse pas 5 domaine, on redemande
-		if (!((max_ligne_temp - min_ligne_temp) >= 5 || (max_col_temp - min_col_temp) >= 5)) {
+		if (((max_ligne_temp - min_ligne_temp) >= 5 || (max_col_temp - min_col_temp) >= 5)) {
 			out.println("Erreur, veuillez indiquer une position pour laquelle la taille du royaume est de maximum 5 domaines");
 			return false;
 		}
