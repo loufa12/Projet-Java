@@ -1184,6 +1184,53 @@ public class Partie {
 				}
 
 				indice_temp = ordre_passage_suite.get(i).getId_joueur();
+				// On vérifie que un des deux domaines est à côté d'un même domaine ou du chateau
+
+				while (table.get(indice_temp - 1)[position_ligne1-1][position_colonne1] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1() && table.get(indice_temp - 1)[position_ligne1][position_colonne1+1] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1() && table.get(indice_temp - 1)[position_ligne1+1][position_colonne1] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1() && table.get(indice_temp - 1)[position_ligne1][position_colonne1-1] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1() && table.get(indice_temp - 1)[position_ligne2-1][position_colonne2] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2() && table.get(indice_temp - 1)[position_ligne2][position_colonne2+1] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2() && table.get(indice_temp - 1)[position_ligne2+1][position_colonne2] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2() && table.get(indice_temp - 1)[position_ligne2][position_colonne2-1] != ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2()) {
+					System.out.println("Aucun des deux domaines de votre domino n'est à côté d'un domaine semblable ");
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (ligne) :");
+							position_ligne1 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 1 du domino (colonne) :");
+							position_colonne1 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (ligne) :");
+							position_ligne2 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+
+					do {
+						try {
+							System.out.println("Indiquez à nouveau la position du domaine 2 du domino (colonne) :");
+							position_colonne2 = Integer.parseInt(scanner5.nextLine());
+							do_we_continue = true;
+						} catch (NumberFormatException nfe) {
+							do_we_continue = false;
+						}
+					} while (do_we_continue == false);
+				}
+
+				indice_temp = ordre_passage_suite.get(i).getId_joueur();
 
 
 				// Tant que le domino est pas sur un emplacment vide, on redemande
