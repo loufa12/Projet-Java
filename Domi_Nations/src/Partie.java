@@ -390,11 +390,6 @@ public class Partie {
 			tableau_scores = new int[nb_joueurs][2];
 		}
 
-		for (int k = 0; k < ordre_passage_1.size(); k++) {
-			out.println("nom du joueur " + k + ordre_passage_1.get(k).getName());
-		}
-
-
 		if (nb_joueurs == 2) {
 			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 			for (int i = 0; i < listeRois.size(); i++) {
@@ -682,33 +677,22 @@ public class Partie {
 				}
 				plateau_id.remove(ordre_passage_1.get(indexToRemove));
 
-				out.println(plateau.size());
-				out.println(plateau_trie.size());
-
 				// --------------------- CALCUL DU SCORE -----------------------//
 
 
 				// On définit les domaines et nombres de couronnes
 				if (listeRois.get(i).getName() == "roi") {
 					nb_couronnes_domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes1();
-					out.println("couronnes domaine 1 : " + nb_couronnes_domaine1);
 					nb_couronnes_domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
-					out.println("couronnes domaine 2 : " + nb_couronnes_domaine2);
 					domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
-					out.println("nom domaine 1 " + domaine1);
 					domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
-					out.println("nom domaine 2 " + domaine2);
 
 					//royaume.setTaille_royaume();
 				} else if (listeRois.get(i).getName() == "roibis") {
 					nb_couronnes_domaine1 = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getNb_couronnes1();
-					out.println("couronnes domaine 1 : " + nb_couronnes_domaine1);
 					nb_couronnes_domaine2 = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getNb_couronnes2();
-					out.println("couronnes domaine 2 : " + nb_couronnes_domaine2);
 					String domaine1 = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
-					out.println("nom domaine 1 " + domaine1);
 					String domaine2 = ordre_passage_1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
-					out.println("nom domaine 2 " + domaine2);
 				}
 				// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
 				if (domaine1 == domaine2) {
@@ -716,10 +700,10 @@ public class Partie {
 				} else {
 					tableau_scores[i][0] = nb_couronnes_domaine1 + nb_couronnes_domaine2;
 				}
-
-				out.println("score du joueur : " + tableau_scores[i][0]);
 			}
-		} else {
+
+		}
+		else {
 			for (int i = 0; i < nb_joueurs; i++) {
 
 				Royaume royaume = new Royaume(ordre_passage_1.get(i).getId_joueur(), 0);
@@ -896,20 +880,13 @@ public class Partie {
 				}
 				plateau_id.remove(ordre_passage_1.get(indexToRemove));
 
-				out.println(plateau.size());
-				out.println(plateau_trie.size());
-
 				// --------------------- CALCUL DU SCORE -----------------------//
 
 				// On définit les domaines et nombres de couronnes
 				int nb_couronnes_domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes1();
-				out.println("couronnes domaine 1 : " + nb_couronnes_domaine1);
 				int nb_couronnes_domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
-				out.println("couronnes domaine 2 : " + nb_couronnes_domaine2);
 				domaine1 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine1();
-				out.println("nom domaine 1 " + domaine1);
 				domaine2 = ordre_passage_1.get(i).getRoi().getDomino_roi().getDomaine2();
-				out.println("nom domaine 2 " + domaine2);
 
 				// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
 				if (domaine1 == domaine2) {
@@ -917,7 +894,6 @@ public class Partie {
 				} else {
 					tableau_scores[i][0] = nb_couronnes_domaine1 + nb_couronnes_domaine2;
 				}
-				out.println(tableau_scores[i][0]);
 			}
 		}
 
@@ -1047,7 +1023,6 @@ public class Partie {
 					// Une fois le domino choisi par un joueur, on le retire du plateau
 					plateau_id.remove(domino_choisi);
 				}
-
 			}
 
 			for (int i = 0; i < ordre_passage_suite.size(); i++) {
@@ -1068,7 +1043,6 @@ public class Partie {
 
 				// On crée la liste des positions du domino (2 domaines)
 				Position[] liste_positions = new Position[2];
-
 
 				System.out.println(ordre_passage_suite.get(i).getName() + ", placez votre domino dans votre royaume :");
 
@@ -1150,10 +1124,6 @@ public class Partie {
 							}
 						}
 					}
-					out.println(min_ligne_temp);
-					out.println(min_col_temp);
-					out.println(max_ligne_temp);
-					out.println(max_col_temp);
 				} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, i, min_ligne_temp, min_col_temp, max_ligne_temp, max_col_temp));
 
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
@@ -1187,8 +1157,6 @@ public class Partie {
 				}
 				plateau_id.remove(ordre_passage_suite.get(indexToRemove));
 
-				out.println(plateau.size());
-				out.println(plateau_trie.size());
 
 				// --------------------- CALCUL DU SCORE -----------------------//
 
@@ -1233,9 +1201,6 @@ public class Partie {
 			ordre_passage_suite.clear();
 			for (Domino domino_plateau : plateau_trie) {
 				ordre_passage_suite.add(domino_plateau.getRoi_domino().getJoueur());
-			}
-			for (Joueur x : ordre_passage_suite) {
-				out.println(x.getId_joueur());
 			}
 
 			// Permet de faire un dernier tour lorsque la pioche est vide
@@ -1400,13 +1365,9 @@ public class Partie {
 			out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
 			return false;
 		}
-		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1]);
-		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2]);
 		// Tant que le domino est pas sur un emplacement vide, on redemande
 		if (((table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1] != "Vide") || (table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2] != "Vide"))) {
 			out.println("Erreur, veuillez indiquer un emplacement vide");
-			out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1]);
-			out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2]);
 			return false;
 		}
 		// Tant que la taille du terrain de jeu dépasse pas 5 domaine, on redemande
