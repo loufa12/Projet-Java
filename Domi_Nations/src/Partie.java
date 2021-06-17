@@ -1226,15 +1226,37 @@ public class Partie {
 			out.println("Erreur, veuillez indiquer une position pour laquelle les domaines du domino sont collés");
 			return false;
 		}
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2());
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1]== ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2());
+		out.println(correct_input);
+
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2]);
+		out.println(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1]);
+
+		out.println(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1());
+		out.println(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2());
+
 		// On vérifie que un des deux domaines est à côté d'un même domaine ou du chateau
-		if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2()
-				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1] == ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2()
+		if (!(table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine1())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
+				|| table.get(ordre_passage_suite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordre_passage_suite.get(i).getRoi().getDomino_roi().getDomaine2())
 				|| correct_input)) {
 			out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
 			return false;
