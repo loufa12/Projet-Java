@@ -86,6 +86,11 @@ public class Partie {
 		table.add(Roy4);
 
 
+
+
+
+
+
 		class IntervalException extends Exception {
 			public IntervalException() {
 			}
@@ -1214,6 +1219,72 @@ public class Partie {
 				plateau.remove(ordre_passage_suite.get(i).getRoi().getDomino_roi());
 			}
 		}
+
+
+
+		// On détermine le royaume le plus grand
+
+		/*int[][] plusGrandRoyaume = new int[4][4];
+
+		for (int i=0; i<4; i++){
+			int max_ligne_temp = 4;
+			int max_col_temp = 4;
+			for (int line = 0; line < table.get(i).length; line++) {
+				for (int column = 0; column < table.get(i)[line].length; column++) {
+					if (table.get(i)[line][column] != "Vide") {
+						max_ligne_temp = java.lang.Math.max(line, max_ligne_temp);
+						max_col_temp = java.lang.Math.max(column, max_col_temp);
+					}
+				}
+			}
+			plusGrandRoyaume[i][0] = max_ligne_temp;
+			plusGrandRoyaume[i][1] = max_col_temp;
+		}
+
+		for (int i=0; i<4; i++){
+			int min_ligne_temp = 4;
+			int min_col_temp = 4;
+			for (int line = table.get(i).length; line > 0; line--) {
+				for (int column = table.get(i)[line - 1].length; column > 0; column--) {
+					if (table.get(i)[line - 1][column - 1] != "Vide") {
+						min_ligne_temp = java.lang.Math.min(line - 1, min_ligne_temp);
+						min_col_temp = java.lang.Math.min(column - 1, min_col_temp);
+					}
+				}
+			}
+			plusGrandRoyaume[i][2] = min_ligne_temp;
+			plusGrandRoyaume[i][3] = min_col_temp;
+		}
+
+
+		for (int line = 0; line < 4; line++) {
+			for (int column = 0; column < 4; column++) {
+				System.out.print(plusGrandRoyaume[line][column] + " ");
+			}
+			System.out.println();
+		}
+
+		int[][] extreme = new int[1][4];
+
+		extreme[0][0] = Math.max(Math.abs(plusGrandRoyaume[0][0]-plusGrandRoyaume[0][2]),Math.abs(plusGrandRoyaume[0][1]-plusGrandRoyaume[0][3]));
+		extreme[0][1] = Math.max(Math.abs(plusGrandRoyaume[1][0]-plusGrandRoyaume[1][2]),Math.abs(plusGrandRoyaume[1][1]-plusGrandRoyaume[1][3]));
+		extreme[0][2] = Math.max(Math.abs(plusGrandRoyaume[2][0]-plusGrandRoyaume[2][2]),Math.abs(plusGrandRoyaume[2][1]-plusGrandRoyaume[2][3]));
+		extreme[0][3] = Math.max(Math.abs(plusGrandRoyaume[3][0]-plusGrandRoyaume[3][2]),Math.abs(plusGrandRoyaume[3][1]-plusGrandRoyaume[3][3]));
+
+		int indice_max_temp =0;
+		int max_temp =extreme[0][0];
+
+		for (int i=0; i<4;i++){
+			if (extreme[0][i]>max_temp){
+				indice_max_temp = i;
+				max_temp = extreme[0][i];
+			}
+		}
+
+		out.println(indice_max_temp);*/
+
+		
+
 	}
 
 	public boolean isPositionCorrect(int position_ligne1, int position_colonne1, int position_ligne2, int position_colonne2, int i, int min_ligne_temp, int min_col_temp, int max_ligne_temp, int max_col_temp) {
