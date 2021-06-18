@@ -1281,9 +1281,23 @@ public class Partie {
 			}
 		}
 
-		out.println(indice_max_temp);*/
+		out.println("Le Royaume le plus grand est : " + (indice_max_temp+1));*/
 
-		
+		// On détermine si le royaume est full
+		/*ArrayList<String> centre = new ArrayList<>();
+		String estCentre;
+
+		for (int i = 0; i < nb_joueurs; i++) {
+			estCentre = "true";
+			for (int line = min_ligne_temp; line < max_ligne_temp; line++) {
+				for (int column = min_col_temp; max_col_temp < 7; column++) {
+					if (table.get(i)[line][column] == "Vide"){
+						estCentre = "false";
+					}
+				}
+			}
+			centre.add(estCentre);
+		}*/
 
 	}
 
