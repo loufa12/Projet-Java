@@ -85,12 +85,6 @@ public class Partie {
 		table.add(Roy3);
 		table.add(Roy4);
 
-
-
-
-
-
-
 		class IntervalException extends Exception {
 			public IntervalException() {
 			}
@@ -1284,14 +1278,57 @@ public class Partie {
 		out.println("Le Royaume le plus grand est : " + (indice_max_temp+1));*/
 
 		// On détermine si le royaume est full
-		/*ArrayList<String> centre = new ArrayList<>();
+		/*ArrayList<String> full = new ArrayList<>();
+		String estFull;
+
+		for (int i = 0; i < nb_joueurs; i++) {
+			estFull = "true";
+			for (int line = min_ligne_temp; line < max_ligne_temp; line++) {
+				for (int column = min_col_temp; max_col_temp < 7; column++) {
+					if (table.get(i)[line][column] == "Vide"){
+						estFull = "false";
+					}
+				}
+			}
+			full.add(estFull);
+		}*/
+
+		// On détermine si le royaume est centré
+		/*
+		for (int i=0; i<4; i++){
+			int max_ligne_temp = 4;
+			int max_col_temp = 4;
+			for (int line = 0; line < table.get(i).length; line++) {
+				for (int column = 0; column < table.get(i)[line].length; column++) {
+					if (table.get(i)[line][column] != "Vide") {
+						max_ligne_temp = java.lang.Math.max(line, max_ligne_temp);
+						max_col_temp = java.lang.Math.max(column, max_col_temp);
+					}
+				}
+			}
+		}
+
+		for (int i=0; i<4; i++){
+			int min_ligne_temp = 4;
+			int min_col_temp = 4;
+			for (int line = table.get(i).length; line > 0; line--) {
+				for (int column = table.get(i)[line - 1].length; column > 0; column--) {
+					if (table.get(i)[line - 1][column - 1] != "Vide") {
+						min_ligne_temp = java.lang.Math.min(line - 1, min_ligne_temp);
+						min_col_temp = java.lang.Math.min(column - 1, min_col_temp);
+					}
+				}
+			}
+		}
+
+		ArrayList<String> centre = new ArrayList<>();
 		String estCentre;
 
 		for (int i = 0; i < nb_joueurs; i++) {
 			estCentre = "true";
 			for (int line = min_ligne_temp; line < max_ligne_temp; line++) {
 				for (int column = min_col_temp; max_col_temp < 7; column++) {
-					if (table.get(i)[line][column] == "Vide"){
+					if ((Math.abs(min_col_temp-colum_chateau)!=Math.abs(max_col_temp-colum_chateau)) ||(Math.abs(min_ligne_temp-row_chateau)!=Math.abs(max_ligne_temp-row_chateau))) {
 						estCentre = "false";
 					}
 				}
