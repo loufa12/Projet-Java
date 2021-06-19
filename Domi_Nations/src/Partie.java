@@ -16,22 +16,24 @@ public class Partie {
 	private List<String> plateauId;
 	private ArrayList<Joueur> ordrePassageTour1 = new ArrayList<Joueur>();
 	private ArrayList<Joueur> ordrePassageSuite;
-	private String domaine1;
-	private String domaine2;
 	private String domaine1bis;
 	private String domaine2bis;
 	private int nbCouronnesDomaine1;
 	private int nbCouronnesDomaine2;
 	private int idJoueur;
 	private int[][] tableauScores;
+	private int columnChateau = 4;
+	private int rowChateau = 4;
+	private Position[] positionsTour1 = new Position[4];
+	private ArrayList<String[][]> table = new ArrayList<>();
+
+	// Pour les fonctionnalités supplémentaires :
 	private int minLigneTemp;
 	private int minColTemp;
 	private int maxLigneTemp;
 	private int maxColTemp;
-	private int columnChateau = 4;
-	private int rowChateau = 4;
-	private Position[]positionsTour1 = new Position[4];
-	private ArrayList<String[][]> table = new ArrayList<>();
+
+
 	String[][] Roy1 = {
 			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
 			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
@@ -67,19 +69,6 @@ public class Partie {
 			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
 			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
 	};
-
-	String[][] Roy4 = {
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Châto", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-			{"Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide", "Vide",},
-	};
-
 
 	public void creationJoueurs() {
 		table.add(Roy1);
@@ -171,7 +160,6 @@ public class Partie {
 
 				listeJoueurs[i] = nouveau_joueur;
 
-				//System.out.println(listeJoueurs[i].getName() + " : " + listeJoueurs[i].getColor() + ", " + listeJoueurs[i].getId_joueur());
 				String nom_roi = "roi";
 				String nom_roi_bis = "roi_bis";
 				Roi roi = new Roi("roi", nouveau_joueur, chosen_color, null);
@@ -386,10 +374,9 @@ public class Partie {
 		// avec 2 colonnes et autant de lignes que de rois
 
 		if (nbJoueurs == 2) {
-			tableauScores = new int[nbJoueurs * 2][2];	// 4 rois pour 2 joueurs
-		}
-		else {
-		tableauScores = new int[nbJoueurs][2];
+			tableauScores = new int[nbJoueurs * 2][2];    // 4 rois pour 2 joueurs
+		} else {
+			tableauScores = new int[nbJoueurs][2];
 		}
 
 		if (nbJoueurs == 2) {
@@ -419,8 +406,7 @@ public class Partie {
 
 						if (listeRois.get(i).getName() == "roi") {
 							listeRois.get(i).getDomino_roi().setRoi_domino(listeRois.get(i));
-						}
-						else if (listeRois.get(i).getName() == "roibis") {
+						} else if (listeRois.get(i).getName() == "roibis") {
 							listeRois.get(i).getDomino_roi().setRoi_bis_domino(listeRois.get(i));
 						}
 					}
@@ -428,9 +414,7 @@ public class Partie {
 				// Une fois le domino choisi par un joueur, on le retire du plateau
 				plateauId.remove(domino_choisi);
 			}
-		}
-
-		else {
+		} else {
 			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 			for (int i = 0; i < nbJoueurs; i++) {
 
@@ -478,8 +462,7 @@ public class Partie {
 					joueurDominoY = domino_plateau.getRoi_bis_domino().getJoueur();
 					ordrePassageSuite.add(joueurDominoY);
 				}
-			}
-			else {
+			} else {
 				joueurDominoX = domino_plateau.getRoi_domino().getJoueur();
 				ordrePassageSuite.add(joueurDominoX);
 			}
@@ -650,9 +633,7 @@ public class Partie {
 
 				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1;
 				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2;
-			}
-
-			else if (listeRois.get(i).getName() == "roibis") {
+			} else if (listeRois.get(i).getName() == "roibis") {
 				domaine1bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
 				domaine2bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 				// On crée la position du domaine 1 du domino placé
@@ -665,8 +646,7 @@ public class Partie {
 
 				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1bis;
 				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2bis;
-			}
-			else {
+			} else {
 				// On crée la position du domaine 1 du domino placé
 				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
 				listeRois.get(i).getDomino_roi().setPosition_domino1(position_domaine1);
@@ -692,6 +672,7 @@ public class Partie {
 			}
 			//plateauId.remove(ordrePassageTour1.get(indexToRemove));
 			out.println(plateauId);
+
 
 			// --------------------- CALCUL DU SCORE -----------------------//
 
@@ -724,13 +705,11 @@ public class Partie {
 			}
 			out.println(tableauScores[i][0]);
 		}
-		plateauId.clear();
-		out.println(plateauId);
 
 		out.println("----------------------------------------------------");
 
 		for (int i = 0; i < nbJoueurs; i++) {
-			out.println("Royaume du joueur " + (i+1));
+			out.println("Royaume du joueur " + (i + 1));
 			for (int line = 0; line < table.get(i).length; line++) {
 				for (int column = 0; column < table.get(i)[line].length; column++) {
 					System.out.print(table.get(i)[line][column] + " ");
@@ -742,285 +721,16 @@ public class Partie {
 		out.println("----------------------------------------------------");
 	}
 
-	public void SuiteJeu() {
-		Scanner scanner5 = new Scanner(System.in);
-		int faireUnAutreTour = 0;
-		while (faireUnAutreTour != 3){
-			Random random = new Random();
-			// On prend aléatoirement autant de dominos que de rois pour le plateau
-			for (int i = 0; i < listeRois.size(); i++) {
-				Domino domino = pioche.get(random.nextInt(pioche.size()));
-				plateau.add(domino);
-				pioche.remove(domino);
-			}
 
-			while (plateau.size() != 0) {
-				int plus_petit_id = plateau.get(0).getId_domino();
-				int place_plus_petit_domino = 0;
-				for (int j = 0; j < (plateau.size()); j++) {
-					if (plateau.get(j).getId_domino() < plus_petit_id) {
-						plus_petit_id = plateau.get(j).getId_domino();
-						place_plus_petit_domino = j;
-					}
-				}
-				plateauTrie.add(plateau.get(place_plus_petit_domino));
-				plateau.remove(plateau.get(place_plus_petit_domino));
-			}
+/*-----------------------------------------------------------------------------------------
 
-			for (Domino x : plateauTrie) {
-				String domaine1 = x.getDomaine1();
-				String domaine2 = x.getDomaine2();
-				int nb_couronnes1 = x.getNb_couronnes1();
-				int nb_couronnes2 = x.getNb_couronnes2();
-			}
+.
+		AUTRES FONCTIONNALITES :
 
-			for (Domino x : plateauTrie) {
-				plateauId.add(String.valueOf(x.getId_domino()));
-			}
-
-			if (nbJoueurs == 2) {
-				// Pour chaque joueur dans l'ordre de passage, on choisit un domino
-				for (int i = 0; i < listeRois.size(); i++) {
-
-					// Pour chaque joueur, l'id devient son ordre de passage dans le jeu
-					//ordrePassageSuite.get(i).setId_joueur(i + 1);
-
-					// On demande au joueur quel domino il/elle choisit
-					System.out.println(listeRois.get(i).getJoueur().getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateauId);
-					String domino_choisi = scanner5.nextLine();
-
-					// On vérifie que le numéro de domino choisi appartient bien à la liste
-					while (!(plateauId.contains(domino_choisi))) {
-						System.out.println("Vous devez choisir un domino parmi : " + plateauId);
-						domino_choisi = scanner5.nextLine();
-					}
-
-					// Pour chaque domino choisi par un roi, on met à jour domino_roi dans Roi
-					for (Domino domino_plateau : plateauTrie) {
-						if (domino_plateau.getId_domino() == Integer.valueOf(domino_choisi)) {
-
-							listeRois.get(i).setDomino_roi(domino_plateau);
-							//out.println("id du domino du roi joué : " + listeRois.get(i).getDomino_roi().getId_domino());
-
-							if (listeRois.get(i).getName() == "roi") {
-								listeRois.get(i).getDomino_roi().setRoi_domino(listeRois.get(i));
-								//out.println("nom du roi sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getName());
-								//out.println("nom du joueur du roi posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_domino().getJoueur().getName());
-							} else if (listeRois.get(i).getName() == "roibis") {
-								listeRois.get(i).getDomino_roi().setRoi_bis_domino(listeRois.get(i));
-								//out.println("nom du roi_bis sur le domino choisi :" + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getName());
-								//out.println("nom du joueur du roi_bis posé sur le domino choisi : " + listeRois.get(i).getDomino_roi().getRoi_bis_domino().getJoueur().getName());
-							}
-						}
-					}
-					// Une fois le domino choisi par un joueur, on le retire du plateau
-					plateauId.remove(domino_choisi);
-				}
-			}
-			else {
-
-				// Pour chaque joueur dans l'ordre de passage, on choisit un domino
-				for (int i = 0; i < nbJoueurs; i++) {
-
-					// On demande au joueur quel domino il/elle choisit
-					System.out.println(ordrePassageSuite.get(i).getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateauId);
-					String domino_choisi = scanner5.nextLine();
-
-					//dominos_choisis.add(domino_choisi);
-
-					// On vérifie que le numéro de domino choisi appartient bien à la liste
-					while (!(plateauId.contains(domino_choisi))) {
-						System.out.println("Vous devez choisir un domino parmi : " + plateauId);
-						domino_choisi = scanner5.nextLine();
-					}
-
-					// Pour chaque domino choisi pour un roi, on met à jour domino_roi dans Roi
-					for (Domino x : plateauTrie) {
-						if (x.getId_domino() == Integer.valueOf(domino_choisi)) {
-							ordrePassageSuite.get(i).getRoi().setDomino_roi(x);
-
-							// Et on met à jour le roi du domino choisi
-							ordrePassageSuite.get(i).getRoi().getDomino_roi().setRoi_domino(ordrePassageSuite.get(i).getRoi());
-						}
-					}
-					// Une fois le domino choisi par un joueur, on le retire du plateau
-					plateauId.remove(domino_choisi);
-				}
-			}
-
-			for (int i = 0; i < ordrePassageSuite.size(); i++) {
-				//int[][] taille_max = new int[13][13];
-
-				// On définit l'emplacement du chateau (au centre du royaume)
-				int columnChateau = 4;
-				int rowChateau = 4;
-
-				// On crée la liste des 4 positions autour du chateau
-				Position[] positionsTour1 = new Position[4];
-
-				// On parcourt dans l'ordre haut/bas/gauche/droite les cases autour du chateau :
-				positionsTour1[0] = new Position(columnChateau, rowChateau - 1);
-				positionsTour1[1] = new Position(columnChateau, rowChateau + 1);
-				positionsTour1[2] = new Position(columnChateau - 1, rowChateau);
-				positionsTour1[3] = new Position(columnChateau + 1, rowChateau);
-
-				// On crée la liste des positions du domino (2 domaines)
-				Position[] liste_positions = new Position[2];
-
-				System.out.println(ordrePassageSuite.get(i).getName() + ", placez votre domino dans votre royaume :");
-
-				// On initialise les positions du domino
-				int position_ligne1 = 0;
-				int position_colonne1 = 0;
-				int position_ligne2 = 0;
-				int position_colonne2 = 0;
-
-				boolean do_we_continue;
-
-				int idDomino = ordrePassageSuite.get(i).getRoi().getDomino_roi().getId_domino();
-				Domino dominoDomaines = ordrePassageSuite.get(i).getRoi().getDomino_roi();
-				String domaine1 = dominoDomaines.getDomaine1();
-				String domaine2 = dominoDomaines.getDomaine2();
-
-				do {
-					do {
-						try {
-							System.out.println("Indiquez la position du domaine " + domaine1 + " domino " + idDomino + " (ligne) :");
-							position_ligne1 = Integer.parseInt(scanner5.nextLine());
-							do_we_continue = true;
-						} catch (NumberFormatException nfe) {
-							do_we_continue = false;
-						}
-					} while (do_we_continue == false);
-
-					do {
-						try {
-							System.out.println("Indiquez la position du domaine " + domaine1 + " du domino " + idDomino + " (colonne) :");
-							position_colonne1 = Integer.parseInt(scanner5.nextLine());
-							do_we_continue = true;
-						} catch (NumberFormatException nfe) {
-							do_we_continue = false;
-						}
-					} while (do_we_continue == false);
-
-					liste_positions[0] = new Position(position_colonne1, position_ligne1);
-
-					do {
-						try {
-							System.out.println("Indiquez la position du domaine " + domaine2 + " du domino " + idDomino + " (ligne) :");
-							position_ligne2 = Integer.parseInt(scanner5.nextLine());
-							do_we_continue = true;
-						} catch (NumberFormatException nfe) {
-							do_we_continue = false;
-						}
-					} while (do_we_continue == false);
-
-					do {
-						try {
-							System.out.println("Indiquez la position du domaine " + domaine2 + " du domino " + idDomino + " (colonne) :");
-							position_colonne2 = Integer.parseInt(scanner5.nextLine());
-							do_we_continue = true;
-						} catch (NumberFormatException nfe) {
-							do_we_continue = false;
-						}
-					} while (do_we_continue == false);
-
-					// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
-					minLigneTemp = java.lang.Math.min(position_ligne1, position_ligne2);
-					minColTemp = java.lang.Math.min(position_colonne1, position_colonne2);
-					maxLigneTemp = java.lang.Math.max(position_ligne1, position_ligne2);
-					maxColTemp = java.lang.Math.max(position_colonne1, position_colonne2);
-
-					for (int line = 0; line < table.get(i).length; line++) {
-						for (int column = 0; column < table.get(i)[line].length; column++) {
-							if (table.get(i)[line][column] != "Vide") {
-								maxLigneTemp = java.lang.Math.max(line, maxLigneTemp);
-								maxColTemp = java.lang.Math.max(column, maxColTemp);
-							}
-						}
-					}
-
-					for (int line = table.get(i).length; line > 0; line--) {
-						for (int column = table.get(i)[line - 1].length; column > 0; column--) {
-							if (table.get(i)[line - 1][column - 1] != "Vide") {
-								minLigneTemp = java.lang.Math.min(line - 1, minLigneTemp);
-								minColTemp = java.lang.Math.min(column - 1, minColTemp);
-							}
-						}
-					}
-				} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, i, minLigneTemp, minColTemp, maxLigneTemp, maxColTemp));
-
-				liste_positions[1] = new Position(position_colonne2, position_ligne2);
-
-				// On met à jour les positions du domino
-				liste_positions[0].setPositionColumn(position_colonne1);
-				liste_positions[0].setPositionRow(position_ligne1);
-				liste_positions[1].setPositionColumn(position_colonne2);
-				liste_positions[1].setPositionRow(position_ligne2);
-
-				int indiceTemp = ordrePassageSuite.get(i).getId_joueur();
-
-				table.get(indiceTemp - 1)[position_ligne1][position_colonne1] = domaine1;
-				table.get(indiceTemp - 1)[position_ligne2][position_colonne2] = domaine2;
-
-				// On crée la position du domaine 1 du domino placé
-				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
-				ordrePassageSuite.get(i).getRoi().getDomino_roi().setPosition_domino1(position_domaine1);
-
-				// On crée la position du domaine 2 du domino placé
-				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
-				ordrePassageSuite.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
-
-				// On retire de la liste des id des dominos du plateau le domino choisi et placé
-				int indexToRemove = 0;
-				for (int x = 0; x < plateauId.size(); x++) {
-					if (plateauId.get(x).equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getId_domino())) {
-						indexToRemove = x;
-					}
-				}
-				plateauId.remove(ordrePassageSuite.get(indexToRemove));
-			}
+		1) DETERMINATION DU PLUS GRAND ROYAUME :
 
 
-
-			out.println("----------------------------------------------------");
-
-			for (int i = 0; i < ordrePassageSuite.size(); i++) {
-				out.println("Royaume " + (i + 1));
-				for (int line = 0; line < table.get(i).length; line++) {
-					for (int column = 0; column < table.get(i)[line].length; column++) {
-						System.out.print(table.get(i)[line][column] + " ");
-					}
-					System.out.println();
-				}
-				System.out.println();
-			}
-
-			out.println("----------------------------------------------------");
-
-			// A ajouter à la fin, pour l'ordre du tour suivant
-			ordrePassageSuite.clear();
-			for (Domino domino_plateau : plateauTrie) {
-				ordrePassageSuite.add(domino_plateau.getRoi_domino().getJoueur());
-			}
-
-			// Permet de faire un dernier tour lorsque la pioche est vide
-			if (pioche.size() == 0) {
-				faireUnAutreTour += 1;
-			}
-
-			for (int i = 0; i < ordrePassageSuite.size(); i++) {
-				// On retire du plateau le domino placé par le joueur i
-				plateauTrie.remove(ordrePassageSuite.get(i).getRoi().getDomino_roi());
-				plateau.remove(ordrePassageSuite.get(i).getRoi().getDomino_roi());
-			}
-		}
-
-
-
-		// On détermine le royaume le plus grand
-
-		/*int[][] plusGrandRoyaume = new int[4][4];
+		int[][] plusGrandRoyaume = new int[4][4];
 
 		for (int i=0; i<4; i++){
 			int maxLigneTemp = 4;
@@ -1052,16 +762,13 @@ public class Partie {
 			plusGrandRoyaume[i][3] = minColTemp;
 		}
 
-
 		for (int line = 0; line < 4; line++) {
 			for (int column = 0; column < 4; column++) {
 				System.out.print(plusGrandRoyaume[line][column] + " ");
 			}
 			System.out.println();
 		}
-
 		int[][] extreme = new int[1][4];
-
 		extreme[0][0] = Math.max(Math.abs(plusGrandRoyaume[0][0]-plusGrandRoyaume[0][2]),Math.abs(plusGrandRoyaume[0][1]-plusGrandRoyaume[0][3]));
 		extreme[0][1] = Math.max(Math.abs(plusGrandRoyaume[1][0]-plusGrandRoyaume[1][2]),Math.abs(plusGrandRoyaume[1][1]-plusGrandRoyaume[1][3]));
 		extreme[0][2] = Math.max(Math.abs(plusGrandRoyaume[2][0]-plusGrandRoyaume[2][2]),Math.abs(plusGrandRoyaume[2][1]-plusGrandRoyaume[2][3]));
@@ -1076,26 +783,33 @@ public class Partie {
 				max_temp = extreme[0][i];
 			}
 		}
+		out.println("Le Royaume le plus grand est : " + (indice_max_temp+1));
 
-		out.println("Le Royaume le plus grand est : " + (indice_max_temp+1));*/
 
-		// On détermine si le royaume est full
-		/*ArrayList<String> full = new ArrayList<>();
-		String estFull;
+
+-----------------------------------------------------------------------------------------
+
+
+		2) VERIFIER SI LE ROYAUME EST COMPLET :
+
+
+		// On détermine si le royaume est complet
+		ArrayList<String> full = new ArrayList<>();
+		String isFull;
 
 		for (int i = 0; i < nbJoueurs; i++) {
-			estFull = "true";
+			isFull = "true";
 			for (int line = minLigneTemp; line < maxLigneTemp; line++) {
 				for (int column = minColTemp; maxColTemp < 7; column++) {
 					if (table.get(i)[line][column] == "Vide"){
-						estFull = "false";
+						isFull = "false";
 					}
 				}
 			}
-			full.add(estFull);
+			full.add(isFull);
 		}*/
 
-		// On détermine si le royaume est centré
+	// On détermine si le royaume est centré
 		/*
 		for (int i=0; i<4; i++){
 			int maxLigneTemp = 4;
@@ -1122,7 +836,6 @@ public class Partie {
 				}
 			}
 		}
-
 		ArrayList<String> centre = new ArrayList<>();
 		String estCentre;
 
@@ -1138,172 +851,4 @@ public class Partie {
 			centre.add(estCentre);
 		}*/
 
-	}
-
-	public boolean isPositionCorrect(int position_ligne1, int position_colonne1, int position_ligne2, int position_colonne2, int i, int minLigneTemp, int minColTemp, int maxLigneTemp, int maxColTemp) {
-
-		// On regarde si l'entrée saisie est dans le Royaume
-		if (Math.abs(position_colonne1-columnChateau)>4 || Math.abs(position_colonne2-columnChateau)>4 || Math.abs(position_ligne1-rowChateau)>4 || Math.abs(position_ligne2-rowChateau)>4){
-			out.println("Veuilez ne pas sortir du Royaume");
-			return false;
-		}
-		// On vérifie que le premier domino est à côté du chateau
-		boolean correct_input = false;
-		Position[] liste_positions = new Position[2];
-		liste_positions[0] = new Position(position_colonne1, position_ligne1);
-		liste_positions[1] = new Position(position_colonne2, position_ligne2);
-		liste_positions[0].setPositionColumn(position_colonne1);
-		liste_positions[0].setPositionRow(position_ligne1);
-		liste_positions[1].setPositionColumn(position_colonne2);
-		liste_positions[1].setPositionRow(position_ligne2);
-		positionsTour1[0] = new Position(columnChateau, rowChateau - 1);
-		positionsTour1[1] = new Position(columnChateau, rowChateau + 1);
-		positionsTour1[2] = new Position(columnChateau - 1, rowChateau);
-		positionsTour1[3] = new Position(columnChateau + 1, rowChateau);
-		for (int j = 0; j < 4; j++) {
-			Position position_case = positionsTour1[j];
-			if (position_case.equals(liste_positions[0]) || position_case.equals(liste_positions[1])) {
-				correct_input = true;
-			}
-		}
-		// On vérifie que les deux domaines du domino sont bien collés
-		if (!(((position_colonne1 == position_colonne2) && (Math.abs(position_ligne1 - position_ligne2) == 1)) || ((position_ligne1 == position_ligne2) && (Math.abs(position_colonne1 - position_colonne2) == 1)))) {
-			out.println("Erreur, veuillez indiquer une position pour laquelle les domaines du domino sont collés");
-			return false;
-		}
-
-		// On vérifie que un des deux domaines est à côté d'un même domaine ou du chateau
-		if(position_ligne1 == 0){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_colonne1 == 0){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_ligne2 == 0){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_colonne2 == 0){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_ligne1 == 8){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_colonne1 == 8){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_ligne2 == 8){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (position_colonne2 == 8){
-			if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-					|| correct_input)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-				return false;
-			}
-		}
-		if (!(table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 - 1][position_colonne1].equals(ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1 + 1][position_colonne1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 - 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 + 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2 + 1][position_colonne2].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-				|| table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2 - 1].equals( ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2())
-				|| correct_input)) {
-			out.println("Erreur, veuillez indiquer une position pour laquelle un des deux domaines est à côté d'un même domaine ou du chateau");
-			return false;
-		}
-		// Tant que le domino est pas sur un emplacement vide, on redemande
-		if (((table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne1][position_colonne1] != "Vide") || (table.get(ordrePassageSuite.get(i).getId_joueur() - 1)[position_ligne2][position_colonne2] != "Vide"))) {
-			out.println("Erreur, veuillez indiquer un emplacement vide");
-			return false;
-		}
-		// Tant que la taille du terrain de jeu dépasse pas 5 domaine, on redemande
-		if (((maxLigneTemp - minLigneTemp) >= 5 || (maxColTemp - minColTemp) >= 5)) {
-			out.println("Erreur, veuillez indiquer une position pour laquelle la taille du royaume est de maximum 5 domaines");
-
-			if (!((maxLigneTemp - minLigneTemp) >= 5 || (maxColTemp - minColTemp) >= 5)) {
-				out.println("Erreur, veuillez indiquer une position pour laquelle la taille du royaume est de maximum 5x5");
-				return false;
-			}
-			return true;
-		}
-		return true;
-	}
 }
