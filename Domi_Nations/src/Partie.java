@@ -339,7 +339,6 @@ public class Partie {
 		for (Domino x : plateauTrie) {
 			plateauId.add(String.valueOf(x.getId_domino()));
 		}
-		out.println(plateauId);
 
 		// On récupère les informations de chaque domino du plateau
 		for (Domino x : plateauTrie) {
@@ -372,7 +371,6 @@ public class Partie {
 
 		// On crée le tableau des scores en fonction des joueurs
 		// avec 2 colonnes et autant de lignes que de rois
-
 		if (nbJoueurs == 2) {
 			tableauScores = new int[nbJoueurs * 2][2];    // 4 rois pour 2 joueurs
 		} else {
@@ -414,7 +412,8 @@ public class Partie {
 				// Une fois le domino choisi par un joueur, on le retire du plateau
 				plateauId.remove(domino_choisi);
 			}
-		} else {
+		}
+		else {
 			// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 			for (int i = 0; i < nbJoueurs; i++) {
 
@@ -633,7 +632,8 @@ public class Partie {
 
 				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1;
 				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2;
-			} else if (listeRois.get(i).getName() == "roibis") {
+			}
+			else if (listeRois.get(i).getName() == "roibis") {
 				domaine1bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
 				domaine2bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 				// On crée la position du domaine 1 du domino placé
@@ -646,7 +646,8 @@ public class Partie {
 
 				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1bis;
 				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2bis;
-			} else {
+			}
+			else {
 				// On crée la position du domaine 1 du domino placé
 				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
 				listeRois.get(i).getDomino_roi().setPosition_domino1(position_domaine1);
@@ -670,8 +671,7 @@ public class Partie {
 					indexToRemove = x;
 				}
 			}
-			//plateauId.remove(ordrePassageTour1.get(indexToRemove));
-			out.println(plateauId);
+			plateauId.remove(ordrePassageTour1.get(indexToRemove));
 
 
 			// --------------------- CALCUL DU SCORE -----------------------//
@@ -703,13 +703,12 @@ public class Partie {
 			} else {
 				tableauScores[i][0] = nbCouronnesDomaine1 + nbCouronnesDomaine2;
 			}
-			out.println(tableauScores[i][0]);
 		}
 
 		out.println("----------------------------------------------------");
 
 		for (int i = 0; i < nbJoueurs; i++) {
-			out.println("Royaume du joueur " + (i + 1));
+			out.println("Royaume actuel du joueur " + (i + 1));
 			for (int line = 0; line < table.get(i).length; line++) {
 				for (int column = 0; column < table.get(i)[line].length; column++) {
 					System.out.print(table.get(i)[line][column] + " ");
