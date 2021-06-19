@@ -688,9 +688,8 @@ public class Partie {
 					nbCouronnesDomaine2 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
 					domaine1 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine1();
 					domaine2 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine2();
-
-					//royaume.setTaille_royaume();
-				} else if (listeRois.get(i).getName() == "roibis") {
+				}
+				else if (listeRois.get(i).getName() == "roibis") {
 					nbCouronnesDomaine1 = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getNb_couronnes1();
 					nbCouronnesDomaine2 = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getNb_couronnes2();
 					domaine1 = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
@@ -707,6 +706,7 @@ public class Partie {
 			} else {
 				tableauScores[i][0] = nbCouronnesDomaine1 + nbCouronnesDomaine2;
 			}
+			out.println(tableauScores[i][0]);
 		}
 
 		out.println("----------------------------------------------------");
@@ -749,7 +749,6 @@ public class Partie {
 				plateauTrie.add(plateau.get(place_plus_petit_domino));
 				plateau.remove(plateau.get(place_plus_petit_domino));
 			}
-
 
 			for (Domino x : plateauTrie) {
 				String domaine1 = x.getDomaine1();
@@ -801,9 +800,9 @@ public class Partie {
 					}
 					// Une fois le domino choisi par un joueur, on le retire du plateau
 					plateauId.remove(domino_choisi);
-
 				}
-			} else {
+			}
+			else {
 
 				// Pour chaque joueur dans l'ordre de passage, on choisit un domino
 				for (int i = 0; i < nbJoueurs; i++) {
@@ -829,7 +828,6 @@ public class Partie {
 							ordrePassageSuite.get(i).getRoi().getDomino_roi().setRoi_domino(ordrePassageSuite.get(i).getRoi());
 						}
 					}
-
 					// Une fois le domino choisi par un joueur, on le retire du plateau
 					plateauId.remove(domino_choisi);
 				}
@@ -911,6 +909,7 @@ public class Partie {
 							do_we_continue = false;
 						}
 					} while (do_we_continue == false);
+
 					// On détermine l'indice max et l'indice min en ligne et en colonne occupé pas un domino
 					minLigneTemp = java.lang.Math.min(position_ligne1, position_ligne2);
 					minColTemp = java.lang.Math.min(position_colonne1, position_colonne2);
@@ -937,7 +936,6 @@ public class Partie {
 				} while (!isPositionCorrect(position_ligne1, position_colonne1, position_ligne2, position_colonne2, i, minLigneTemp, minColTemp, maxLigneTemp, maxColTemp));
 
 				liste_positions[1] = new Position(position_colonne2, position_ligne2);
-
 
 				// On met à jour les positions du domino
 				liste_positions[0].setPositionColumn(position_colonne1);
@@ -966,28 +964,6 @@ public class Partie {
 					}
 				}
 				plateauId.remove(ordrePassageSuite.get(indexToRemove));
-
-
-				// --------------------- CALCUL DU SCORE -----------------------//
-
-				// On définit les domaines et nombres de couronnes
-				/*int nbCouronnesDomaine1 = ordrePassageSuite.get(i).getRoi().getDomino_roi().getNb_couronnes1();
-				out.println("couronnes domaine 1 : " + nbCouronnesDomaine1);
-				int nbCouronnesDomaine2 = ordrePassageSuite.get(i).getRoi().getDomino_roi().getNb_couronnes2();
-				out.println("couronnes domaine 2 : " + nbCouronnesDomaine2);
-				domaine1 = ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine1();
-				out.println("nom domaine 1 " + domaine1);
-				domaine2 = ordrePassageSuite.get(i).getRoi().getDomino_roi().getDomaine2();
-				out.println("nom domaine 2 " + domaine2);
-
-				// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
-				if (domaine1 == domaine2) {
-					tableauScores[i][0] = 2 * (nbCouronnesDomaine1 + nbCouronnesDomaine2);
-				} else {
-					tableauScores[i][0] = nbCouronnesDomaine1 + nbCouronnesDomaine2;
-				}
-				out.println(tableauScores[i][0]);*/
-
 			}
 
 
@@ -1002,7 +978,6 @@ public class Partie {
 					System.out.println();
 				}
 				System.out.println();
-
 			}
 
 			out.println("----------------------------------------------------");
