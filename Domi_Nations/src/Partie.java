@@ -83,7 +83,6 @@ public class Partie {
 		table.add(Roy1);
 		table.add(Roy2);
 		table.add(Roy3);
-		table.add(Roy4);
 
 		class IntervalException extends Exception {
 			public IntervalException() {
@@ -113,7 +112,6 @@ public class Partie {
 		}
 
 		scanner.nextLine();
-
 
 		// On crée la liste des couleurs possibles
 		ArrayList<String> colors_list = new ArrayList<>();
@@ -151,7 +149,6 @@ public class Partie {
 						out.println("Veuillez entrer un nom non uniquement de type int");
 					}
 				} while (name_player == "" || isInteger == true);
-
 
 				// On demande la couleur des joueurs parmi celles restantes
 				System.out.println("Parmi les couleurs " + colors_list + " laquelle choisissez-vous ?");
@@ -352,6 +349,7 @@ public class Partie {
 		for (Domino x : plateauTrie) {
 			plateauId.add(String.valueOf(x.getId_domino()));
 		}
+		out.println(plateauId);
 
 		// On récupère les informations de chaque domino du plateau
 		for (Domino x : plateauTrie) {
@@ -387,7 +385,8 @@ public class Partie {
 
 		if (nbJoueurs == 2) {
 			tableauScores = new int[nbJoueurs * 2][2];	// 4 rois pour 2 joueurs
-		} else {
+		}
+		else {
 		tableauScores = new int[nbJoueurs][2];
 		}
 
@@ -511,15 +510,17 @@ public class Partie {
 
 			int idDomino = listeRois.get(i).getDomino_roi().getId_domino();
 
-			Domino dominoDomaines = ordrePassageTour1.get(i).getRoi().getDomino_roi();
-			String domaine1 = dominoDomaines.getDomaine1();
-			String domaine2 = dominoDomaines.getDomaine2();
-
 			// On initialise les positions du domino
 			int position_ligne1 = 0;
 			int position_colonne1 = 0;
 			int position_ligne2 = 0;
 			int position_colonne2 = 0;
+
+			Domino dominoDomaines = ordrePassageTour1.get(i).getRoi().getDomino_roi();
+			String domaine1 = dominoDomaines.getDomaine1();
+			String domaine2 = dominoDomaines.getDomaine2();
+			String domaine1bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
+			String domaine2bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 
 			// On vérifie que le premier domino est collé au chateau au centre du royaume
 			// On vérifie que le joueur rentre bien une valeur de ligne et de colonne plausibles, sinon on redemande
@@ -647,8 +648,8 @@ public class Partie {
 				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
 				ordrePassageTour1.get(i).getRoi().getDomino_roi().setPosition_domino2(position_domaine2);
 
-				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine1();
-				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine2();
+				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1;
+				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2;
 			}
 
 			else if (listeRois.get(i).getName() == "roibis") {
@@ -660,12 +661,23 @@ public class Partie {
 				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
 				ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().setPosition_domino2(position_domaine2);
 
-				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
-				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
+				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1bis;
+				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2bis;
+			}
+			else {
+				// On crée la position du domaine 1 du domino placé
+				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
+				listeRois.get(i).getDomino_roi().setPosition_domino1(position_domaine1);
+
+				// On crée la position du domaine 2 du domino placé
+				Position position_domaine2 = new Position(position_colonne2, position_ligne2);
+				listeRois.get(i).getDomino_roi().setPosition_domino2(position_domaine2);
+
+				table.get(idJoueur - 1)[position_ligne1][position_colonne1] = domaine1;
+				table.get(idJoueur - 1)[position_ligne2][position_colonne2] = domaine2;
 			}
 
 			// On retire du plateau le domino placé par le joueur i
-
 			plateauTrie.remove(ordrePassageTour1.get(i).getRoi().getDomino_roi());
 			plateau.remove(ordrePassageTour1.get(i).getRoi().getDomino_roi());
 
@@ -676,16 +688,17 @@ public class Partie {
 					indexToRemove = x;
 				}
 			}
-			plateauId.remove(ordrePassageTour1.get(indexToRemove));
+			//plateauId.remove(ordrePassageTour1.get(indexToRemove));
+			out.println(plateauId);
 
 			// --------------------- CALCUL DU SCORE -----------------------//
 
-			// On définit les domaines et nombres de couronnes
+			// On définit les domaines et le nombre de couronnes
+			nbCouronnesDomaine1 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getNb_couronnes1();
+			nbCouronnesDomaine2 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
 
 			if (nbJoueurs == 2) {
 				if (listeRois.get(i).getName() == "roi") {
-					nbCouronnesDomaine1 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getNb_couronnes1();
-					nbCouronnesDomaine2 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getNb_couronnes2();
 					domaine1 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine1();
 					domaine2 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine2();
 				}
@@ -700,6 +713,7 @@ public class Partie {
 				domaine1 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine1();
 				domaine2 = ordrePassageTour1.get(i).getRoi().getDomino_roi().getDomaine2();
 			}
+
 			// On additionne les couronnes et on multiplie par 2 si les 2 domaines sont identiques
 			if (domaine1 == domaine2) {
 				tableauScores[i][0] = 2 * (nbCouronnesDomaine1 + nbCouronnesDomaine2);
@@ -708,12 +722,13 @@ public class Partie {
 			}
 			out.println(tableauScores[i][0]);
 		}
+		plateauId.clear();
+		out.println(plateauId);
 
 		out.println("----------------------------------------------------");
 
 		for (int i = 0; i < nbJoueurs; i++) {
-			int joueurRoyaume = ordrePassageTour1.get(i).getId_joueur();
-			out.println("Royaume du joueur " + joueurRoyaume);
+			out.println("Royaume du joueur " + (i+1));
 			for (int line = 0; line < table.get(i).length; line++) {
 				for (int column = 0; column < table.get(i)[line].length; column++) {
 					System.out.print(table.get(i)[line][column] + " ");
@@ -771,8 +786,6 @@ public class Partie {
 					// On demande au joueur quel domino il/elle choisit
 					System.out.println(listeRois.get(i).getJoueur().getName() + ", choisissez sur quel domino vous voulez placer votre roi : " + plateauId);
 					String domino_choisi = scanner5.nextLine();
-
-					//dominos_choisis.add(domino_choisi);
 
 					// On vérifie que le numéro de domino choisi appartient bien à la liste
 					while (!(plateauId.contains(domino_choisi))) {
@@ -965,6 +978,7 @@ public class Partie {
 				}
 				plateauId.remove(ordrePassageSuite.get(indexToRemove));
 			}
+
 
 
 			out.println("----------------------------------------------------");
