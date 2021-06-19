@@ -18,6 +18,8 @@ public class Partie {
 	private ArrayList<Joueur> ordrePassageSuite;
 	private String domaine1;
 	private String domaine2;
+	private String domaine1bis;
+	private String domaine2bis;
 	private int nbCouronnesDomaine1;
 	private int nbCouronnesDomaine2;
 	private int idJoueur;
@@ -519,8 +521,6 @@ public class Partie {
 			Domino dominoDomaines = ordrePassageTour1.get(i).getRoi().getDomino_roi();
 			String domaine1 = dominoDomaines.getDomaine1();
 			String domaine2 = dominoDomaines.getDomaine2();
-			String domaine1bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
-			String domaine2bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 
 			// On vérifie que le premier domino est collé au chateau au centre du royaume
 			// On vérifie que le joueur rentre bien une valeur de ligne et de colonne plausibles, sinon on redemande
@@ -653,6 +653,8 @@ public class Partie {
 			}
 
 			else if (listeRois.get(i).getName() == "roibis") {
+				domaine1bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine1();
+				domaine2bis = ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().getDomaine2();
 				// On crée la position du domaine 1 du domino placé
 				Position position_domaine1 = new Position(position_colonne1, position_ligne1);
 				ordrePassageTour1.get(i).getRoi_bis().getDomino_roi().setPosition_domino1(position_domaine1);
